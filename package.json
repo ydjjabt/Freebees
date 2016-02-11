@@ -5,10 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/INeedClosure/INeedClosure.git"
+  },"engines": {
+    "node": "5.6.0",
+    "npm": "3.3.12"
   },
   "author": "",
   "license": "ISC",
