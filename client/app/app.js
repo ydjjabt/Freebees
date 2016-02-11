@@ -1,5 +1,5 @@
 var map;
-function initMap() {
+var initMap = function(){
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.7833, lng: -122.4167},
     zoom: 14
@@ -24,12 +24,12 @@ function initMap() {
       infowindow.open(map, marker);
     });
 
-  // document.getElementById('submit').addEventListener('click', function() {
+  // document.getElementById('submit').addEventListener('click', function(){
   //   geocodeAddress(geocoder, map);
   // });
 }
 
-// function geocodeAddress(geocoder, resultsMap) {
+// var geocodeAddress = function(geocoder, resultsMap){
 //   var address = document.getElementById('address').value;
 //   geocoder.geocode({'address': address}, function(results, status) {
 //     console.log('trying to geocode');
