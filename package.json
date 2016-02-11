@@ -20,6 +20,10 @@
     "url": "https://github.com/INeedClosure/INeedClosure/issues"
   },
   "homepage": "https://github.com/INeedClosure/INeedClosure#readme",
+  "scripts": {
+    "postinstall": "bower install",
+    "start": "node index.js"
+  },
   "devDependencies": {
     "express": "^4.13.4"
   },
