@@ -17,7 +17,7 @@ var app = angular.module('myApp', ['map.services'])
   var config = {headers: {'Content-Type':'application/x-www-form-urlencoded'}};
   $http.post('/', toSave, config)
     .then(function(data){
-      console.log('successful post! ', data);
+      console.log('successful post!');
     }, function(err){
       console.log(err);
     });
