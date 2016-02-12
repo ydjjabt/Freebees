@@ -1,10 +1,11 @@
 //need mongodb model here:
-var Item = require('./items/itemModel.js');
+var ItemFuncs = require('./items/itemController.js');
 
 module.exports = function(app){
   //server routes
   app.get('/', function(req, res) {
     //use mongoose to get all items in db
+    res.send('hi');
   });
 
   //sample route for testing
@@ -15,6 +16,8 @@ module.exports = function(app){
   app.post('/', function(req, res){
     //insert item into mongodb
     console.log("request body was ", req.body);
+    //call itemcontroller.saveItem
+    ItemFuncs.saveItem(req.body);
     res.sendStatus(201);
   });
 

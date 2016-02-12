@@ -16,7 +16,7 @@ var mongoose = require('mongoose');
 
 //     return Item
 //       .findOne({
-//         itemName: itemName, 
+//         itemName: itemName,
 //         itemLocation: itemLocation
 //       })
 //   }
@@ -24,6 +24,7 @@ var mongoose = require('mongoose');
 
 module.exports = {
   saveItem : function (toSave) {
+    console.log(toSave);
     var itemName = toSave.item;
     var itemLocation = toSave.LatLng;
     var create;
@@ -52,9 +53,8 @@ module.exports = {
           });
           return true;
         }
-      });
-
-    }
+    });
+  }
 
   // getAllItems: function(req, res, next){
   //   var findAll = Q.nbind(Item.find, Item);
@@ -69,6 +69,6 @@ module.exports = {
   //     }
   //   })
   // }
-
-
 };
+
+
