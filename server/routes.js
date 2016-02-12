@@ -1,5 +1,5 @@
 //need mongodb model here:
-//
+var Item = require('./items/itemModel.js');
 
 module.exports = function(app) {
   //server routes
@@ -14,6 +14,7 @@ module.exports = function(app) {
 
   app.post('/', function(req, res) {
     //insert item into mongodb
+
   });
 
   //any other route will load home page
