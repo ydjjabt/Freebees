@@ -4,12 +4,12 @@ var mongoose = require('mongoose');
 var ItemSchema = new mongoose.Schema ({
   itemName :{
     type: String,
-    require: true
+    required: true
   },
 
   itemLocation :{
     type: Object,
-    require: true
+    required: true
   }
 
 });
