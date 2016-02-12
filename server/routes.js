@@ -14,7 +14,8 @@ module.exports = function(app) {
 
   app.post('/', function(req, res) {
     //insert item into mongodb
-
+    console.log(req.body);
+    res.send(201);
   });
 
   //any other route will load home page

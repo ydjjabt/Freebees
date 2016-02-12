@@ -21,12 +21,12 @@ module.exports = {
           // The Item.create involes .save automatically
           create = Q.nbind(Item.create, Item);
           newItem = {
-            itemName: itemName, 
+            itemName: itemName,
             itemLocation: itemLocation
           };
-          return
+          return;
         }
-      })
+      });
 
   }
 
