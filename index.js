@@ -7,7 +7,9 @@ var morgan = require('morgan');
 var app = express();
 
 //create mongo database
-mongoURI = process.env.MONGOLAB_URI || 'mongodb://localhost:freebiesnearme';
+
+mongoURI = process.env.MONGOLAB_URI || "mongodb://localhost/freebiesnearme";
+
 mongoose.connect(mongoURI);
 mongoose.connection.once('open', function() {
   console.log('Connected to mongodb');
