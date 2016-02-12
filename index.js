@@ -7,8 +7,11 @@ var morgan = require('morgan');
 var app = express();
 
 //create mongo database
-mongoURI = process.env.MONGOLAB_URI || 'mongodb://master:master@ds061405.mongolab.com:61405/heroku_477ltgkh';
+mongoURI = process.env.MONGOLAB_URI || 'mongodb://localhost:freebiesnearme';
 mongoose.connect(mongoURI);
+mongoose.connection.once('open', function() {
+  console.log('Connected to mongodb');
+});
 
 var port = process.env.PORT || 3000;
 
