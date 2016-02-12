@@ -1,5 +1,24 @@
 var Item = require('./itemModel.js');
 var Q = require('q');
+var Promise = require('bluebird');
+var mongoose = require('mongoose');
+
+mongoose.Promise = Promise;
+
+module.exports = {
+  saveOneItem: function(req, res){
+    var itemName = req.body.itemName;
+    var itemLocation = req.body.itemLocation;
+    var create;
+    var newuser;
+
+    return Item
+      .findOne({
+        itemName: itemName, 
+        itemLocation: itemLocation
+      })
+  }
+}
 
 module.exports = {
   saveItem : function (req, res, next) {
