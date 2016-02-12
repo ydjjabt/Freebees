@@ -14,8 +14,7 @@ var app = angular.module('myApp', ['map.services'])
 })
 .factory('Posts', function($http, Map){
   var saveToDB = function(toSave){
-  // var config = {headers: {'Content-Type':'application/x-www-form-urlencoded'}};
-  $http.post('/', toSave)
+  return $http.post('/', toSave)
     .then(function(data){
       console.log('successful post!');
       Map.addMarker(map, toSave);

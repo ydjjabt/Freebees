@@ -9,15 +9,18 @@ var app = express();
 //create mongo database
 
 mongoURI = process.env.MONGOLAB_URI || "mongodb://localhost/freebiesnearme";
+//to connect to local mongodb
+// mongoose.connect(mongoURI);
 
-mongoose.connect(mongoURI);
+// to post to online database, use this connection:
+mongoose.connect("mongodb://master:master@ds061405.mongolab.com:61405/heroku_477ltgkh");
+
 mongoose.connection.once('open', function() {
   console.log('Connected to mongodb');
 });
 
 var port = process.env.PORT || 3000;
 
-app.use(express.static(__dirname + '/client'));
 
 //set up server logging
 app.use(morgan('combined'));
@@ -27,6 +30,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 //use routes.js
+app.use(express.static(__dirname + '/client'));
 require('./server/routes')(app);
 
 app.listen(port);

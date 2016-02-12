@@ -13,7 +13,7 @@ angular.module('map.services', [])
 var map;
 var geocoder;
 
-var initMap = function(){
+var initMap = function(data){
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.7833, lng: -122.4167},
     zoom: 14
@@ -41,7 +41,6 @@ var initMap = function(){
 //function to add a marker to map. Instance needs to be an obj with LatLng and an item properties.
 var addMarker = function(map, instance){
     //create an instance of an info window that will show data when clicked
-    console.log("ading marker on ", instance);
     var infowindow = new google.maps.InfoWindow({
         content: instance.item
       });
