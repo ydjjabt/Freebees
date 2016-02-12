@@ -6,7 +6,8 @@ var mongoose = require('mongoose');
 var app = express();
 
 //create mongo database
-mongoose.connet('mongodb://localhost/freebiesnearme');
+mongoURI = process.env.MONGOLAB_URI || 'mongodb://localhost/freebiesnearme'
+mongoose.connect(mongoURI);
 
 
 var port = process.env.PORT || 3000;
