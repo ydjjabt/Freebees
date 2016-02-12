@@ -5,14 +5,15 @@ angular.module('map.services', [])
     initMap: initMap,
     geocodeAddress: geocodeAddress,
     map: map,
-    geocoder: geocoder
+    geocoder: geocoder,
+    addMarker: addMarker
   };
 });
 
 var map;
 var geocoder;
 
-var initMap = function(){
+var initMap = function(data){
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.7833, lng: -122.4167},
     zoom: 14
@@ -23,34 +24,38 @@ var initMap = function(){
   //test data array
   var test = [
     {
-      myLatLng: {lat: 37.7833, lng: -122.4167},
-      contentString: "Goodbye World"
+      LatLng: {lat: 37.7833, lng: -122.4167},
+      item: "Goodbye World"
     },
     {
-      myLatLng: {lat: 38.7833, lng: -122.4167},
-      contentString: "Goodbye World #2"
+      LatLng: {lat: 38.7833, lng: -122.4167},
+      item: "Goodbye World #2"
     }
   ];
-
   //loop through data returned from db to place on map
-  for (var i = 0; i < test.length; i++) {
+  for (var i = 0; i < test.length; i++){
+    addMarker(map, test[i]);
+  }
+};
+
+//function to add a marker to map. Instance needs to be an obj with LatLng and an item properties.
+var addMarker = function(map, instance){
     //create an instance of an info window that will show data when clicked
     var infowindow = new google.maps.InfoWindow({
-        content: test[i].contentString
+        content: instance.item
       });
 
     //create a new instance of a google maps marker, will be created for each item in our db
     var marker = new google.maps.Marker({
-        position: test[i].myLatLng,
+        position: instance.LatLng,
         map: map,
         title: 'Hello World!'
       });
 
     //create the click listener on each marker to show their respective info window
-    marker.addListener('click', function() {
+    marker.addListener('click', function(){
         infowindow.open(map, marker);
       });
-  }
 };
 
 //grab the address the client has typed in to send to turn into longitude/latitude

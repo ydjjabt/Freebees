@@ -3,7 +3,6 @@ var Q = require('q');
 // var Promise = require('bluebird');
 var mongoose = require('mongoose');
 
-
 //commenting out bluebird for now
 // mongoose.Promise = Promise;
 
@@ -16,7 +15,7 @@ var mongoose = require('mongoose');
 
 //     return Item
 //       .findOne({
-//         itemName: itemName, 
+//         itemName: itemName,
 //         itemLocation: itemLocation
 //       })
 //   }
@@ -24,6 +23,7 @@ var mongoose = require('mongoose');
 
 module.exports = {
   saveItem : function (toSave) {
+    console.log("we are trying to save: ", toSave);
     var itemName = toSave.item;
     var itemLocation = toSave.LatLng;
     var create;
@@ -48,27 +48,21 @@ module.exports = {
           };
           Item.create(newItem, function(){
             console.log('inside create/save async callback');
-            // module.exports.getAllItems();
           });
           return true;
         }
-      });
+    });
+  },
 
-    }
+  getAllItems: function(req, res){
+    var findAll = Q.nbind(Item.find, Item);
 
-  // getAllItems: function(req, res, next){
-  //   var findAll = Q.nbind(Item.find, Item);
-
-  //   findAll({}, function(err, items){
-  //     if(err){
-  //       console.log('error in getting all items');
-  //       return err;
-  //     }else{
-  //       console.log(items);
-  //       res.send(items);
-  //     }
-  //   })
-  // }
-
-
+    findAll({})
+      .then(function(items){
+        console.log("in getallitems, items ", items);
+        res.json(items);
+    });
+  }
 };
+
+
