@@ -1,29 +1,31 @@
 var Item = require('./itemModel.js');
 var Q = require('q');
-var Promise = require('bluebird');
+// var Promise = require('bluebird');
 var mongoose = require('mongoose');
 
-mongoose.Promise = Promise;
+
+//commenting out bluebird for now
+// mongoose.Promise = Promise;
+
+// module.exports = {
+//   saveOneItem: function(req, res){
+//     var itemName = req.body.itemName;
+//     var itemLocation = req.body.itemLocation;
+//     var create;
+//     var newuser;
+
+//     return Item
+//       .findOne({
+//         itemName: itemName, 
+//         itemLocation: itemLocation
+//       })
+//   }
+// }
 
 module.exports = {
-  saveOneItem: function(req, res){
-    var itemName = req.body.itemName;
-    var itemLocation = req.body.itemLocation;
-    var create;
-    var newuser;
-
-    return Item
-      .findOne({
-        itemName: itemName, 
-        itemLocation: itemLocation
-      })
-  }
-}
-
-module.exports = {
-  saveItem : function (req, res, next) {
-    var itemName = req.body.itemName;
-    var itemLocation = req.body.itemLocation;
+  saveItem : function (toSave) {
+    var itemName = toSave.item;
+    var itemLocation = toSave.LatLng;
     var create;
     var newuser;
     //The below line returns promisified version of Item.findOne bound to context Item
@@ -35,7 +37,8 @@ module.exports = {
       .then(function(item){
         //If the item already exists, throws an error
         if (item){
-          next(new Error('That item is already being offered from that location \n Try offering something new'));
+          console.log('That item is already being offered from that location \n Try offering something new');
+          return false;
         } else {
           // The Item.create involes .save automatically
           create = Q.nbind(Item.create, Item);
@@ -43,11 +46,29 @@ module.exports = {
             itemName: itemName,
             itemLocation: itemLocation
           };
-          return;
+          Item.create(newItem, function(){
+            console.log('inside create/save async callback');
+            // module.exports.getAllItems();
+          });
+          return true;
         }
       });
 
-  }
+    }
+
+  // getAllItems: function(req, res, next){
+  //   var findAll = Q.nbind(Item.find, Item);
+
+  //   findAll({}, function(err, items){
+  //     if(err){
+  //       console.log('error in getting all items');
+  //       return err;
+  //     }else{
+  //       console.log(items);
+  //       res.send(items);
+  //     }
+  //   })
+  // }
 
 
 };
