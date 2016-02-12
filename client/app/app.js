@@ -1,6 +1,14 @@
-var map;
+angular.module('map.services', [])
+
+.factory('Map', function($http){
+  return {
+    initMap: initMap,
+    geocodeAddress: geocodeAddress
+  }
+})
+
 var initMap = function(){
-  map = new google.maps.Map(document.getElementById('map'), {
+  var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.7833, lng: -122.4167},
     zoom: 14
   });
@@ -39,9 +47,9 @@ var initMap = function(){
       });
   }
   //geocode inputted address on submit
-  document.getElementById('submit').addEventListener('click', function(){
-    geocodeAddress(geocoder, map);
-  });
+  // document.getElementById('submit').addEventListener('click', function(){
+  //   geocodeAddress(geocoder, map);
+  // });
 };
 
 //grab the address the client has typed in to send to turn into longitude/latitude

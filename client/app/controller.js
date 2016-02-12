@@ -1,6 +1,6 @@
-var app = angular.module('myApp', [])
+var app = angular.module('myApp', ['map.services'])
 
-.controller('FormController', function($scope, $http, Posts){
+.controller('FormController', function($scope, $http, Posts, Map){
   $scope.user = {};
   $scope.sendPost = function(){     
     Posts.sendPost()
@@ -12,6 +12,10 @@ var app = angular.module('myApp', [])
       console.log(error)
     })
   }
+  $scope.initMap = function(){
+    Map.initMap()
+  }
+  $scope.initMap()
 })
 .factory('Posts', function($http){
   var sendPost = function(){
@@ -26,6 +30,8 @@ var app = angular.module('myApp', [])
     sendPost: sendPost
   }
 })
+
+
 
 // var data = $.param({
 //   location: $scope.user.location,
