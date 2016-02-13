@@ -19,7 +19,7 @@ module.exports = function(app){
 
   //any other route will load home page
   app.get('*', function(req, res){
-    res.sendFile('./client/index.html');
+    res.redirect('/');
     //or do we want to redirect to '/'?
   });
 };
