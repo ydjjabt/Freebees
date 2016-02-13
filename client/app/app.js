@@ -13,7 +13,7 @@ angular.module('map.services', [])
 var map;
 var geocoder;
 
-//called when googleapi lib is loaded
+//called from index.html when googleapi lib is loaded
 var loadAllItems = function() {
   $.ajax({
     url: '/api/items',
@@ -29,7 +29,7 @@ var loadAllItems = function() {
 var initMap = function(data){
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.7833, lng: -122.4167},
-    zoom: 14
+    zoom: 12
   });
 
   //Geocoder is an object Google maps w/ various methods API to pull their geocoding functionality

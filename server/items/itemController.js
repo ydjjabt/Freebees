@@ -59,7 +59,6 @@ module.exports = {
 
     findAll({})
       .then(function(items){
-        console.log("in getallitems, items ", items);
         res.json(items);
     });
   }
