@@ -19,7 +19,7 @@ var loadAllItems = function() {
     url: '/api/items',
     type: 'GET',
     success: function(data) {
-      console.log('successfully called ajax', data);
+      console.log('successfully called ajax');
       initMap(data);
     }
   });
