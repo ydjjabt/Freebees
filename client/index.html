@@ -1,9 +1,28 @@
 <!DOCTYPE html>
+<html>
   <head>
-    <meta charset="utf-8" />
-    <title>Freebies New Me</title>
+    <title>Freebies Near Me</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/styles/styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="/app/app.js"></script>
+    <script src="/app/controller.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPvz5GX-N_onKVobBHRUlI_8Z4PtaU9Es&callback=initMap"></script>
   </head>
   <body>
-    <h1>Freebies New Me</h1>
+  <h1>freebee</h1>
+  <div ng-app="myApp" ng-controller="FormController">
+    <div id="inputForm">
+      <form novalidate>
+        Have something to get rid of?<br>
+        <input placeholder="Your address" type="text" ng-model="user.location">
+        <input placeholder="Your item" type="text" ng-model="user.item">
+        <button type="submit" ng-click="sendPost()">Submit</button>
+      </form>
+    </div>
+  </div>
+    <div id="map"></div>
   </body>
 </html>

@@ -22,10 +22,15 @@
   },
   "homepage": "https://github.com/INeedClosure/INeedClosure#readme",
   "devDependencies": {
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "mongoose": "4.4.3"
   },
   "dependencies": {
+    "body-parser": "1.15.0",
     "bower": "1.7.7",
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "mongoose": "4.4.3",
+    "morgan": "1.6.1",
+    "q": "1.4.1"
   }
 }
