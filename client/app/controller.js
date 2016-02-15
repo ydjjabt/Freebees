@@ -8,6 +8,10 @@ var app = angular.module('myApp', ['map.services'])
       Posts.saveToDB({item: $scope.user.item, LatLng: converted});
     });
   };
+  $scope.filterMap = function() {
+    var searchInput = $scope.search.input;
+    Posts.filterDB(searchInput);
+  };
   $scope.initMap = function(){
     Map.loadAllItems();
   };
@@ -17,7 +21,6 @@ var app = angular.module('myApp', ['map.services'])
   return $http.post('/', toSave)
     .then(function(data){
       console.log('successful post!', data.data);
-      console.log(map)
       Map.addMarker(map, data.data);
       //Map.loadAllItems();
 
@@ -25,7 +28,22 @@ var app = angular.module('myApp', ['map.services'])
       console.log(err);
     });
   };
+  var filterDB = function(toFilterBy) {
+    return $http.get('/api/items')
+      .then(function(data) {
+        //filter our returned db by the desired itemName
+        var filtered = data.data.filter(function(item) {
+          return item.itemName.indexOf(toFilterBy) > -1;
+        });
+        console.log('filtered db is: ', filtered);
+        //re-initialize map with only these markers
+        Map.initMap(filtered);
+      }, function(err) {
+        console.log("error in filtering", err);
+      });
+  };
   return {
-    saveToDB: saveToDB
+    saveToDB: saveToDB,
+    filterDB: filterDB
   };
 });

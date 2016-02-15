@@ -12,6 +12,7 @@ angular.module('map.services', [])
 
 var map;
 var geocoder;
+var entireDB;
 
 //called from index.html when googleapi lib is loaded
 var loadAllItems = function() {
