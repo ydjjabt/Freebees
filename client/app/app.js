@@ -6,7 +6,8 @@ angular.module('map.services', [])
     geocodeAddress: geocodeAddress,
     map: map,
     geocoder: geocoder,
-    addMarker: addMarker
+    addMarker: addMarker,
+    loadAllItems: loadAllItems
   };
 });
 
@@ -20,6 +21,7 @@ var loadAllItems = function() {
     type: 'GET',
     success: function(data) {
       console.log('successfully called ajax');
+      console.log(data);
       initMap(data);
     }
   });

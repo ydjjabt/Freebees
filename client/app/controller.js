@@ -9,7 +9,7 @@ var app = angular.module('myApp', ['map.services'])
     });
   };
   $scope.initMap = function(){
-    Map.initMap($scope.user.item);
+    Map.loadAllItems();
   };
 })
 .factory('Posts', function($http, Map){
@@ -17,7 +17,8 @@ var app = angular.module('myApp', ['map.services'])
   return $http.post('/', toSave)
     .then(function(data){
       console.log('successful post!');
-      Map.addMarker(map, toSave);
+      Map.addMarker(map, data);
+      Map.loadAllItems();
     }, function(err){
       console.log(err);
     });
