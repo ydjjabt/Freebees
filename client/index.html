@@ -22,6 +22,12 @@
         <button type="submit" ng-click="sendPost()">Submit</button>
       </form>
     </div>
+    <div id="searchInput">
+      <form novalidate>
+        <input placeholder="Search items here" type="text" ng-model="search.input">
+        <button ng-click="filterMap()" type="submit">Search</button>
+      </form>
+    </div>
   </div>
     <div id="map"></div>
   </body>
