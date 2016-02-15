@@ -1,22 +1,22 @@
 var app = angular.module('myApp', ['map.services'])
 
-.controller('FormController', function($scope, $http, Posts, Map){
+.controller('FormController', function($scope, $http, DBActions, Map){
   $scope.user = {};
   $scope.sendPost = function(){
     //convert inputted address
     Map.geocodeAddress(geocoder, Map.map, $scope.user.location, function(converted) {
-      Posts.saveToDB({item: $scope.user.item, LatLng: converted});
+      DBActions.saveToDB({item: $scope.user.item, LatLng: converted});
     });
   };
   $scope.filterMap = function() {
     var searchInput = $scope.search.input;
-    Posts.filterDB(searchInput);
+    DBActions.filterDB(searchInput);
   };
   $scope.initMap = function(){
     Map.loadAllItems();
   };
 })
-.factory('Posts', function($http, Map){
+.factory('DBActions', function($http, Map){
   var saveToDB = function(toSave){
   return $http.post('/', toSave)
     .then(function(data){
