@@ -9,7 +9,7 @@ var app = angular.module('myApp', ['map.services'])
     });
   };
   $scope.initMap = function(){
-    Map.initMap();
+    Map.initMap($scope.user.item);
   };
 })
 .factory('Posts', function($http, Map){
