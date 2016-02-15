@@ -10,12 +10,7 @@ module.exports = function(app){
     res.send('worked');
   });
 
-  app.post('/', function(req, res){
-    //insert item into mongodb
-    console.log("request body was ", req.body);
-    ItemFuncs.saveItem(req.body);
-    res.sendStatus(201);
-  });
+  app.post('/', ItemFuncs.saveItem);
 
   //any other route will load home page
   app.get('*', function(req, res){

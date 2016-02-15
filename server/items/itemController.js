@@ -22,10 +22,10 @@ var mongoose = require('mongoose');
 // }
 
 module.exports = {
-  saveItem : function (toSave) {
-    console.log("we are trying to save: ", toSave);
-    var itemName = toSave.item;
-    var itemLocation = toSave.LatLng;
+  saveItem : function (req, res) {
+    console.log("we are trying to save: ", req.body);
+    var itemName = req.body.item;
+    var itemLocation = req.body.LatLng;
     var create;
     var newuser;
     //The below line returns promisified version of Item.findOne bound to context Item
@@ -46,10 +46,11 @@ module.exports = {
             itemName: itemName,
             itemLocation: itemLocation
           };
-          Item.create(newItem, function(){
-            console.log('inside create/save async callback');
-          });
-          return true;
+          create(newItem)
+            .then(function(data){
+              res.send(data);
+            });
+          // return true;
         }
     });
   },
