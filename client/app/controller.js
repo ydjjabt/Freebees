@@ -16,9 +16,11 @@ var app = angular.module('myApp', ['map.services'])
   var saveToDB = function(toSave){
   return $http.post('/', toSave)
     .then(function(data){
-      console.log('successful post!');
-      Map.addMarker(map, data);
-      Map.loadAllItems();
+      console.log('successful post!', data.data);
+      console.log(map)
+      Map.addMarker(map, data.data);
+      //Map.loadAllItems();
+
     }, function(err){
       console.log(err);
     });

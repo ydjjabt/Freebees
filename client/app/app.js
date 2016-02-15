@@ -6,8 +6,7 @@ angular.module('map.services', [])
     geocodeAddress: geocodeAddress,
     map: map,
     geocoder: geocoder,
-    addMarker: addMarker,
-    loadAllItems: loadAllItems
+    addMarker: addMarker
   };
 });
 
@@ -21,7 +20,6 @@ var loadAllItems = function() {
     type: 'GET',
     success: function(data) {
       console.log('successfully called ajax');
-      console.log(data);
       initMap(data);
     }
   });
@@ -48,7 +46,7 @@ var addMarker = function(map, instance){
     var infowindow = new google.maps.InfoWindow({
         content: instance.itemName
       });
-
+    console.log('hit add marker')
     //create a new instance of a google maps marker, will be created for each item in our db
     var marker = new google.maps.Marker({
         position: instance.itemLocation,
