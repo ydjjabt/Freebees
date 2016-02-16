@@ -75,6 +75,10 @@ var initMap = function(data){
   for (var i = 0; i < data.length; i++){
     addMarker(map, data[i], infoWindow);
   }
+  //add autocomplete functionality to address input field
+  var input = document.getElementById('inputAddress');
+  var options = {};
+  var autocomplete = new google.maps.places.Autocomplete(input, options);
 };
 
 //add a marker to map. Instance needs to be an obj with itemLocation and itemName properties.

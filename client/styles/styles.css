@@ -12,3 +12,7 @@ html, body {
 .createdAt {
   font-size: 10px;
 }
+
+input {
+  width: 20%;
+}

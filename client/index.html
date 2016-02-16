@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script src="/app/app.js"></script>
     <script src="/app/controller.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPvz5GX-N_onKVobBHRUlI_8Z4PtaU9Es&callback=loadAllItems"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPvz5GX-N_onKVobBHRUlI_8Z4PtaU9Es&&libraries=places&callback=loadAllItems"></script>
   </head>
   <body>
   <h1>freebee</h1>
@@ -17,7 +17,7 @@
     <div id="inputForm">
       <form novalidate>
         Have something to get rid of?<br>
-        <input placeholder="Your address" type="text" ng-model="user.location">
+        <input placeholder="Your address" id="inputAddress" type="text" ng-model="user.location">
         <input placeholder="Your item" type="text" ng-model="user.item">
         <button type="submit" ng-click="sendPost()">Submit</button>
         <button type="submit" ng-click="removePost()"> Delete</button>
