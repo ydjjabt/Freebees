@@ -22,8 +22,6 @@ var app = angular.module('myApp', ['map.services'])
     .then(function(data){
       console.log('successful post!', data.data);
       Map.addMarker(map, data.data);
-      //Map.loadAllItems();
-
     }, function(err){
       console.log(err);
     });
