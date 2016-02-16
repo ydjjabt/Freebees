@@ -20,13 +20,14 @@ module.exports = {
     var findOne = Q.nbind(Item.findOne, Item);
 
     //The below line searches the database for a pre-existing row in db that exactly matches the user input
-    findOne({itemName: itemName, itemLocation: itemLocation})
+    findOne({itemName: itemName, itemLng: itemLocation.lng, itemLat: itemLocation.lat})
 
       .then(function(item){
 
         //If the item already exists in db, notify the user they need to try again
         if (item){
           console.log('That item is already being offered from that location \n Try offering something new');
+          res.status(400).send('invalid request');
         } else {
           //Otherwise we're going to create and save the user's submitted item
 
@@ -73,12 +74,13 @@ module.exports = {
     var removeItem = Q.nbind(Item.remove, Item);
     removeItem({itemName: itemName, itemLng: itemLocation.lng, itemLat: itemLocation.lat})
       .then(function(item){
+
         //If the item already exists, throws an error
         if (!item){
-          console.log('That item is already being offered from that location \n Try offering something new');
+          console.log('That item does not exist.');
           res.status(400).send('invalid request');
         } else {
-          console.log('item ', item);
+            
           res.send('item deleted');
         }
     });
