@@ -51,7 +51,7 @@ var app = angular.module('myApp', ['map.services'])
       //map within Map factory instead of global space.
 
     }, function(err){
-      console.log(err);
+      console.log('Error when saveToDB invoked - post to "/" failed. Error: ', err);
     });
   };
 
@@ -71,7 +71,7 @@ var app = angular.module('myApp', ['map.services'])
         //re-initialize map with only these markers
         Map.initMap(filtered);
       }, function(err) {
-        console.log("error in filtering", err);
+        console.log('Error when filterDB invoked - get from "/api/items" failed. Error: ', err);
       });
   };
 
@@ -83,7 +83,7 @@ var app = angular.module('myApp', ['map.services'])
         Map.removeMarker(map, data.data);
         //Map.loadAllItems();
       }, function(err) {
-        console.log(err);
+        console.log('Error when removeFromDB invoked - post to "/pickup" failed. Error: ', err);
       });
   };
 
