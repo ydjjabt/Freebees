@@ -15,7 +15,11 @@ var app = angular.module('myApp', ['map.services'])
     //convert inputted address
     Map.geocodeAddress(geocoder, Map.map, $scope.user.location, function(converted) {
       //after address converted, save user input item and location to db
+<<<<<<< 0e741ce6c9ec9951b53c445233c96b5027ed803c
       DBActions.saveToDB({item: lowerCaseItem, LatLng: converted, createdAt: new Date()});
+=======
+      DBActions.saveToDB({item: $scope.user.item, LatLng: converted, createdAt: new Date()});
+>>>>>>> (feat)Added createdAt attribute to items and displayed them in info window
     });
   };
 

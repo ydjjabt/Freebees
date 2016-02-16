@@ -1,4 +1,4 @@
-//itemController.js uses someFunc().then(success).catch(err) (method #1) to handle errors, 
+//itemController.js uses someFunc().then(success).catch(err) (method #1) to handle errors,
 //whereas controller.js uses someFunc().then(onSuccess, onFailure) to handle errors (method #2).
 //These two ways are similar, although method #2 is considered an anti-pattern
 //since onFailure only gets called if someFunc() fails, whereas .catch() gets called
