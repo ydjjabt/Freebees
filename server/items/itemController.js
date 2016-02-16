@@ -29,6 +29,7 @@ module.exports = {
           console.log('That item is already being offered from that location \n Try offering something new');
           res.status(400).send('invalid request');
         } else {
+          console.log('trying to save', itemName);
           //Otherwise we're going to create and save the user's submitted item
 
           //Q.nbind() promisifies its first argument, so now you could chain a .then() after create
@@ -39,7 +40,7 @@ module.exports = {
             itemLocation: itemLocation,
             itemLng: itemLocation.lng,
             itemLat: itemLocation.lat,
-            date: date
+            createdAt: date
           };
 
           // In mongoose, .create() automaticaly creates AND saves simultaneously

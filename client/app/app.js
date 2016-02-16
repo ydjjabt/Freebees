@@ -59,6 +59,7 @@ var addMarker = function(map, instance, infoWindow){
 
     //creates a listener that will attach this instance's data to the global info window and open it
     google.maps.event.addListener(marker, 'click', function() {
+      console.log(instance.createdAt);
       //turn our mongo-stored stringified date into a JS date obj that is then formatted
       infoWindow.setContent(instance.itemName+' <br><span class="createdAt">'+formatDate(new Date(instance.createdAt))+'</span>');
       infoWindow.open(map, this);

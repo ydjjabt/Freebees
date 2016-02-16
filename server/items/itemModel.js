@@ -25,7 +25,7 @@ var ItemSchema = new mongoose.Schema ({
     required: true
   },
 
-  date: {
+  createdAt: {
     type: Date,
     required: true
   }
