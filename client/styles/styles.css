@@ -5,6 +5,10 @@ html, body {
 }
 
 #map {
-  height: 50%;
-  width: 50%;
+  height: 75%;
+  width: 75%;
+}
+
+.createdAt {
+  font-size: 10px;
 }

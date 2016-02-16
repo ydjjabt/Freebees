@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-//Item is a model (i.e. row) that fits into the db, it has itemName and itemLocation props 
+//Item is a model (i.e. row) that fits into the db, it has itemName and itemLocation props
 var Item = require('./itemModel.js');
 
 //Q's nbind() method used below to promisify methods, although this will only be helpful for future features
@@ -8,10 +8,10 @@ var Q = require('q');
 
 module.exports = {
   saveItem : function (req, res) {
-
     //extract itemName and itemLocation from the post request's body
     var itemName = req.body.item;
     var itemLocation = req.body.LatLng;
+    var date = req.body.createdAt;
 
     var create;
 
@@ -29,6 +29,7 @@ module.exports = {
           console.log('That item is already being offered from that location \n Try offering something new');
           res.status(400).send('invalid request');
         } else {
+          console.log('trying to save', itemName);
           //Otherwise we're going to create and save the user's submitted item
 
           //Q.nbind() promisifies its first argument, so now you could chain a .then() after create
@@ -38,7 +39,8 @@ module.exports = {
             itemName: itemName,
             itemLocation: itemLocation,
             itemLng: itemLocation.lng,
-            itemLat: itemLocation.lat
+            itemLat: itemLocation.lat,
+            createdAt: date
           };
 
           // In mongoose, .create() automaticaly creates AND saves simultaneously
@@ -80,7 +82,6 @@ module.exports = {
           console.log('That item does not exist.');
           res.status(400).send('invalid request');
         } else {
-            
           res.send('item deleted');
         }
     });
