@@ -11,7 +11,7 @@ module.exports = {
     //extract itemName and itemLocation from the post request's body
     var itemName = req.body.item;
     var itemLocation = req.body.LatLng;
-    var date = req.body.date;
+    var date = req.body.createdAt;
 
     var create;
 
