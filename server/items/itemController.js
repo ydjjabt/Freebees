@@ -1,3 +1,12 @@
+//itemController.js uses someFunc().then(success).catch(err) (method #1) to handle errors, 
+//whereas controller.js uses someFunc().then(onSuccess, onFailure) to handle errors (method #2).
+//These two ways are similar, although method #2 is considered an anti-pattern
+//since onFailure only gets called if someFunc() fails, whereas .catch() gets called
+//if either someFunc() or .then() fails. Method #2 also closely resembles traditional callback hell
+//whereas method #1 more closely resembles promise methodology. Method #2 can sometimes be helpful
+//for some edge cases. We use both methods for practice implementing both and remain consistent within each
+//individual file.
+
 var mongoose = require('mongoose');
 
 //Item is a model (i.e. row) that fits into the db, it has itemName and itemLocation props
@@ -47,9 +56,15 @@ module.exports = {
           create(newItem)
             .then(function(data){
               res.send(data);
+            })
+            .catch(function(err){
+              console.log('Error when create invoked - creating newItem and saving to db failed. Error: ', err);
             });
         }
-    });
+      })
+      .catch(function(err){
+        console.log('Error when findOne invoked - searching db for specific item failed. Error: ', err);
+      });
   },
 
   //The below function returns all rows from the db. It is called whenever user visits '/' or '/api/links'
@@ -65,7 +80,10 @@ module.exports = {
         //sends all the rows in the db, which then get used in initMap function within
         //success callback of loadAllItems in app.js
         res.json(items);
-    });
+      })
+      .catch(function(err){
+        console.log('Error when findAll invoked - retrieving all items from db failed. Error: ', err);
+      });
   },
   removeItem: function(req, res){
     console.log("we are trying to remove: ");
@@ -84,7 +102,10 @@ module.exports = {
         } else {
           res.send('item deleted');
         }
-    });
+      })
+      .catch(function(err){
+        console.log('Error when removeItem invoked - deleting row from db failed. Error: ', err);
+      });
 
   }
 };
