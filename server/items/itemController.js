@@ -1,67 +1,90 @@
-var Item = require('./itemModel.js');
-var Q = require('q');
-// var Promise = require('bluebird');
 var mongoose = require('mongoose');
 
-//commenting out bluebird for now
-// mongoose.Promise = Promise;
+//Item is a model (i.e. row) that fits into the db, it has itemName and itemLocation props 
+var Item = require('./itemModel.js');
 
-// module.exports = {
-//   saveOneItem: function(req, res){
-//     var itemName = req.body.itemName;
-//     var itemLocation = req.body.itemLocation;
-//     var create;
-//     var newuser;
-
-//     return Item
-//       .findOne({
-//         itemName: itemName,
-//         itemLocation: itemLocation
-//       })
-//   }
-// }
+//Q's nbind() method used below to promisify methods, although this will only be helpful for future features
+var Q = require('q');
 
 module.exports = {
-  saveItem : function (toSave) {
-    console.log("we are trying to save: ", toSave);
-    var itemName = toSave.item;
-    var itemLocation = toSave.LatLng;
+  saveItem : function (req, res) {
+
+    //extract itemName and itemLocation from the post request's body
+    var itemName = req.body.item;
+    var itemLocation = req.body.LatLng;
+
     var create;
-    var newuser;
+
     //The below line returns promisified version of Item.findOne bound to context Item
+    //This is necessary because we will only create a new model after we search the db to see if it already exists
     var findOne = Q.nbind(Item.findOne, Item);
 
-    //This function adds new item to database
-    findOne({itemName: itemName, itemLocation: itemLocation})
-      //The above line queries the database for any entries that match the item name and location from req.body
+    //The below line searches the database for a pre-existing row in db that exactly matches the user input
+    findOne({itemName: itemName, itemLng: itemLocation.lng, itemLat: itemLocation.lat})
+
       .then(function(item){
-        //If the item already exists, throws an error
+
+        //If the item already exists in db, notify the user they need to try again
         if (item){
           console.log('That item is already being offered from that location \n Try offering something new');
-          return false;
+          res.status(400).send('invalid request');
         } else {
-          // The Item.create involes .save automatically
+          //Otherwise we're going to create and save the user's submitted item
+
+          //Q.nbind() promisifies its first argument, so now you could chain a .then() after create
+          //the .then() below could be helpful for future features
           create = Q.nbind(Item.create, Item);
           newItem = {
             itemName: itemName,
-            itemLocation: itemLocation
+            itemLocation: itemLocation,
+            itemLng: itemLocation.lng,
+            itemLat: itemLocation.lat
           };
-          Item.create(newItem, function(){
-            console.log('inside create/save async callback');
-          });
-          return true;
+
+          // In mongoose, .create() automaticaly creates AND saves simultaneously
+          create(newItem)
+            .then(function(data){
+              res.send(data);
+            });
         }
     });
   },
 
+  //The below function returns all rows from the db. It is called whenever user visits '/' or '/api/links'
   getAllItems: function(req, res){
+
+    //promisify Item.find so that it can have a .then() chained to it
     var findAll = Q.nbind(Item.find, Item);
 
+    //search db for an empty object, i.e. return everything in the db
     findAll({})
       .then(function(items){
-        console.log("in getallitems, items ", items);
+
+        //sends all the rows in the db, which then get used in initMap function within
+        //success callback of loadAllItems in app.js
         res.json(items);
     });
+  },
+  removeItem: function(req, res){
+    console.log("we are trying to remove: ");
+
+    var itemName = req.body.item;
+    var itemLocation = req.body.LatLng;
+
+    var removeItem = Q.nbind(Item.remove, Item);
+    removeItem({itemName: itemName, itemLng: itemLocation.lng, itemLat: itemLocation.lat})
+      .then(function(item){
+
+        //If the item already exists, throws an error
+        if (!item){
+          console.log('That item does not exist.');
+          res.status(400).send('invalid request');
+        } else {
+            
+          res.send('item deleted');
+        }
+    });
+
   }
 };
 

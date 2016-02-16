@@ -1,25 +1,18 @@
-//need mongodb model here:
+//require server-side itemController functions to interact with db
 var ItemFuncs = require('./items/itemController.js');
 
 module.exports = function(app){
-  //server routes
+  //when navigate to /api/items, retrieve all data rows from db
   app.get('/api/items', ItemFuncs.getAllItems);
 
-  //sample route for testing
-  app.get('/test', function(req, res){
-    res.send('worked');
-  });
+  //when submit an item to be given away, save it to db
+  app.post('/', ItemFuncs.saveItem);
 
-  app.post('/', function(req, res){
-    //insert item into mongodb
-    console.log("request body was ", req.body);
-    ItemFuncs.saveItem(req.body);
-    res.sendStatus(201);
-  });
+  app.post('/pickup',ItemFuncs.removeItem);
 
-  //any other route will load home page
+  //any other route will load root
   app.get('*', function(req, res){
-    res.sendFile('./client/index.html');
-    //or do we want to redirect to '/'?
+    res.redirect('/');
   });
+
 };
