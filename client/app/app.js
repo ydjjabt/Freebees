@@ -17,6 +17,34 @@ var geocoder;
 var entireDB;
 var infoWindow;
 
+//errObj is the object created upon failure. It has a .status prop
+//exceptionType is a string, could be 'timeout', 'abort', 'error', or others
+//these two paramaters are automatically accessible within ajax erorr callback 
+var errorHandler = function(errObj, exceptionType){
+  var msg = '';
+  if(errObj.status === 0){
+    msg = 'Not connected. Verify network.';
+    console.log('xxxxx this is the error: ', errObj);
+  } else if (errObj.status === 404){
+    msg = 'Requested page was not found ' + errObj.status;
+    console.log('xxxxx this is the error: ', errObj);
+  } else if (errObj.status === 500){
+    msg = 'Internal server error ' + errObj.status;
+    console.log('xxxxx this is the error: ', errObj);
+  } else if (exceptionType === 'parserror'){
+    msg = 'Requested JSON parse failed';
+    console.log('xxxxx this is the error: ', errObj);
+  } else if (exceptionType === 'timeout'){
+    msg = 'Request timed out';
+    console.log('xxxxx this is the error: ', errObj);
+  } else if (exceptionType === 'abort'){
+    msg = 'Request was aborted';
+    console.log('xxxxx this is the error: ', errObj);
+  }
+  // add error message to top of html's body
+  $('body').prepend('<h1>' + msg + '</h1>');
+};
+
 //called from index.html when googleapi lib is loaded
 var loadAllItems = function() {
   $.ajax({
@@ -25,6 +53,9 @@ var loadAllItems = function() {
     success: function(data) {
       console.log('successfully called ajax');
       initMap(data);
+    },
+    error: function(jqXHR, exception){
+      errorHandler(jqXHR, exception);
     }
   });
 };
