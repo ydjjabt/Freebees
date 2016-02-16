@@ -8,3 +8,7 @@ html, body {
   height: 75%;
   width: 75%;
 }
+
+.createdAt {
+  font-size: 10px;
+}

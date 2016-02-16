@@ -10,10 +10,10 @@ var app = express();
 
 mongoURI = process.env.MONGOLAB_URI || "mongodb://localhost/freebiesnearme";
 //to connect to local mongodb
-// mongoose.connect(mongoURI);
+mongoose.connect(mongoURI);
 
 // to post to online database, use this connection:
-mongoose.connect("mongodb://master:master@ds061405.mongolab.com:61405/heroku_477ltgkh");
+// mongoose.connect("mongodb://master:master@ds061405.mongolab.com:61405/heroku_477ltgkh");
 
 mongoose.connection.once('open', function() {
   console.log('Connected to mongodb');
