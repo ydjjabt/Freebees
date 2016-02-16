@@ -23,6 +23,13 @@ var app = angular.module('myApp', ['map.services'])
   $scope.initMap = function(){
     Map.loadAllItems();
   };
+
+  $scope.removePost = function(){
+    //convert inputted address
+    Map.geocodeAddress(geocoder, Map.map, $scope.user.location, function(converted) {
+      DBActions.removeFromDB({item: $scope.user.item, LatLng: converted});
+    });
+  };
 })
 
 .factory('DBActions', function($http, Map){
@@ -68,10 +75,23 @@ var app = angular.module('myApp', ['map.services'])
       });
   };
 
+  var removeFromDB = function(toRemove) {
+    return $http.post('/pickup', toRemove)
+      .then(function(data) {
+        console.log('successful removed post!', data.data);
+        // console.log(map)
+        Map.removeMarker(map, data.data);
+        //Map.loadAllItems();
+      }, function(err) {
+        console.log(err);
+      });
+  };
+
   //the DBActions factory returns the below object with methods of the functions
   //defined above
   return {
     saveToDB: saveToDB,
-    filterDB: filterDB
+    filterDB: filterDB,
+    removeFromDB: removeFromDB
   };
 });

@@ -6,7 +6,8 @@ angular.module('map.services', [])
     geocodeAddress: geocodeAddress,
     map: map,
     geocoder: geocoder,
-    addMarker: addMarker
+    addMarker: addMarker,
+    removeMarker: removeMarker
   };
 });
 
@@ -61,6 +62,13 @@ var addMarker = function(map, instance){
       });
 };
 
+var removeMarker = function(map, instance){
+  //create an instance of an info window that will show data when clicked
+    
+  console.log('hit remove marker')
+    //create
+};
+
 //grab the address the client has typed in to send to turn into longitude/latitude
 var geocodeAddress = function(geocoder, resultsMap, address, cb){
   //calls the geocode method on Google Map's geocode obj
@@ -74,3 +82,5 @@ var geocodeAddress = function(geocoder, resultsMap, address, cb){
     }
   });
 };
+
+

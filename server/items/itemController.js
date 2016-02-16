@@ -35,7 +35,9 @@ module.exports = {
           create = Q.nbind(Item.create, Item);
           newItem = {
             itemName: itemName,
-            itemLocation: itemLocation
+            itemLocation: itemLocation,
+            itemLng: itemLocation.lng,
+            itemLat: itemLocation.lat
           };
 
           // In mongoose, .create() automaticaly creates AND saves simultaneously
@@ -61,6 +63,26 @@ module.exports = {
         //success callback of loadAllItems in app.js
         res.json(items);
     });
+  },
+  removeItem: function(req, res){
+    console.log("we are trying to remove: ");
+
+    var itemName = req.body.item;
+    var itemLocation = req.body.LatLng;
+
+    var removeItem = Q.nbind(Item.remove, Item);
+    removeItem({itemName: itemName, itemLng: itemLocation.lng, itemLat: itemLocation.lat})
+      .then(function(item){
+        //If the item already exists, throws an error
+        if (!item){
+          console.log('That item is already being offered from that location \n Try offering something new');
+          res.status(400).send('invalid request');
+        } else {
+          console.log('item ', item);
+          res.send('item deleted');
+        }
+    });
+
   }
 };
 
