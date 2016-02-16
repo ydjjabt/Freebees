@@ -13,6 +13,16 @@ var ItemSchema = new mongoose.Schema ({
   itemLocation :{
     type: Object,
     required: true
+  },
+
+   itemLng: {
+    type: Number,
+    required: true
+  },
+
+  itemLat: {
+    type: Number,
+    required: true
   }
 
 });
