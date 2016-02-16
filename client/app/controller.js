@@ -1,5 +1,6 @@
 var app = angular.module('myApp', ['map.services'])
 
+//dependencies injected include DBActions factory and Map factory
 .controller('FormController', function($scope, $http, DBActions, Map){
   $scope.user = {};
 
@@ -27,30 +28,48 @@ var app = angular.module('myApp', ['map.services'])
 .factory('DBActions', function($http, Map){
 
   //the 'toSave' parameter is an object that will be entered into database,
-  //it has item prop and LatLng properties
+  //'toSave' has item prop and LatLng properties
   var saveToDB = function(toSave){
   return $http.post('/', toSave)
+    
+    //after item has been saved to db, returned data has a data property
+    //so we need to access data.data, see below
     .then(function(data){
-      console.log('successful post!', data.data);
+      
+      //data.data has itemName prop, itemLocation prop, and _id prop, which are all expected since this is how
+      //our mongoDB is formatted. Anything returned from db should have these props
       Map.addMarker(map, data.data);
+      //the 'map' argument here is referencing the global map declared in app.js
+      //this could be manipulated in chrome console by user. Future refactor could be to store
+      //map within Map factory instead of global space. 
+
     }, function(err){
       console.log(err);
     });
   };
+
+  //this function creates a new map based on filtering by whatever user enters in filter field
+  //it is invoked within $scope.filterMap, see the above controller
   var filterDB = function(toFilterBy) {
+
+    //the below line gets everything from the db
     return $http.get('/api/items')
       .then(function(data) {
+
         //filter our returned db by the desired itemName
         var filtered = data.data.filter(function(item) {
           return item.itemName.indexOf(toFilterBy) > -1;
         });
-        console.log('filtered db is: ', filtered);
+
         //re-initialize map with only these markers
         Map.initMap(filtered);
       }, function(err) {
         console.log("error in filtering", err);
       });
   };
+
+  //the DBActions factory returns the below object with methods of the functions
+  //defined above
   return {
     saveToDB: saveToDB,
     filterDB: filterDB
