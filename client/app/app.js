@@ -73,7 +73,6 @@ var initMap = function(data){
   geocoder = new google.maps.Geocoder();
   //loop through data returned from db to place on map
   //if(data.)
-  console.log(data)
   for (var i = 0; i < data.length; i++){
     addMarker(map, data[i], infoWindow);
   }
@@ -90,7 +89,7 @@ var addMarker = function(map, instance, infoWindow){
     //create a new instance of a google maps marker, will be created for each item in our db
     var marker = new google.maps.Marker({
         position: instance.itemLocation,
-        animation: google.maps.Animation.DROP,
+        // animation: google.maps.Animation.DROP,
         map: map,
         title: 'Hello World!'
       });

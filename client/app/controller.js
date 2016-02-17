@@ -113,10 +113,11 @@ var app = angular.module('myApp', ['map.services'])
   var removeFromDB = function(toRemove) {
     return $http.post('/pickup', toRemove)
       .then(function(data) {
-        console.log('successful removed post!', data.data);
-        // console.log(map)
-        Map.removeMarker(map, data.data);
-        //Map.loadAllItems();
+        console.log('successful removed post!');
+        setTimeout(function(){
+          loadAllItems()
+        },200);
+        
       }, function(err) {
         console.log('Error when removeFromDB invoked - post to "/pickup" failed. Error: ', err);
       });
