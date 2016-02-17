@@ -9,22 +9,26 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script src="/app/app.js"></script>
     <script src="/app/controller.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPvz5GX-N_onKVobBHRUlI_8Z4PtaU9Es&callback=loadAllItems"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPvz5GX-N_onKVobBHRUlI_8Z4PtaU9Es&libraries=places&callback=loadAllItems"></script>
   </head>
   <body>
   <h1>freebee</h1>
   <div ng-app="myApp" ng-controller="FormController">
     <div id="inputForm">
-      <form novalidate>
+      <form novalidate >
         Have something to get rid of?<br>
-        <input placeholder="Your address" type="text" ng-model="user.location">
-        <input placeholder="Your item" type="text" ng-model="user.item">
-        <button type="submit" ng-click="sendPost()">Submit</button>
+        <input placeholder="Your item" type="text" ng-model="user.item"><br>
+        <input placeholder="Your address" id="inputAddress" type="text" ng-model="user.location">
+        <button type="submit" ng-click="ip()">Or use current location</button><br>
+        <button type="submit" ng-click="sendPost()" >Submit</button>
         <button type="submit" ng-click="removePost()"> Delete</button>
+        <button type="submit" ng-click="clearForm()"> Clear Form</button>
+        <div class="spinner"><img src="ajax_loader_blue_32.gif"></div>
       </form>
     </div>
     <div id="searchInput">
       <form novalidate>
+        Search items<br>
         <input placeholder="Search items here" type="text" ng-model="search.input">
         <button ng-click="filterMap()" type="submit">Search</button>
       </form>

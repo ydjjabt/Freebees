@@ -23,6 +23,11 @@ var ItemSchema = new mongoose.Schema ({
   itemLat: {
     type: Number,
     required: true
+  },
+
+  createdAt: {
+    type: Date,
+    required: true
   }
 
 });
