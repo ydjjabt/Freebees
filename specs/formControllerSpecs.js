@@ -23,6 +23,7 @@ describe('FormController', function(){
   }));
 
   it('should have a user property on the $scope', function(){
-    
-  })
-})
+    createController();
+    expect($scope.user).to.be.an('object');
+  });
+});
