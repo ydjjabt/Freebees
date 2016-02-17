@@ -84,7 +84,6 @@ var initMap = function(data){
 };
 
 //add a marker to map. Instance needs to be an obj with itemLocation and itemName properties.
-<<<<<<< HEAD
 var addMarker = function(map, instance, infoWindow){
 
     console.log('hit add marker');
