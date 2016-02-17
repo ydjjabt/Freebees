@@ -42,6 +42,20 @@ var app = angular.module('myApp', ['map.services'])
       DBActions.removeFromDB({item: lowerCaseDeleteItem, LatLng: converted});
     });
   };
+
+  $scope.ip = function() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(success);
+      function success(position) {
+       var lat = position.coords.latitude;
+       var long = position.coords.longitude;
+       console.log(lat, long);
+       DBActions.saveToDB({item: $scope.user.item, LatLng: {lat: lat, lng: long}, createdAt: new Date()});
+      }
+    } else {
+      error('Geo Location is not supported');
+    }
+  };
 })
 
 .factory('DBActions', function($http, Map){
