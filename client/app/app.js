@@ -78,8 +78,11 @@ var initMap = function(data){
   }
   //add autocomplete functionality to address input field
   var input = document.getElementById('inputAddress');
-  var options = {};
-  var autocomplete = new google.maps.places.Autocomplete(input, options);
+  //var options = {};
+  //console.log(options)
+  //console.log(input)
+  // console.log(options)
+  // var autocomplete = new google.maps.places.Autocomplete(input, options);
 };
 
 //add a marker to map. Instance needs to be an obj with itemLocation and itemName properties.
@@ -116,6 +119,7 @@ var geocodeAddress = function(geocoder, resultsMap, address, cb){
   geocoder.geocode({'address': address}, function(results, status) {
     //if successful conversion, return result in a cb
     if (status == google.maps.GeocoderStatus.OK) {
+      console.log(results[0])
       cb(results[0].geometry.location);
     } else {
       console.log("Geocode was not successful for the following reason: " + status);

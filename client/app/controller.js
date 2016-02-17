@@ -23,6 +23,7 @@ var app = angular.module('myApp', ['map.services'])
     //convert inputted address, need to get value with JS bc angular can't detect autocomplete
     var inputtedAddress = document.getElementById('inputAddress').value;
     Map.geocodeAddress(geocoder, Map.map, inputtedAddress, function(converted) {
+
       //after address converted, save user input item and location to db
       DBActions.saveToDB({item: lowerCaseItem, LatLng: converted, createdAt: new Date()});
     });
