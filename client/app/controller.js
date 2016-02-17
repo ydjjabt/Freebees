@@ -4,17 +4,27 @@ var app = angular.module('myApp', ['map.services'])
 .controller('FormController', function($scope, $http, DBActions, Map){
   $scope.user = {};
 
+  //define function within this controller to convert a string to lowerCase for standardization
+  var convertToLowerCase = function(itemString){
+    return itemString.toLowerCase();
+  };
+
   $scope.sendPost = function(){
+    //convert inputted item name to lowerCase
+    var lowerCaseItem = convertToLowerCase($scope.user.item);
     //convert inputted address
     Map.geocodeAddress(geocoder, Map.map, $scope.user.location, function(converted) {
       //after address converted, save user input item and location to db
-      DBActions.saveToDB({item: $scope.user.item, LatLng: converted, createdAt: new Date()});
+      DBActions.saveToDB({item: lowerCaseItem, LatLng: converted, createdAt: new Date()});
     });
   };
 
   //this function filters map based on what user enters into filter field
   $scope.filterMap = function() {
-    var searchInput = $scope.search.input;
+    //convert inputted filter item to lowerCase so that matches with lowerCase values stored in db
+    var lowerCaseFilterItem = convertToLowerCase($scope.search.input);
+    
+    var searchInput = lowerCaseFilterItem;
     DBActions.filterDB(searchInput);
   };
 
@@ -25,9 +35,11 @@ var app = angular.module('myApp', ['map.services'])
   };
 
   $scope.removePost = function(){
+    //convert inputted item name to lowerCase to match what's already in db
+    var lowerCaseDeleteItem = convertToLowerCase($scope.user.item);
     //convert inputted address
     Map.geocodeAddress(geocoder, Map.map, $scope.user.location, function(converted) {
-      DBActions.removeFromDB({item: $scope.user.item, LatLng: converted});
+      DBActions.removeFromDB({item: lowerCaseDeleteItem, LatLng: converted});
     });
   };
 })
