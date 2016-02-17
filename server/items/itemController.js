@@ -21,7 +21,6 @@ module.exports = {
     var itemName = req.body.item;
     var itemLocation = req.body.LatLng;
     var date = req.body.createdAt;
-
     var create;
 
     //The below line returns promisified version of Item.findOne bound to context Item
