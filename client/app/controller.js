@@ -23,7 +23,7 @@ var app = angular.module('myApp', ['map.services'])
   $scope.filterMap = function() {
     //convert inputted filter item to lowerCase so that matches with lowerCase values stored in db
     var lowerCaseFilterItem = convertToLowerCase($scope.search.input);
-    
+
     var searchInput = lowerCaseFilterItem;
     DBActions.filterDB(searchInput);
   };
@@ -41,6 +41,20 @@ var app = angular.module('myApp', ['map.services'])
     Map.geocodeAddress(geocoder, Map.map, $scope.user.location, function(converted) {
       DBActions.removeFromDB({item: lowerCaseDeleteItem, LatLng: converted});
     });
+  };
+
+  $scope.ip = function() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(success);
+      function success(position) {
+       var lat = position.coords.latitude;
+       var long = position.coords.longitude;
+       console.log(lat, long);
+       DBActions.saveToDB({item: $scope.user.item, LatLng: {lat: lat, lng: long}, createdAt: new Date()});
+      }
+    } else {
+      error('Geo Location is not supported');
+    }
   };
 })
 

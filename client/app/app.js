@@ -19,7 +19,7 @@ var infoWindow;
 
 //errObj is the object created upon failure. It has a .status prop
 //exceptionType is a string, could be 'timeout', 'abort', 'error', or others
-//these two paramaters are automatically accessible within ajax erorr callback 
+//these two paramaters are automatically accessible within ajax erorr callback
 var errorHandler = function(errObj, exceptionType){
   var msg = '';
   if(errObj.status === 0){
@@ -68,12 +68,17 @@ var initMap = function(data){
   });
   //creates a global infowindow that will show only one window at a time
   infoWindow = new google.maps.InfoWindow();
+
   //Geocoder is an object Google maps w/ various methods API to pull their geocoding functionality
   geocoder = new google.maps.Geocoder();
   //loop through data returned from db to place on map
   for (var i = 0; i < data.length; i++){
     addMarker(map, data[i], infoWindow);
   }
+  //add autocomplete functionality to address input field
+  var input = document.getElementById('inputAddress');
+  var options = {};
+  var autocomplete = new google.maps.places.Autocomplete(input, options);
 };
 
 //add a marker to map. Instance needs to be an obj with itemLocation and itemName properties.
@@ -90,7 +95,6 @@ var addMarker = function(map, instance, infoWindow){
 
     //creates a listener that will attach this instance's data to the global info window and open it
     google.maps.event.addListener(marker, 'click', function() {
-      console.log(instance.createdAt);
       //turn our mongo-stored stringified date into a JS date obj that is then formatted
       infoWindow.setContent(instance.itemName+' <br><span class="createdAt">'+formatDate(new Date(instance.createdAt))+'</span>');
       infoWindow.open(map, this);
