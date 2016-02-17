@@ -21,8 +21,9 @@ var app = angular.module('myApp', ['map.services'])
   $scope.sendPost = function(){
     //convert inputted item name to lowerCase
     var lowerCaseItem = convertToLowerCase($scope.user.item);
-    //convert inputted address
-    Map.geocodeAddress(geocoder, Map.map, $scope.user.location, function(converted) {
+    //convert inputted address, need to get value with JS bc angular can't detect autocomplete
+    var inputtedAddress = document.getElementById('inputAddress').value;
+    Map.geocodeAddress(geocoder, Map.map, inputtedAddress, function(converted) {
       //after address converted, save user input item and location to db
       DBActions.saveToDB({item: lowerCaseItem, LatLng: converted, createdAt: new Date()});
     });
@@ -47,7 +48,8 @@ var app = angular.module('myApp', ['map.services'])
     //convert inputted item name to lowerCase to match what's already in db
     var lowerCaseDeleteItem = convertToLowerCase($scope.user.item);
     //convert inputted address
-    Map.geocodeAddress(geocoder, Map.map, $scope.user.location, function(converted) {
+    var inputtedAddress = document.getElementById('inputAddress').value;
+    Map.geocodeAddress(geocoder, Map.map, inputtedAddress, function(converted) {
       DBActions.removeFromDB({item: lowerCaseDeleteItem, LatLng: converted});
     });
   };
@@ -114,9 +116,10 @@ var app = angular.module('myApp', ['map.services'])
     return $http.post('/pickup', toRemove)
       .then(function(data) {
         console.log('successful removed post!');
-        setTimeout(function(){
-          loadAllItems()
-        },200);
+        loadAllItems()
+        // setTimeout(function(){
+        //   loadAllItems()
+        // },200);
         
       }, function(err) {
         console.log('Error when removeFromDB invoked - post to "/pickup" failed. Error: ', err);
