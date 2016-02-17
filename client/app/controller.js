@@ -27,6 +27,7 @@ var app = angular.module('myApp', ['map.services'])
       //after address converted, save user input item and location to db
       DBActions.saveToDB({item: lowerCaseItem, LatLng: converted, createdAt: new Date()});
     });
+    $scope.clearForm();
   };
 
   //this function filters map based on what user enters into filter field
@@ -36,6 +37,7 @@ var app = angular.module('myApp', ['map.services'])
 
     var searchInput = lowerCaseFilterItem;
     DBActions.filterDB(searchInput);
+    $scope.clearForm();
   };
 
   //this function retrieves everything from the database and renders a map on page
@@ -52,6 +54,7 @@ var app = angular.module('myApp', ['map.services'])
     Map.geocodeAddress(geocoder, Map.map, inputtedAddress, function(converted) {
       DBActions.removeFromDB({item: lowerCaseDeleteItem, LatLng: converted});
     });
+    $scope.clearForm();
   };
 
   $scope.ip = function() {
@@ -65,6 +68,7 @@ var app = angular.module('myApp', ['map.services'])
         var long = position.coords.longitude;
         console.log('from your location, lat and lng are: ', lat, long);
         DBActions.saveToDB({item: $scope.user.item, LatLng: {lat: lat, lng: long}, createdAt: new Date()});
+        $scope.clearForm();
       });
     } else {
       error('Geo Location is not supported');
