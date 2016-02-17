@@ -8,10 +8,10 @@ var app = angular.module('myApp', ['map.services'])
     // $scope.user.item  = '';
     // $scope.user.location = '';
     // $scope.search.input  = '';
-    console.log('empty')
+    console.log('empty');
     $scope.user = {};
     $scope.search = {};
-  }
+  };
 
   //define function within this controller to convert a string to lowerCase for standardization
   var convertToLowerCase = function(itemString){
@@ -55,14 +55,17 @@ var app = angular.module('myApp', ['map.services'])
   };
 
   $scope.ip = function() {
+    startSpinner();
+    //check for the HTML5 geolocation feature, supported in most modern browsers
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(success);
-      function success(position) {
-       var lat = position.coords.latitude;
-       var long = position.coords.longitude;
-       console.log(lat, long);
-       DBActions.saveToDB({item: $scope.user.item, LatLng: {lat: lat, lng: long}, createdAt: new Date()});
-      }
+      //async request to get users location from positioning hardware
+      navigator.geolocation.getCurrentPosition(function(position) {
+        //if getCurrentPosition is method successful, returns a coordinates object
+        var lat = position.coords.latitude;
+        var long = position.coords.longitude;
+        console.log('from your location, lat and lng are: ', lat, long);
+        DBActions.saveToDB({item: $scope.user.item, LatLng: {lat: lat, lng: long}, createdAt: new Date()});
+      });
     } else {
       error('Geo Location is not supported');
     }
@@ -79,7 +82,7 @@ var app = angular.module('myApp', ['map.services'])
     //after item has been saved to db, returned data has a data property
     //so we need to access data.data, see below
     .then(function(data){
-
+      stopSpinner();
       //data.data has itemName prop, itemLocation prop, and _id prop, which are all expected since this is how
       //our mongoDB is formatted. Anything returned from db should have these props
       Map.addMarker(map, data.data, infoWindow);
@@ -116,11 +119,10 @@ var app = angular.module('myApp', ['map.services'])
     return $http.post('/pickup', toRemove)
       .then(function(data) {
         console.log('successful removed post!');
-        loadAllItems()
+        loadAllItems();
         // setTimeout(function(){
         //   loadAllItems()
         // },200);
-        
       }, function(err) {
         console.log('Error when removeFromDB invoked - post to "/pickup" failed. Error: ', err);
       });
