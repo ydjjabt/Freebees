@@ -15,13 +15,14 @@
   <h1>freebee</h1>
   <div ng-app="myApp" ng-controller="FormController">
     <div id="inputForm">
-      <form novalidate>
+      <form novalidate >
         Have something to get rid of?<br>
         <input placeholder="Your item" type="text" ng-model="user.item"><br>
         <input placeholder="Your address" id="inputAddress" type="text" ng-model="user.location">
         <button type="submit" ng-click="ip()">Or use current location</button><br>
-        <button type="submit" ng-click="sendPost()">Submit</button>
+        <button type="submit" ng-click="sendPost()" >Submit</button>
         <button type="submit" ng-click="removePost()"> Delete</button>
+        <button type="submit" ng-click="clearForm()"> Clear Form</button>
       </form>
     </div>
     <div id="searchInput">

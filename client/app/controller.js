@@ -4,6 +4,15 @@ var app = angular.module('myApp', ['map.services'])
 .controller('FormController', function($scope, $http, DBActions, Map){
   $scope.user = {};
 
+  $scope.clearForm = function() {
+    // $scope.user.item  = '';
+    // $scope.user.location = '';
+    // $scope.search.input  = '';
+    console.log('empty')
+    $scope.user = {};
+    $scope.search = {};
+  }
+
   //define function within this controller to convert a string to lowerCase for standardization
   var convertToLowerCase = function(itemString){
     return itemString.toLowerCase();
