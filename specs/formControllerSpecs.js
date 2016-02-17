@@ -20,5 +20,9 @@ describe('FormController', function(){
         Map: Map
       });
     }
-  }))
+  }));
+
+  it('should have a user property on the $scope', function(){
+    
+  })
 })
