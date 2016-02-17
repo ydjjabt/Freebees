@@ -72,6 +72,8 @@ var initMap = function(data){
   //Geocoder is an object Google maps w/ various methods API to pull their geocoding functionality
   geocoder = new google.maps.Geocoder();
   //loop through data returned from db to place on map
+  //if(data.)
+  console.log(data)
   for (var i = 0; i < data.length; i++){
     addMarker(map, data[i], infoWindow);
   }
@@ -82,6 +84,7 @@ var initMap = function(data){
 };
 
 //add a marker to map. Instance needs to be an obj with itemLocation and itemName properties.
+<<<<<<< HEAD
 var addMarker = function(map, instance, infoWindow){
 
     console.log('hit add marker');
