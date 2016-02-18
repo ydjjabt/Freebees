@@ -181,44 +181,52 @@ Footer
 =========================
 */
 #footerSection {
-  position: fixed;
   right: 0;
   left: 0;
-  bottom: 0;
+  bottom: 10;
   margin-bottom: 20px;
   display: block;
   background-color: black;
-  height: 100px;
+  height: 200px;
   width: 100%;
   color: white;
-  font-size: 30px;
   text-align: center;
   vertical-align: middle;
   z-index: 1030;
 }
 
+#footerSection div{
+  font-size: 30px;
+  bottom-margin: 20px;
+}
+
+#footerSection #bottomCopyright {
+  font-size: 12px;
+  color: grey;
+}
+
 #footerSection span {
-  position: relative;
+  font-size: 20px;
+  margin-left: 3%;
+  margin-right: 3%;
 }
 
 #footerSection img {
-  position: relative;
-  margin-left: 100px;
-  margin right: 100px;
-  height: 70px;
-  width: 70px;
+  height: 80px;
+  width: 80px;
   border-radius: 50%;
+  border: 5px solid #fcad26;
 }
 
 /*#footerSection p {
 }*/
 
-a {
+span a {
   font-weight: bold;
 }
 
 a:link {
-  color: yellow;
+  color: #fcad26;
   /*font-weight: bold;*/
 }
 
@@ -228,5 +236,5 @@ a:visited {
 }
 
 a:hover {
-  color: yellow;
+  color: #fcad26;
 }
