@@ -31,11 +31,11 @@
         <form novalidate >
           <h4>Have something to get rid of?</h4><br>
           <input placeholder="Your item" type="text" ng-model="user.item">
-          <input placeholder="Your address" id="inputAddress" type="text" ng-model="user.location"><br>
+          <input placeholder="Your address" id="inputAddress" type="text" ng-model="user.location">
+          <div class="spinner"><img src="loading.gif"></div><br>
           <button id="fillIp" type="submit" ng-click="ip()">Or use current location</button><br><br>
           <button class="yellowButton submitForm" type="submit" ng-click="sendPost()" >Submit</button>
           <button class="yellowButton submitForm" type="submit" ng-click="removePost()"> Delete</button>
-          <div class="spinner"><img src="loading_32.gif"></div>
         </form>
       </div>
     </div>

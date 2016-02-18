@@ -74,6 +74,7 @@ h4 {
   width: 80%;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 4%;
 }
 
 #inputForm form {
@@ -108,7 +109,15 @@ input[type="text"] {
 }
 
 .spinner {
+  position: absolute;
+  left: 76%;
+  top: 107%;
+}
+.spinner img{
   visibility: hidden;
+  height: 32px;
+  position: relative;
+  left: 37%;
 }
 
 
