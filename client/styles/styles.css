@@ -181,11 +181,60 @@ Footer
 =========================
 */
 #footerSection {
-  padding: 1%;
+  right: 0;
+  left: 0;
+  bottom: 10;
+  margin-bottom: 20px;
+  display: block;
   background-color: black;
-  height: 10%;
+  height: 200px;
+  width: 100%;
   color: white;
-  font-size: 12px;
   text-align: center;
   vertical-align: middle;
+  z-index: 1030;
+}
+
+#footerSection div{
+  font-size: 30px;
+  bottom-margin: 20px;
+}
+
+#footerSection #bottomCopyright {
+  font-size: 12px;
+  color: grey;
+}
+
+#footerSection span {
+  font-size: 20px;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+#footerSection img {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  border: 5px solid #fcad26;
+}
+
+/*#footerSection p {
+}*/
+
+span a {
+  font-weight: bold;
+}
+
+a:link {
+  color: #fcad26;
+  /*font-weight: bold;*/
+}
+
+a:visited {
+  color: grey;
+  /*font-weight: bold;*/
+}
+
+a:hover {
+  color: #fcad26;
 }
