@@ -8,6 +8,7 @@ describe('FormController', function(){
   beforeEach(inject(function($injector){
     $rootScope = $injector.get('$rootScope');
     DBActions = $injector.get('DBActions');
+    $http = $injector.get('$http');
     Map = $injector.get('Map');
     $scope = $rootScope.$new();
 
@@ -21,9 +22,11 @@ describe('FormController', function(){
       });
     }
   }));
+  describe('$scope.user', function(){
+    it('should be an object', function(){
+      createController();
+      expect(typeof $scope.user).toBe('object');    
+    });
 
-  it('should have a user property on the $scope', function(){
-    createController();
-    expect($scope.user).to.be.an('object');
-  });
+    it('')
 });
