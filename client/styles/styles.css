@@ -2,7 +2,7 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #ffe01a;
+  background-color: #fcd04b;
   font-family: 'Cabin', 'Arial';
 
 }
@@ -60,17 +60,120 @@ Map
 Form inputs
 =========================
 */
+#inputSection {
+  margin-top: 2%;
+}
+
+h4 {
+  margin: 0;
+}
+
+#inputForm {
+  display: block;
+  text-align: center;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 4%;
+}
+
+#inputForm form {
+  width: 100%;
+  display: inline-block;
+}
+
 input {
   width: 30%;
+  padding: 10px;
+  border: none;
+  box-shadow: 1px 1px 1px #606060;
+    -moz-box-shadow: 1px 1px 1px #606060;
+    -webkit-box-shadow: 1px 1px 1px #606060;
+  border-radius: 3px;
+}
+
+input:focus {
+  outline: #565555;
+  outline-offset: -2px;
+  outline-style: auto;
+  outline-width: 3px;
+}
+
+input[type="text"] {
+  margin: 0.5%;
+  margin-bottom: 0;
+  font-family: 'Cabin', 'Arial';
+  color: #606060;
+  letter-spacing: 0.5px;
+  font-size: 16px;
 }
 
 .spinner {
+  position: absolute;
+  left: 76%;
+  top: 107%;
+}
+.spinner img{
   visibility: hidden;
+  height: 32px;
+  position: relative;
+  left: 37%;
 }
 
-#inputSection {
-  margin-left: 2%;
-  margin-top: 2%;
+
+.yellowButton {
+  border-radius: 50px;
+  border: 2px solid #fff;
+  color: #fff;
+  overflow: hidden;
+  padding: 1% 2.5%;
+  text-transform: uppercase;
+  background: #fcc626;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  position: relative;
+  -webkit-transition-property: background;
+         -moz-transition-property: background;
+           -o-transition-property: background;
+              transition-property: background;
+      -webkit-transition-duration: 0.1s;
+         -moz-transition-duration: 0.1s;
+           -o-transition-duration: 0.1s;
+              transition-duration: 0.1s;
+      -webkit-transition-timing-function: linear;
+         -moz-transition-timing-function: linear;
+           -o-transition-timing-function: linear;
+              transition-timing-function: linear;
+}
+
+.submitForm {
+  margin-left: 5%;
+  margin-right: 5%;
+  font-size: 20px;
+}
+
+#fillIp {
+  border: none;
+  color: #606060;
+  font-size: 12px;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-bottom: 1px dotted #606060;
+  position: relative;
+  left: 24%;
+}
+
+#fillIp:hover {
+  font-weight: 800;
+}
+
+button:hover {
+  background: #fcad26;
 }
 /*
 =========================

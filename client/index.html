@@ -21,7 +21,7 @@
       <div id="searchInput">
         <form novalidate>
           <input id="searchBox" placeholder="Search for an item" type="text" ng-model="search.input">
-          <button ng-click="filterMap()" type="submit">Search</button>
+          <button class="yellowButton" ng-click="filterMap()" type="submit">Search</button>
         </form>
       </div>
     </div>
@@ -29,13 +29,13 @@
     <div id="inputSection">
       <div id="inputForm">
         <form novalidate >
-          Have something to get rid of?<br>
-          <input placeholder="Your item" type="text" ng-model="user.item"><br>
+          <h4>Have something to get rid of?</h4><br>
+          <input placeholder="Your item" type="text" ng-model="user.item">
           <input placeholder="Your address" id="inputAddress" type="text" ng-model="user.location">
-          <button type="submit" ng-click="ip()">Or use current location</button><br>
-          <button type="submit" ng-click="sendPost()" >Submit</button>
-          <button type="submit" ng-click="removePost()"> Delete</button>
-          <div class="spinner"><img src="loading_32.gif"></div>
+          <div class="spinner"><img src="loading.gif"></div><br>
+          <button id="fillIp" type="submit" ng-click="ip()">Or use current location</button><br><br>
+          <button class="yellowButton submitForm" type="submit" ng-click="sendPost()" >Submit</button>
+          <button class="yellowButton submitForm" type="submit" ng-click="removePost()"> Delete</button>
         </form>
       </div>
     </div>
