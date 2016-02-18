@@ -13,6 +13,53 @@ html, body {
 Header
 =========================
 */
+@media (min-width: 768px){
+/*  .navbar {
+    border-radius: 4px;
+  }
+  .navbar-header {
+    float: left;
+  }*/
+  .navbar-fixed{
+    padding-right: 0;
+    padding-left: 0;
+    max-height: 340px;
+    height:57px;
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    border-radius: 0;
+    top: 0;
+    border-width: 0 0 1px;
+    background-color: #f8f8f8;
+  }
+  .navbar-right{
+    float: right !important;
+    margin-right: -15px;
+    margin-right: 0;
+    right: 0;
+    left: auto;
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+  }
+  .container-fluid{
+  display: table;
+  content: " ";
+  clear: both;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: 0;
+  margin-left: 0;
+}
+}
+
+@media (max-device-width: 480px) and (orientation: landscape) {
+  .navbar-fixed-top {
+    max-height: 200px;
+  }
+}
 #headerSection {
   color: black;
   height: 10%;
