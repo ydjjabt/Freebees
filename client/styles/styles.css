@@ -181,11 +181,52 @@ Footer
 =========================
 */
 #footerSection {
-  padding: 1%;
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin-bottom: 20px;
+  display: block;
   background-color: black;
-  height: 10%;
+  height: 100px;
+  width: 100%;
   color: white;
-  font-size: 12px;
+  font-size: 30px;
   text-align: center;
   vertical-align: middle;
+  z-index: 1030;
+}
+
+#footerSection span {
+  position: relative;
+}
+
+#footerSection img {
+  position: relative;
+  margin-left: 100px;
+  margin right: 100px;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+}
+
+/*#footerSection p {
+}*/
+
+a {
+  font-weight: bold;
+}
+
+a:link {
+  color: yellow;
+  /*font-weight: bold;*/
+}
+
+a:visited {
+  color: grey;
+  /*font-weight: bold;*/
+}
+
+a:hover {
+  color: yellow;
 }
