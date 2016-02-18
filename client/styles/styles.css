@@ -7,6 +7,7 @@ html, body {
 
 }
 
+body { padding-top: 70px; }
 
 /*
 =========================
@@ -32,7 +33,7 @@ Header
     border-radius: 0;
     top: 0;
     border-width: 0 0 1px;
-    background-color: #f8f8f8;
+    background-color: #000;
   }
   .navbar-right{
     float: right !important;
@@ -61,7 +62,7 @@ Header
   }
 }
 #headerSection {
-  color: black;
+  color: #fff;
   height: 10%;
   padding: 2%;
 }
