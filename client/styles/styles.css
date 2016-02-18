@@ -2,21 +2,87 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: #ffe01a;
+  font-family: 'Cabin', 'Arial';
+
 }
 
+
+/*
+=========================
+Header
+=========================
+*/
+#headerSection {
+  color: black;
+  height: 10%;
+  padding: 2%;
+}
+
+#logoTitle {
+  width: 30%;
+  font-family: 'Lobster', cursive;
+  font-weight: 400;
+  float: left;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#searchInput {
+  width: 40%;
+  float: right;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#searchBox {
+  width: 50%;
+}
+/*
+=========================
+Map
+=========================
+*/
 #map {
-  height: 75%;
+  height: 80%;
   width: 75%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .createdAt {
   font-size: 10px;
 }
-
+/*
+=========================
+Form inputs
+=========================
+*/
 input {
-  width: 20%;
+  width: 30%;
 }
 
 .spinner {
   visibility: hidden;
+}
+
+#inputSection {
+  margin-left: 2%;
+  margin-top: 2%;
+}
+/*
+=========================
+Footer
+=========================
+*/
+#footerSection {
+  padding: 1%;
+  background-color: black;
+  height: 10%;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  vertical-align: middle;
 }

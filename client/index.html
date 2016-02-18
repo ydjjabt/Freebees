@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Freebies Near Me</title>
+    <title>Freebees</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="/styles/styles.css" />
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script src="/app/app.js"></script>
     <script src="/app/controller.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPvz5GX-N_onKVobBHRUlI_8Z4PtaU9Es&libraries=places&callback=loadAllItems"></script>
   </head>
-  <body>
-  <h1>freebee</h1>
-  <div ng-app="myApp" ng-controller="FormController">
-    <div id="inputForm">
-      <form novalidate >
-        Have something to get rid of?<br>
-        <input placeholder="Your item" type="text" ng-model="user.item"><br>
-        <input placeholder="Your address" id="inputAddress" type="text" ng-model="user.location">
-        <button type="submit" ng-click="ip()">Or use current location</button><br>
-        <button type="submit" ng-click="sendPost()" >Submit</button>
-        <button type="submit" ng-click="removePost()"> Delete</button>
-        <button type="submit" ng-click="clearForm()"> Clear Form</button>
-        <div class="spinner"><img src="ajax_loader_blue_32.gif"></div>
-      </form>
+  <body ng-app="myApp" ng-controller="FormController">
+    <div id="headerSection">
+      <div id="logoTitle">
+        <h1>Freebees</h1>
+      </div>
+      <div id="searchInput">
+        <form novalidate>
+          <input id="searchBox" placeholder="Search for an item" type="text" ng-model="search.input">
+          <button ng-click="filterMap()" type="submit">Search</button>
+        </form>
+      </div>
     </div>
-    <div id="searchInput">
-      <form novalidate>
-        Search items<br>
-        <input placeholder="Search items here" type="text" ng-model="search.input">
-        <button ng-click="filterMap()" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
     <div id="map"></div>
+    <div id="inputSection">
+      <div id="inputForm">
+        <form novalidate >
+          Have something to get rid of?<br>
+          <input placeholder="Your item" type="text" ng-model="user.item"><br>
+          <input placeholder="Your address" id="inputAddress" type="text" ng-model="user.location">
+          <button type="submit" ng-click="ip()">Or use current location</button><br>
+          <button type="submit" ng-click="sendPost()" >Submit</button>
+          <button type="submit" ng-click="removePost()"> Delete</button>
+          <div class="spinner"><img src="loading_32.gif"></div>
+        </form>
+      </div>
+    </div>
+    <div id="footerSection">
+    <p>Brought to you by: I Need Closure MKS31</p>
+    </div>
   </body>
 </html>
