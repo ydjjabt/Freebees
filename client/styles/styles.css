@@ -2,21 +2,79 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: #ffe01a;
+  font-family: 'Cabin', 'Arial';
 }
 
+
+/*
+=========================
+Header
+=========================
+*/
+#headerSection {
+  color: black;
+  margin-top: 2%;
+  margin-left: 2%;
+  padding-bottom: 2%;
+}
+
+h1 {
+  font-family: 'Lobster', cursive;
+  font-weight: 400;
+  float: left;
+  margin-top: 0;
+  /*color: white;*/
+}
+
+#searchInput {
+  width: 30%;
+  float: right;
+}
+
+#searchBox {
+  width: 50%;
+}
+/*
+=========================
+Map
+=========================
+*/
 #map {
   height: 75%;
   width: 75%;
+  margin-left: 2%;
+  margin-top: 2%;
 }
 
 .createdAt {
   font-size: 10px;
 }
-
+/*
+=========================
+Form inputs
+=========================
+*/
 input {
   width: 20%;
 }
 
 .spinner {
   visibility: hidden;
+}
+
+#inputSection {
+  margin-left: 2%;
+  margin-top: 2%;
+}
+/*
+=========================
+Footer
+=========================
+*/
+#footerSection {
+  padding-left: 2%;
+  background-color: black;
+  height: 17%;
+  color: white;
 }
