@@ -6,9 +6,8 @@ var app = angular.module('myApp', ['map.services'])
 
   $scope.clearForm = function() {
     // $scope.user.item  = '';
-    // $scope.user.location = '';
+    document.getElementById('inputAddress').value = '';
     // $scope.search.input  = '';
-    console.log('empty');
     $scope.user = {};
     $scope.search = {};
   };
@@ -56,7 +55,10 @@ var app = angular.module('myApp', ['map.services'])
     });
     $scope.clearForm();
   };
-
+  $scope.setAddress = function(toSet) {
+    $scope.user.location = toSet;
+  };
+  //fills in address field with current lat/lng
   $scope.ip = function() {
     startSpinner();
     //check for the HTML5 geolocation feature, supported in most modern browsers
@@ -66,9 +68,9 @@ var app = angular.module('myApp', ['map.services'])
         //if getCurrentPosition is method successful, returns a coordinates object
         var lat = position.coords.latitude;
         var long = position.coords.longitude;
-        console.log('from your location, lat and lng are: ', lat, long);
-        DBActions.saveToDB({item: $scope.user.item, LatLng: {lat: lat, lng: long}, createdAt: new Date()});
-        $scope.clearForm();
+        document.getElementById('inputAddress').value = lat + ', ' + long;
+        stopSpinner();
+        // DBActions.saveToDB({item: $scope.user.item, LatLng: {lat: lat, lng: long}, createdAt: new Date()});
       });
     } else {
       error('Geo Location is not supported');
