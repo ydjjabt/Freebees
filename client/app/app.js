@@ -103,6 +103,8 @@ var addMarker = function(map, instance, infoWindow){
       infoWindow.setContent(instance.itemName+' <br><span class="createdAt">'+formatDate(new Date(instance.createdAt))+'</span>');
       infoWindow.open(map, this);
     });
+    console.log('----------------')
+    console.log(instance)
 };
 
 var removeMarker = function(map, instance){
