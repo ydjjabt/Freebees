@@ -15,7 +15,6 @@ Header
 =========================
 */
 @media (min-width: 768px){
-  
   .navbar-fixed{
     padding-right: 0;
     padding-left: 0;
@@ -52,6 +51,10 @@ Header
   color: #fff;
   height: 10%;
   padding: 2%;
+}
+
+#beeIcon {
+  padding-right: 1%;
 }
 
 #logoTitle {
@@ -148,8 +151,9 @@ input[type="text"] {
 .spinner {
   position: absolute;
   left: 76%;
-  top: 107%;
+  top: 104%;
 }
+
 .spinner img{
   visibility: hidden;
   height: 32px;
@@ -163,13 +167,14 @@ input[type="text"] {
   border: 2px solid #fff;
   color: #fff;
   overflow: hidden;
-  padding: 1% 2.5%;
   text-transform: uppercase;
   background: #fcc626;
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 1px;
   cursor: pointer;
+  box-shadow: 1px 1px 1px black;
+  padding: 1% 4%;
   position: relative;
   -webkit-transition-property: background;
          -moz-transition-property: background;
