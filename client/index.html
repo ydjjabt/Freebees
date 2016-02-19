@@ -14,17 +14,20 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPvz5GX-N_onKVobBHRUlI_8Z4PtaU9Es&libraries=places&callback=loadAllItems"></script>
   </head>
   <body ng-app="myApp" ng-controller="FormController">
-    <div id="headerSection">
-      <div id="logoTitle">
-        <h1>Freebees</h1>
+    <nav class="navbar-fixed">
+     <div id="headerSection" class="container-fluid">
+        <div id="logoTitle">
+          <h1>Freebees</h1>
+          <h2></h2>
+        </div>
+        <div id="searchInput">
+          <form novalidate>
+            <input id="searchBox" placeholder="Search for an item" type="text" ng-model="search.input">
+            <button class="yellowButton" ng-click="filterMap()" type="submit">Search</button>
+          </form>
+        </div>
       </div>
-      <div id="searchInput">
-        <form novalidate>
-          <input id="searchBox" placeholder="Search for an item" type="text" ng-model="search.input">
-          <button class="yellowButton" ng-click="filterMap()" type="submit">Search</button>
-        </form>
-      </div>
-    </div>
+    </nav>
     <div id="map"></div>
     <div id="inputSection">
       <div id="inputForm">
