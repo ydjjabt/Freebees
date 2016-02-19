@@ -151,8 +151,9 @@ input[type="text"] {
 .spinner {
   position: absolute;
   left: 76%;
-  top: 107%;
+  top: 104%;
 }
+
 .spinner img{
   visibility: hidden;
   height: 32px;
