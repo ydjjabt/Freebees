@@ -15,12 +15,7 @@ Header
 =========================
 */
 @media (min-width: 768px){
-/*  .navbar {
-    border-radius: 4px;
-  }
-  .navbar-header {
-    float: left;
-  }*/
+  
   .navbar-fixed{
     padding-right: 0;
     padding-left: 0;
@@ -49,14 +44,10 @@ Header
     margin-left: -15px;
     padding-right: 60px;
     padding-left: 60px;
-}
+  }
+
 }
 
-@media (max-device-width: 480px) and (orientation: landscape) {
-  .navbar-fixed-top {
-    max-height: 200px;
-  }
-}
 #headerSection {
   color: #fff;
   height: 10%;
@@ -68,6 +59,7 @@ Header
   font-family: 'Lobster', cursive;
   font-weight: 400;
   float: left;
+  margin-left: 4%;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
@@ -84,6 +76,7 @@ Header
 #searchBox {
   width: 50%;
 }
+
 /*
 =========================
 Map
