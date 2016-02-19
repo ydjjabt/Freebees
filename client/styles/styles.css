@@ -79,6 +79,7 @@ nav a,a:visited {
   font-family:  'Montserrat', sans-serif;
   font-weight: 800;
   text-decoration: none;
+  color: #FFF;
 }
 #white{
   color: #FFF;
@@ -105,6 +106,7 @@ Map
   width: 75%;
   margin-left: auto;
   margin-right: auto;
+  padding-top: 70px;
 }
 
 .createdAt {
@@ -116,7 +118,8 @@ Form inputs
 =========================
 */
 #inputSection {
-  margin-top: 2%;
+  padding-top: 15%;
+  padding-bottom: 25%;
 }
 
 h4 {
@@ -231,6 +234,10 @@ input[type="text"] {
 
 button:hover {
   background: #fcad26;
+}
+button a:visited, button a{
+  color: #FFF;
+  text-decoration: none;
 }
 /*
 =========================
