@@ -13,7 +13,7 @@
     <script src="/app/controller.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPvz5GX-N_onKVobBHRUlI_8Z4PtaU9Es&libraries=places&callback=loadAllItems"></script>
   </head>
-  <body ng-app="myApp" ng-controller="FormController">
+  <body id="#" ng-app="myApp" ng-controller="FormController">
     <nav class="navbar-fixed">
      <div id="headerSection" class="container-fluid">
       <ul> 
@@ -34,7 +34,7 @@
     <div id="inputSection">
       <div id="inputForm">
         <form novalidate >
-          <h1>Have something to get rid of?</h1><br>
+          <h1>Want to give away a Freebee?</h1><br>
           <input placeholder="Your item" type="text" ng-model="user.item">
           <input placeholder="Your address" id="inputAddress" type="text" ng-model="user.location">
           <div class="spinner"><img src="loading.gif"></div><br>
