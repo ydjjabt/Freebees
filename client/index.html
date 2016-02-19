@@ -16,17 +16,19 @@
   <body ng-app="myApp" ng-controller="FormController">
     <nav class="navbar-fixed">
      <div id="headerSection" class="container-fluid">
-        <div id="logoTitle">
-          <h1><img id="beeIcon" src="bee1resize.png">Freebees</h1>
-          <h2></h2>
-        </div>
-        <div id="searchInput">
-          <form novalidate>
-            <input id="searchBox" placeholder="Search for an item" type="text" ng-model="search.input">
-            <button class="yellowButton" ng-click="filterMap()" type="submit">Search</button>
-          </form>
-        </div>
+      <ul> 
+        <li> <img id="beeIcon" src="bee1resize.png"> </li>
+        <li> <a href="#" id="logoTitle">Freebees </a></li>
+        <li> <a href="#" id="white">Buyer</a></li>
+        <li> <a href="#" id="white">Sellor</a></li>
+      </ul>
+      <div id="searchInput">
+        <form novalidate>
+          <input id="searchBox" placeholder="Search for an item" type="text" ng-model="search.input">
+          <button class="yellowButton" ng-click="filterMap()" type="submit">Search</button>
+        </form>
       </div>
+     </div>
     </nav>
     <div id="map"></div>
     <div id="inputSection">

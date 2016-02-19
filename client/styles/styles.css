@@ -49,36 +49,51 @@ Header
 
 #headerSection {
   color: #fff;
-  height: 10%;
-  padding: 2%;
 }
 
 #beeIcon {
   padding-right: 1%;
+  max-height: 24px;
 }
 
 #logoTitle {
-  width: 30%;
   font-family: 'Lobster', cursive;
-  font-weight: 400;
+  color: #FFF;
+  font-size: 1.5em;
+}
+
+nav ul{
   float: left;
-  margin-left: 4%;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+  list-style: none;
+  margin: 0 10x ;
+  padding: 0;
+}
+
+nav li{
+  display: inline-block;
+}
+
+nav a,a:visited {
+  font-weight: 800;
+  padding: 15px 10px;
+  font-family:  'Montserrat', sans-serif;
+  font-weight: 800;
+  text-decoration: none;
+}
+#white{
+  color: #FFF;
 }
 
 #searchInput {
   width: 40%;
   float: right;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+  padding: 10px 0;
 }
 
 #searchBox {
   width: 50%;
 }
+
 
 /*
 =========================
