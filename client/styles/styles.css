@@ -2,19 +2,54 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #ffe01a;
+  background-color: #fcd04b;
   font-family: 'Cabin', 'Arial';
 
 }
 
+body { padding-top: 70px; }
 
 /*
 =========================
 Header
 =========================
 */
+@media (min-width: 768px){
+  
+  .navbar-fixed{
+    padding-right: 0;
+    padding-left: 0;
+    max-height: 340px;
+    height:58px;
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    border-radius: 0;
+    top: 0;
+    border-width: 0 0 1px;
+    background-color: #000;
+  }
+  .navbar-right{
+    float: right !important;
+    margin-right: -15px;
+    margin-right: 0;
+    right: 0;
+    left: auto;
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+  }
+  .container-fluid{
+    margin-left: -15px;
+    padding-right: 60px;
+    padding-left: 60px;
+  }
+
+}
+
 #headerSection {
-  color: black;
+  color: #fff;
   height: 10%;
   padding: 2%;
 }
@@ -24,6 +59,7 @@ Header
   font-family: 'Lobster', cursive;
   font-weight: 400;
   float: left;
+  margin-left: 4%;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
@@ -40,6 +76,7 @@ Header
 #searchBox {
   width: 50%;
 }
+
 /*
 =========================
 Map
@@ -60,17 +97,120 @@ Map
 Form inputs
 =========================
 */
+#inputSection {
+  margin-top: 2%;
+}
+
+h4 {
+  margin: 0;
+}
+
+#inputForm {
+  display: block;
+  text-align: center;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 4%;
+}
+
+#inputForm form {
+  width: 100%;
+  display: inline-block;
+}
+
 input {
   width: 30%;
+  padding: 10px;
+  border: none;
+  box-shadow: 1px 1px 1px #606060;
+    -moz-box-shadow: 1px 1px 1px #606060;
+    -webkit-box-shadow: 1px 1px 1px #606060;
+  border-radius: 3px;
+}
+
+input:focus {
+  outline: #565555;
+  outline-offset: -2px;
+  outline-style: auto;
+  outline-width: 3px;
+}
+
+input[type="text"] {
+  margin: 0.5%;
+  margin-bottom: 0;
+  font-family: 'Cabin', 'Arial';
+  color: #606060;
+  letter-spacing: 0.5px;
+  font-size: 16px;
 }
 
 .spinner {
+  position: absolute;
+  left: 76%;
+  top: 107%;
+}
+.spinner img{
   visibility: hidden;
+  height: 32px;
+  position: relative;
+  left: 37%;
 }
 
-#inputSection {
-  margin-left: 2%;
-  margin-top: 2%;
+
+.yellowButton {
+  border-radius: 50px;
+  border: 2px solid #fff;
+  color: #fff;
+  overflow: hidden;
+  padding: 1% 2.5%;
+  text-transform: uppercase;
+  background: #fcc626;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  position: relative;
+  -webkit-transition-property: background;
+         -moz-transition-property: background;
+           -o-transition-property: background;
+              transition-property: background;
+      -webkit-transition-duration: 0.1s;
+         -moz-transition-duration: 0.1s;
+           -o-transition-duration: 0.1s;
+              transition-duration: 0.1s;
+      -webkit-transition-timing-function: linear;
+         -moz-transition-timing-function: linear;
+           -o-transition-timing-function: linear;
+              transition-timing-function: linear;
+}
+
+.submitForm {
+  margin-left: 5%;
+  margin-right: 5%;
+  font-size: 20px;
+}
+
+#fillIp {
+  border: none;
+  color: #606060;
+  font-size: 12px;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-bottom: 1px dotted #606060;
+  position: relative;
+  left: 24%;
+}
+
+#fillIp:hover {
+  font-weight: 800;
+}
+
+button:hover {
+  background: #fcad26;
 }
 /*
 =========================
@@ -78,11 +218,60 @@ Footer
 =========================
 */
 #footerSection {
-  padding: 1%;
+  right: 0;
+  left: 0;
+  bottom: 10;
+  margin-bottom: 20px;
+  display: block;
   background-color: black;
-  height: 10%;
+  height: 200px;
+  width: 100%;
   color: white;
-  font-size: 12px;
   text-align: center;
   vertical-align: middle;
+  z-index: 1030;
+}
+
+#footerSection div{
+  font-size: 30px;
+  bottom-margin: 20px;
+}
+
+#footerSection #bottomCopyright {
+  font-size: 12px;
+  color: grey;
+}
+
+#footerSection span {
+  font-size: 20px;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+#footerSection img {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  border: 5px solid #fcad26;
+}
+
+/*#footerSection p {
+}*/
+
+span a {
+  font-weight: bold;
+}
+
+a:link {
+  color: #fcad26;
+  /*font-weight: bold;*/
+}
+
+a:visited {
+  color: grey;
+  /*font-weight: bold;*/
+}
+
+a:hover {
+  color: #fcad26;
 }
