@@ -210,7 +210,7 @@ no problem getting your changes merged in.
 * [Getting confident with Git Part 2: Managing History](https://github.com/mks-greenfield/planning/wiki/Getting-Confident-with-Git-Part-2:-Managing-History)
 * [Getting confident with Git Part 3: Undoing](https://github.com/mks-greenfield/planning/wiki/Getting-Confident-with-Git-Part-3:-Undoing)
 
-<!-- Links -->
+<!-- Linkss -->
 [pull request]: https://help.github.com/articles/using-pull-requests/
 [DRY]: http://en.wikipedia.org/wiki/Don%27t_repeat_yourself
 [boy scout rule]: http://programmer.97things.oreilly.com/wiki/index.php/The_Boy_Scout_Rule
