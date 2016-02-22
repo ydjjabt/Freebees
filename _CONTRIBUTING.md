@@ -30,7 +30,7 @@
 
 ### Fork the repo
 
-Use github’s interface to make a fork of the 'develop branch' of our organization's repo, then add our organization's repo as an upstream remote of your fork:
+Use github’s interface to make a fork (which will be the 'origin' of your local clone) of the 'develop branch' of our organization's repo, then add our organization's repo as an 'upstream' remote of your fork:
 
 ```
 git remote add upstream https://github.com/INeedClosure/Freebees.git
@@ -67,6 +67,12 @@ Make changes and commits on your branch, and make sure that you
 only make changes that are relevant to this branch. If you find
 yourself making unrelated changes, make a new branch for those
 changes.
+
+Commit every time you implement a working piece of your program. Try not to add code in 1 file and more code in another unrelated file before committing once.
+
+#### Checking the State of Your Code
+ 1. `git status` will tell you if your changes are staged, unstaged, or in a clean state.
+ 1. `git branch -a` will tell you what branch you are currently on.
 
 #### Commit Message Guidelines
 
@@ -135,6 +141,14 @@ someone will look at your code again. If they like it, it will get merged,
 else, just repeat again.
 
 Thanks for contributing!
+
+### Code Review
+
+A guide for reviewing code and having your code reviewed.
+
+#### Everyone 
+
+- Accept that many programming decisions are opinions.
 
 ### Guidelines
 
