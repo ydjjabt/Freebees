@@ -113,9 +113,9 @@ var addMarker = function(map, instance, infoWindow){
 //grab the address the client has typed in to send to turn into longitude/latitude
 var geocodeAddress = function(geocoder, resultsMap, address, cb){
   //calls the geocode method on Google Map's geocode obj
-  geocoder.geocode({'address': address}, function(results, status) {
+  geocoder.geocode({'address': address}, function(results, status){
     //if successful conversion, return the result in a cb
-    if (status == google.maps.GeocoderStatus.OK) {
+    if (status == google.maps.GeocoderStatus.OK){
       cb(results[0].geometry.location);
     } else {
       console.log("Geocode was not successful for the following reason: " + status);

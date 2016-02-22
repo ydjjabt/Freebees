@@ -12,7 +12,7 @@ mongoose.connect(mongoURI);
 // to directly post to the remote online database, use this connection:
 // mongoose.connect("mongodb://master:master@ds061405.mongolab.com:61405/heroku_477ltgkh");
 
-mongoose.connection.once('open', function() {
+mongoose.connection.once('open', function(){
   console.log('Connected to mongodb');
 });
 

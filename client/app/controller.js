@@ -4,7 +4,7 @@ var app = angular.module('myApp', ['map.services'])
 .controller('FormController', function($scope, $http, DBActions, Map){
   $scope.user = {};
 
-  $scope.clearForm = function() {
+  $scope.clearForm = function(){
     //need a way to clear addresses filled with autocomplete, angular doesn't detect autocomplete as a change in DOM
     document.getElementById('inputAddress').value = '';
     $scope.user = {};
@@ -21,7 +21,7 @@ var app = angular.module('myApp', ['map.services'])
     var lowerCaseItem = convertToLowerCase($scope.user.item);
     //convert inputted address, need to get value with JS bc angular can't detect autocomplete
     var inputtedAddress = document.getElementById('inputAddress').value;
-    Map.geocodeAddress(geocoder, Map.map, inputtedAddress, function(converted) {
+    Map.geocodeAddress(geocoder, Map.map, inputtedAddress, function(converted){
       //after address converted, save user input item and location to db
       DBActions.saveToDB({item: lowerCaseItem, LatLng: converted, createdAt: new Date()});
     });
@@ -48,7 +48,7 @@ var app = angular.module('myApp', ['map.services'])
     var lowerCaseDeleteItem = convertToLowerCase($scope.user.item);
     //convert inputted address
     var inputtedAddress = document.getElementById('inputAddress').value;
-    Map.geocodeAddress(geocoder, Map.map, inputtedAddress, function(converted) {
+    Map.geocodeAddress(geocoder, Map.map, inputtedAddress, function(converted){
       DBActions.removeFromDB({item: lowerCaseDeleteItem, LatLng: converted});
     });
     $scope.clearForm();
@@ -98,30 +98,30 @@ var app = angular.module('myApp', ['map.services'])
 
   //this function creates a new map based on filtering by whatever user enters in filter field
   //it is invoked within $scope.filterMap, see the above controller
-  var filterDB = function(toFilterBy) {
+  var filterDB = function(toFilterBy){
 
     //gets everything from the db in an obj referenced as data
     return $http.get('/api/items')
-      .then(function(data) {
+      .then(function(data){
 
         //filter our returned db by the desired itemName
-        var filtered = data.data.filter(function(item) {
+        var filtered = data.data.filter(function(item){
           return item.itemName.indexOf(toFilterBy) > -1;
         });
 
         //re-initialize map with only these markers
         Map.initMap(filtered);
-      }, function(err) {
+      }, function(err){
         console.log('Error when filterDB invoked - get from "/api/items" failed. Error: ', err);
       });
       $scope.clearForm();
   };
 
-  var removeFromDB = function(toRemove) {
+  var removeFromDB = function(toRemove){
     return $http.post('/pickup', toRemove)
-      .then(function(data) {
+      .then(function(data){
         loadAllItems();
-      }, function(err) {
+      }, function(err){
         console.log('Error when removeFromDB invoked - post to "/pickup" failed. Error: ', err);
       });
       $scope.clearForm();

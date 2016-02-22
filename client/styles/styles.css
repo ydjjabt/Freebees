@@ -17,7 +17,7 @@ Header
     padding-right: 0;
     padding-left: 0;
     max-height: 340px;
-    height:58px;
+    height:60px;
     position: fixed;
     right: 0;
     left: 0;
@@ -46,31 +46,42 @@ Header
 
 #headerSection {
   color: #fff;
+  height: 100%;
 }
 
 #beeIcon {
   padding-right: 1%;
-  max-height: 24px;
+  max-height: 32px;
 }
 
 #logoTitle {
   font-family: 'Lobster', cursive;
   color: #FFF;
-  font-size: 1.5em;
+  font-size: 36px;
 }
-
+nav p {
+  font-family: 'Cabin', Arial;
+  letter-spacing: 1px;
+  margin-left: 40px;
+}
 nav ul{
+  width: 59%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-top: auto;
+  margin-bottom: auto;
   float: left;
   list-style: none;
-  margin: 0 10x ;
   padding: 0;
 }
 
 nav li{
   display: inline-block;
+  vertical-align: middle;
 }
 
-nav a,a:visited {
+nav a {
   font-weight: 800;
   padding: 15px 10px;
   font-family:  'Montserrat', sans-serif;
@@ -79,8 +90,25 @@ nav a,a:visited {
   color: #FFF;
 }
 
-#white {
-  color: #FFF;
+a.anchor {
+  color: #fff;
+  float: right;
+  padding: 15px 2px;
+  margin-right: 15px;
+  letter-spacing: 1px;
+  padding-bottom: 2px;
+  border-bottom: 3px solid transparent;
+  transition-property: border-color;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+}
+
+a.anchor:hover {
+  border-bottom-color: grey;
+}
+
+li.rightFloat {
+  float: right;
 }
 
 #searchInput {
@@ -250,6 +278,7 @@ Footer
 =========================
 */
 #footerSection {
+  font-size: 30px;
   right: 0;
   left: 0;
   margin-bottom: 20px;
@@ -261,13 +290,8 @@ Footer
   text-align: center;
   vertical-align: middle;
   z-index: 1030;
-  padding-top: 2%;
-  padding-bottom: 2%;
-}
-
-#footerSection div{
-  font-size: 30px;
-  bottom-margin: 20px;
+  padding-top: 1%;
+  padding-bottom: 4%;
 }
 
 #footerSection #bottomCopyright {
@@ -292,14 +316,14 @@ span a {
   font-weight: bold;
 }
 
-a:link {
+#footerSection a:link {
   color: #fcad26;
 }
 
-a:visited {
+#footerSection a:visited {
   color: grey;
 }
 
-a:hover {
-  color: #fcad26;
+#footerSection a:hover {
+  font-weight: bold;
 }
