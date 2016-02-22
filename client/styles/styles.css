@@ -192,7 +192,7 @@ input[type="text"] {
   letter-spacing: 1px;
   cursor: pointer;
   box-shadow: 1px 1px 1px black;
-  padding: 1% 4%;
+  padding: 1% 0%;
   position: relative;
   -webkit-transition-property: background;
          -moz-transition-property: background;
@@ -208,12 +208,20 @@ input[type="text"] {
               transition-timing-function: linear;
 }
 
+#searchInput > .yellowButton {
+  padding: 1% 4%;
+}
+
 .submitForm {
   margin-left: 5%;
   margin-right: 5%;
   font-size: 20px;
 }
 
+.yellowButton > a {
+  padding: 7% 27% 7% 27%;
+
+}
 #fillIp {
   border: none;
   color: #606060;
@@ -239,6 +247,7 @@ button a:visited, button a{
   color: #FFF;
   text-decoration: none;
 }
+
 /*
 =========================
 Footer
