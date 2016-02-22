@@ -19,7 +19,7 @@ mongoose.connection.once('open', function(){
 var port = process.env.PORT || 3000;
 
 //set up server logging
-app.use(morgan('combined'));
+app.use(morgan('dev'));
 
 app.use(bodyParser.json());
 //parse x-ww-form-urlencoded encoded req bodies
