@@ -148,7 +148,32 @@ A guide for reviewing code and having your code reviewed.
 
 #### Everyone 
 
-- Accept that many programming decisions are opinions.
+- Accept that many programming decisions are opinions. Discuss tradeoffs, which you prefer, and reach a resolution quickly.
+- Ask questions; don't make demands. (E.g. "What do you think about putting the routing in its own file?")
+- Ask for clarification. (E.g. "I didn't understand - could you please clarify?")
+- Avoid selective ownership of code. (E.g. "mine," "not mine," or "yours")
+- Avoid using terms that could be seen as referring to personal traits. (E.g. "dumb" or "stupid") Assume everyone is intelligent and well-meaning.
+- Be explicit. Remember that people don't always understand your intentions online.
+- Be humble. (E.g. "I'm not sure - let's look it up.")
+- Don't use hyperbole. (E.g. "always," "never," "endlessly," or "nothing")
+- Don't use sarcasm.
+- Talk in person if there are many "I didn't understand" or "Alternative solution:" comments. Post a follow-up comment summarizing offline discussion.
+
+#### Reviewing Code
+
+- Communicate which ideas you feel strongly about and which you don't.
+- Identify ways to simplify the code while still solving the problem.
+- Offer alternative implementations, but assume the author already considered them. (E.g. "What do you think about using adding a link to the forager section here?")
+- Seek to understand the author's perspective.
+
+#### Having your code reviewed
+
+- Be grateful for the reviewer's comments (E.g. "Good call. I'll make that change.")
+- Don't take it personally. The review is of the code, not you.
+- Explain why the code exists. (E.g. "It's like that because of these reasons. Would it be more clear if I rename this variable?")
+- Seek to understand the reviewer's perespective.
+- Try to respond to every comment.
+- Wait for the Scrum Master to merge your pull request.
 
 ### Guidelines
 
@@ -177,6 +202,13 @@ This is just to help you organize your process
 
 If you follow all of these guidelines and make good changes, you should have
 no problem getting your changes merged in.
+
+### Resources
+------------------
+
+* [Getting confident with Git Part 1](https://github.com/mks-greenfield/planning/wiki/Getting-Confident-with-Git-Part-1)
+* [Getting confident with Git Part 2: Managing History](https://github.com/mks-greenfield/planning/wiki/Getting-Confident-with-Git-Part-2:-Managing-History)
+* [Getting confident with Git Part 3: Undoing](https://github.com/mks-greenfield/planning/wiki/Getting-Confident-with-Git-Part-3:-Undoing)
 
 <!-- Links -->
 [pull request]: https://help.github.com/articles/using-pull-requests/
