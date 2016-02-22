@@ -3,7 +3,7 @@
 ## General Workflow
 
 1. Fork the repo
-1. Cut a namespaced feature branch from master
+1. Cut a namespaced feature branch from the 'develop' branch
   - bug/...
   - feat/...
   - test/...
@@ -30,10 +30,10 @@
 
 ### Fork the repo
 
-Use github’s interface to make a fork of the repo, then add that repo as an upstream remote:
+Use github’s interface to make a fork of the 'develop branch' of our organization's repo, then add our organization's repo as an upstream remote of your fork:
 
 ```
-git remote add upstream https://github.com/makersquare/<NAME_OF_REPO>.git
+git remote add upstream https://github.com/INeedClosure/INeedClosure.git
 ```
 
 ### Cut a namespaced feature branch from master
