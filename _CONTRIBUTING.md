@@ -33,7 +33,7 @@
 Use github’s interface to make a fork of the 'develop branch' of our organization's repo, then add our organization's repo as an upstream remote of your fork:
 
 ```
-git remote add upstream https://github.com/INeedClosure/INeedClosure.git
+git remote add upstream https://github.com/INeedClosure/Freebees.git
 ```
 
 ### Cut a namespaced feature branch from master
@@ -49,7 +49,7 @@ These commands will help you do this:
 
 ``` bash
 
-# Creates your branch and brings you there
+# Simultaneously creates your branch and brings you there
 git checkout -b `your-branch-name`
 ```
 
@@ -70,10 +70,10 @@ changes.
 
 #### Commit Message Guidelines
 
-- Commit messages should be written in the past tense; e.g. "Fix continuous
+- Commit messages should be written in the past tense; e.g. "Fixed continuous
   integration script".
 - The first line of your commit message should be a brief summary of what the
-  commit changes. Aim for about 70 characters max. Remember: This is a summary,
+  commit changes. Aim for about 70 characters max. Remember: this is a summary,
   not a detailed description of everything that changed.
 - If you want to explain the commit in more depth, following the first line should
   be a blank line and then a more detailed description of the commit. This can be
@@ -83,11 +83,11 @@ changes.
 
 Once you are done making changes, you can begin the process of getting
 your code merged into the main repo. Step 1 is to rebase upstream
-changes to the master branch into yours by running this command
+changes to the 'develop' branch into yours by running this command
 from your branch:
 
 ```bash
-git pull --rebase upstream master
+git pull --rebase upstream develop
 ```
 
 This will start the rebase process. You must commit all of your changes
@@ -95,8 +95,7 @@ before doing this. If there are no conflicts, this should just roll all
 of your changes back on top of the changes from upstream, leading to a
 nice, clean, linear commit history.
 
-If there are conflicting changes, git will start yelling at you part way
-through the rebasing process. Git will pause rebasing to allow you to sort
+If there are conflicting changes, git will notify you. Git will pause rebasing to allow you to sort
 out the conflicts. You do this the same way you solve merge conflicts,
 by checking all of the files git says have been changed in both histories
 and picking the versions you want. Be aware that these changes will show
@@ -113,24 +112,23 @@ git rebase --continue
 ```
 
 This will continue the rebasing process. Once you are done fixing all
-conflicts you should run the existing tests to make sure you didn’t break
-anything, then run your new tests (there are new tests, right?) and
-make sure they work also.
+conflicts, add and run some tests to make sure you didn’t break
+anything.
 
 If rebasing broke anything, fix it, then repeat the above process until
 you get here again and nothing is broken and all the tests pass.
 
 ### Make a pull request
 
-Make a clear pull request from your fork and branch to the upstream master
+After all merge conflicts have been resolved and the rebase has successfully completed, push your local branch to your github fork. Make a clear pull request from your fork and branch to the upstream master
 branch, detailing exactly what changes you made and what feature this
 should add. The clearer your pull request is the faster you can get
 your changes incorporated into this repo.
 
 At least one other person MUST give your changes a code review, and once
-they are satisfied they will merge your changes into upstream. Alternatively,
-they may have some requested changes. You should make more commits to your
-branch to fix these, then follow this process again from rebasing onwards.
+they are satisfied they will merge your changes into the upstream 'develop' branch. Alternatively,
+they may have some requested changes in which case they will make comments within the pull request for you to address. You should make more commits to your
+branch to fix the requested changes, then follow this process again from rebasing onwards.
 
 Once you get back here, make a comment requesting further review and
 someone will look at your code again. If they like it, it will get merged,
@@ -143,21 +141,21 @@ Thanks for contributing!
 1. Uphold the current code standard:
     - Keep your code [DRY][].
     - Apply the [boy scout rule][].
-    - Follow [STYLE-GUIDE.md](STYLE-GUIDE.md)
-1. Run the [tests][] before submitting a pull request.
+    - Follow [STYLE-GUIDE.md](_STYLE-GUIDE.md)
+1. If there are any tests, run them before submitting a pull request.
 1. Tests are very, very important. Submit tests if your pull request contains
    new, testable behavior.
-1. Your pull request is comprised of a single ([squashed][]) commit.
+1. Your pull request should be comprised of a single ([squashed][]) commit.
 
 ## Checklist:
 
 This is just to help you organize your process
 
-- [ ] Did I cut my work branch off of master (don't cut new branches from existing feature brances)?
+- [ ] Did I cut my work branch off of the 'develop' branch? (Don't cut new branches from existing feature brances)
 - [ ] Did I follow the correct naming convention for my branch?
 - [ ] Is my branch focused on a single main change?
  - [ ] Do all of my changes directly relate to this change?
-- [ ] Did I rebase the upstream master branch after I finished all my
+- [ ] Did I rebase the upstream 'develop' branch after I finished all my
   work?
 - [ ] Did I write a clear pull request message detailing what changes I made?
 - [ ] Did I get a code review?
