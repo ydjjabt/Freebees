@@ -102,9 +102,9 @@ var addMarker = function(map, instance, infoWindow){
       // The origin for this image is (0, 0).
       origin: new google.maps.Point(0, 0),
       // The anchor for this image is the base of the flagpole at (0, 32).
-      anchor: new google.maps.Point(0, 61)
+      anchor: new google.maps.Point(20, 41)
     };
-    
+
     //create a new instance of a google maps marker, will be created for each item in our db
     var marker = new google.maps.Marker({
         position: instance.itemLocation,
