@@ -41,6 +41,7 @@ We used Google Maps JavaScript API for our locations.[Google Maps JavaScript API
 - Users can add one item at a time with its physical address as location.
 - Users can remove an item from the map  when it becomes unavailable.
 - Users can use their location based on IP address.
+- Users can search the item by its name.
 
 ## In progress
 
@@ -55,10 +56,10 @@ Please refer to the `_CONTRIBUTING.md `file to see our git workflow.
 Please refer to the `_STYLE-GUIDE.md `file to see our style guide.
 
 ## Contributors
-- Collin Adams ([Collin Adams](https://www.linkedin.com/in/collin-adams-99018788?trk=nav_responsive_tab_profile))
-- Alice Kao ([Alice Kao](https://www.linkedin.com/in/alice-kao-94768910?authType=NAME_SEARCH&authToken=wwuT&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A37507591%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1455832165532%2Ctas%3Aalice%20ka))
+- Collin Adams ([Collin Adams](https://github.com/collinadams))
+- Alice Kao ([Alice Kao](https://github.com/alicekao))
 - Jessica Park ([Jessica Park](https://github.com/tinkleJess))
-- Michael Serna ([Michael Serna](https://www.linkedin.com/in/michael-a-serna-9a899727?trk=send_invitation_success_message_name&goback=%2Enpv_AAkAAAWpqdABlWdGVJOytmG*4DUiPSbSqm9ULBsg_*1_*1_NAME*4SEARCH_LCwI_*1_en*4US_*1_*1_*1_*1_*1_*1_*1_*1_*1_*1_*1_*1_*1_*1_*1_*1_*1_*1_*1_*1_*1_*1_*1_*1_*1_*1_*1_*1_*1_tyah_*1_*1))
+- Michael Serna ([Michael Serna](https://github.com/michaelserna))
 
 
 MKS Greenfield Project
