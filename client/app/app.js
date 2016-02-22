@@ -97,14 +97,14 @@ var addMarker = function(map, instance, infoWindow){
       //horizontal bee
       //url: 'https://openclipart.org/image/90px/svg_to_png/221154/Cartoon-Bee.png',
       url: 'https://www.ezphotoshare.com/images/2016/02/18/YFq6s.gif',
-      // This marker is 20 pixels wide by 32 pixels high.
+      // This marker is 41 pixels wide by 61 pixels high.
       size: new google.maps.Size(41, 61),
       // The origin for this image is (0, 0).
       origin: new google.maps.Point(0, 0),
-      // The anchor for this image is the base of the flagpole at (0, 32).
+      // The anchor for this image is the base of the flagpole at (0, 61).
       anchor: new google.maps.Point(0, 61)
     };
-    
+
     //create a new instance of a google maps marker, will be created for each item in our db
     var marker = new google.maps.Marker({
         position: instance.itemLocation,
