@@ -4,11 +4,9 @@ html, body {
   padding: 0;
   background-color: #fcd04b;
   font-family: 'Cabin', 'Arial';
-
 }
 
 body { padding-top: 70px; }
-
 /*
 =========================
 Header
@@ -19,7 +17,7 @@ Header
     padding-right: 0;
     padding-left: 0;
     max-height: 340px;
-    height:58px;
+    height:60px;
     position: fixed;
     right: 0;
     left: 0;
@@ -44,36 +42,46 @@ Header
     padding-right: 60px;
     padding-left: 60px;
   }
-
 }
 
 #headerSection {
   color: #fff;
+  height: 100%;
 }
 
 #beeIcon {
   padding-right: 1%;
-  max-height: 24px;
+  max-height: 32px;
 }
 
 #logoTitle {
   font-family: 'Lobster', cursive;
   color: #FFF;
-  font-size: 1.5em;
+  font-size: 36px;
 }
-
+nav p {
+  font-family: 'Cabin', Arial;
+  letter-spacing: 1px;
+  margin-left: 40px;
+}
 nav ul{
+  width: 59%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-top: auto;
+  margin-bottom: auto;
   float: left;
   list-style: none;
-  margin: 0 10x ;
   padding: 0;
 }
 
 nav li{
   display: inline-block;
+  vertical-align: middle;
 }
 
-nav a,a:visited {
+nav a {
   font-weight: 800;
   padding: 15px 10px;
   font-family:  'Montserrat', sans-serif;
@@ -81,8 +89,26 @@ nav a,a:visited {
   text-decoration: none;
   color: #FFF;
 }
-#white{
-  color: #FFF;
+
+a.anchor {
+  color: #fff;
+  float: right;
+  padding: 15px 2px;
+  margin-right: 15px;
+  letter-spacing: 1px;
+  padding-bottom: 3px;
+  border-bottom: 3px solid transparent;
+  transition-property: border-color;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
+}
+
+a.anchor:hover {
+  border-bottom-color: grey;
+}
+
+li.rightFloat {
+  float: right;
 }
 
 #searchInput {
@@ -90,12 +116,12 @@ nav a,a:visited {
   float: right;
   padding: 10px 0;
 }
-
+#searchBtn {
+  box-shadow: 1px 1px white;
+}
 #searchBox {
   width: 50%;
 }
-
-
 /*
 =========================
 Map
@@ -179,7 +205,6 @@ input[type="text"] {
   left: 37%;
 }
 
-
 .yellowButton {
   border-radius: 50px;
   border: 2px solid #fff;
@@ -192,7 +217,7 @@ input[type="text"] {
   letter-spacing: 1px;
   cursor: pointer;
   box-shadow: 1px 1px 1px black;
-  padding: 1% 0%;
+  padding: 1% 1%;
   position: relative;
   -webkit-transition-property: background;
          -moz-transition-property: background;
@@ -243,6 +268,7 @@ input[type="text"] {
 button:hover {
   background: #fcad26;
 }
+
 button a:visited, button a{
   color: #FFF;
   text-decoration: none;
@@ -254,9 +280,9 @@ Footer
 =========================
 */
 #footerSection {
+  font-size: 30px;
   right: 0;
   left: 0;
-  bottom: 10;
   margin-bottom: 20px;
   display: block;
   background-color: black;
@@ -266,11 +292,8 @@ Footer
   text-align: center;
   vertical-align: middle;
   z-index: 1030;
-}
-
-#footerSection div{
-  font-size: 30px;
-  bottom-margin: 20px;
+  padding-top: 1%;
+  padding-bottom: 4%;
 }
 
 #footerSection #bottomCopyright {
@@ -291,23 +314,18 @@ Footer
   border: 5px solid #fcad26;
 }
 
-/*#footerSection p {
-}*/
-
 span a {
   font-weight: bold;
 }
 
-a:link {
+#footerSection a:link {
   color: #fcad26;
-  /*font-weight: bold;*/
 }
 
-a:visited {
+#footerSection a:visited {
   color: grey;
-  /*font-weight: bold;*/
 }
 
-a:hover {
-  color: #fcad26;
+#footerSection a:hover {
+  font-weight: bold;
 }

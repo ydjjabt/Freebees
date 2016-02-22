@@ -9,12 +9,12 @@ var ItemSchema = new mongoose.Schema ({
     required: true
   },
 
-  //ItemSchema table has a column for itemLocation, which is an object with lat and lng props
+  //ItemSchema table has a column for createdAt and itemLocation, which is an object with lat and lng props
   itemLocation :{
     type: Object,
     required: true
   },
-
+  //need speicifc itemLng and itemLat for the delete functionality, for some reason we can't match the properties in the itemLocation obj
    itemLng: {
     type: Number,
     required: true
@@ -29,9 +29,7 @@ var ItemSchema = new mongoose.Schema ({
     type: Date,
     required: true
   }
-
 });
 
 //export the Item mongoose model that will fit into the ItemSchema table
 module.exports = mongoose.model('Item', ItemSchema);
-
