@@ -318,8 +318,11 @@ span a {
   font-weight: bold;
 }
 
-#footerSection a:link {
+#footerSection a {
   color: #fcad26;
+  text-decoration: none;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
 }
 
 #footerSection a:visited {
@@ -328,4 +331,5 @@ span a {
 
 #footerSection a:hover {
   font-weight: bold;
+  color: #fcad26;
 }
