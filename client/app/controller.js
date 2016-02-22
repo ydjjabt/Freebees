@@ -85,7 +85,7 @@ var app = angular.module('myApp', ['map.services'])
   //the 'toSave' parameter is an object that will be entered into database,
   //'toSave' has item prop and LatLng properties
   var saveToDB = function(toSave){
-  return $http.post('/', toSave)
+  return $http.post('/submit', toSave)
 
     //after item has been saved to db, returned data has a data property
     //so we need to access data.data, see below
