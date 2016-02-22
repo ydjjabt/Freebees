@@ -118,9 +118,11 @@ li.rightFloat {
 }
 #searchBtn {
   box-shadow: 1px 1px white;
+  margin-left: 1%;
 }
 #searchBox {
   width: 50%;
+  font-size: 16px;
 }
 /*
 =========================
@@ -189,13 +191,13 @@ input[type="text"] {
   font-family: 'Cabin', 'Arial';
   color: #606060;
   letter-spacing: 0.5px;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .spinner {
-  position: absolute;
-  left: 76%;
-  top: 104%;
+  display: inline-block;
+  margin-right: 14%;
+  float: right;
 }
 
 .spinner img{
@@ -258,7 +260,8 @@ input[type="text"] {
   text-transform: uppercase;
   border-bottom: 1px dotted #606060;
   position: relative;
-  left: 24%;
+  left: 32%;
+  outline: none;
 }
 
 #fillIp:hover {
