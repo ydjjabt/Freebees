@@ -4,11 +4,9 @@ html, body {
   padding: 0;
   background-color: #fcd04b;
   font-family: 'Cabin', 'Arial';
-
 }
 
 body { padding-top: 70px; }
-
 /*
 =========================
 Header
@@ -44,7 +42,6 @@ Header
     padding-right: 60px;
     padding-left: 60px;
   }
-
 }
 
 #headerSection {
@@ -81,7 +78,8 @@ nav a,a:visited {
   text-decoration: none;
   color: #FFF;
 }
-#white{
+
+#white {
   color: #FFF;
 }
 
@@ -94,8 +92,6 @@ nav a,a:visited {
 #searchBox {
   width: 50%;
 }
-
-
 /*
 =========================
 Map
@@ -179,7 +175,6 @@ input[type="text"] {
   left: 37%;
 }
 
-
 .yellowButton {
   border-radius: 50px;
   border: 2px solid #fff;
@@ -243,6 +238,7 @@ input[type="text"] {
 button:hover {
   background: #fcad26;
 }
+
 button a:visited, button a{
   color: #FFF;
   text-decoration: none;
@@ -256,7 +252,6 @@ Footer
 #footerSection {
   right: 0;
   left: 0;
-  bottom: 10;
   margin-bottom: 20px;
   display: block;
   background-color: black;
@@ -266,6 +261,8 @@ Footer
   text-align: center;
   vertical-align: middle;
   z-index: 1030;
+  padding-top: 2%;
+  padding-bottom: 2%;
 }
 
 #footerSection div{
@@ -291,21 +288,16 @@ Footer
   border: 5px solid #fcad26;
 }
 
-/*#footerSection p {
-}*/
-
 span a {
   font-weight: bold;
 }
 
 a:link {
   color: #fcad26;
-  /*font-weight: bold;*/
 }
 
 a:visited {
   color: grey;
-  /*font-weight: bold;*/
 }
 
 a:hover {
