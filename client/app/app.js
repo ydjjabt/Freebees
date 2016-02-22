@@ -62,7 +62,7 @@ var loadAllItems = function(){
 var initMap = function(data){
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.7833, lng: -122.4167},
-    zoom: 12
+    zoom: 13
   });
   //creates a global infowindow that will show only one window at a time
   infoWindow = new google.maps.InfoWindow();
@@ -71,7 +71,7 @@ var initMap = function(data){
   geocoder = new google.maps.Geocoder();
   //loop through data returned from db to place on map
   for (var i = 0; i < data.length; i++){
-    addMarker(map, data[i], infoWindow);
+    addMarker(map, data[i], infoWindow, i*50);
   }
   //add autocomplete functionality to address input field using google maps api
   var input = document.getElementById('inputAddress');
@@ -79,8 +79,10 @@ var initMap = function(data){
   var autocomplete = new google.maps.places.Autocomplete(input, options);
 };
 
-//add a marker to map. Instance needs to be an obj with itemLocation and itemName properties.
-var addMarker = function(map, instance, infoWindow){
+/*add a marker to map. Instance needs to be an obj with itemLocation and itemName properties. The last parameter, timeout 
+is passed in as a parameter to sequentially add each item so the markers drop down sequentially */
+var addMarker = function(map, instance, infoWindow, timeout){
+  window.setTimeout(function(){
     var image = {
       //horizontal bee
       //url: 'https://openclipart.org/image/90px/svg_to_png/221154/Cartoon-Bee.png',
@@ -93,21 +95,22 @@ var addMarker = function(map, instance, infoWindow){
       anchor: new google.maps.Point(0, 61)
     };
 
-  //create a new instance of a google maps marker, will be created for each item in our db
-  var marker = new google.maps.Marker({
-    position: instance.itemLocation,
-    // animation: google.maps.Animation.DROP,
-    map: map,
-    icon: image,
-    title: 'Hello World!'
-  });
+    //create a new instance of a google maps marker, will be created for each item in our db
+    var marker = new google.maps.Marker({
+      position: instance.itemLocation,
+      animation: google.maps.Animation.DROP,
+      map: map,
+      icon: image,
+      title: 'Hello World!'
+    });
 
-  //creates a listener that will attach this instance's data to the global info window and open it
-  google.maps.event.addListener(marker, 'click', function(){
-    //turn our mongo-stored stringified date into a JS date obj that is then formatted
-    infoWindow.setContent(instance.itemName+' <br><span class="createdAt">'+formatDate(new Date(instance.createdAt))+'</span>');
-    infoWindow.open(map, this);
-  });
+    //creates a listener that will attach this instance's data to the global info window and open it
+    google.maps.event.addListener(marker, 'click', function(){
+      //turn our mongo-stored stringified date into a JS date obj that is then formatted
+      infoWindow.setContent(instance.itemName+' <br><span class="createdAt">'+formatDate(new Date(instance.createdAt))+'</span>');
+      infoWindow.open(map, this);
+    });
+  }, timeout);
 };
 
 //grab the address the client has typed in to send to turn into longitude/latitude
