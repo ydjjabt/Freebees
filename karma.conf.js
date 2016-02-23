@@ -5,25 +5,23 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: './',
 
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'chai'],
 
 
     // list of files / patterns to load in the browser
-    files: [
-      './',
+    files: require('./include.conf.js').concat([
       'specs/**/*.js'
     ],
 
 
     // list of files to exclude
     exclude: [
-      'karma.conf.js',
-      '/karma.conf.js'
+      'karma.conf.js'
     ],
 
 
@@ -38,7 +36,7 @@ module.exports = function(config) {
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['progress'],
 
-
+    
     // web server port
     port: 9876,
 
@@ -52,6 +50,8 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
 
 
+    
+
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: false,
 
@@ -60,13 +60,24 @@ module.exports = function(config) {
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['Chrome'],
 
+    captureTimeout: 20000,
+
+    reportsSlowerThan: 500,
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: false,
 
+
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity,
+
+    plugins: [
+        'karma-coverage',
+        'karma-mocha',
+        'karma-chai',
+        'karma-chrome-launcher'
+    ]
   })
 }
