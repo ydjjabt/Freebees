@@ -93,7 +93,6 @@ var app = angular.module('myApp', ['map.services'])
     }, function(err){
       console.log('Error when saveToDB invoked - post to "/" failed. Error: ', err);
     });
-    $scope.clearForm();
   };
 
   //this function creates a new map based on filtering by whatever user enters in filter field
@@ -114,7 +113,6 @@ var app = angular.module('myApp', ['map.services'])
       }, function(err){
         console.log('Error when filterDB invoked - get from "/api/items" failed. Error: ', err);
       });
-      $scope.clearForm();
   };
 
   var removeFromDB = function(toRemove){
@@ -124,7 +122,6 @@ var app = angular.module('myApp', ['map.services'])
       }, function(err){
         console.log('Error when removeFromDB invoked - post to "/pickup" failed. Error: ', err);
       });
-      $scope.clearForm();
   };
 
   //the DBActions factory returns the below object with methods of the functions
