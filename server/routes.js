@@ -6,13 +6,11 @@ module.exports = function(app){
   app.get('/api/items', ItemFuncs.getAllItems);
 
   //when submit an item to be given away, save it to db
-  app.post('/', ItemFuncs.saveItem);
-
+  app.post('/submit', ItemFuncs.saveItem);
   app.post('/pickup',ItemFuncs.removeItem);
 
   //any other route will load root
   app.get('*', function(req, res){
     res.redirect('/');
   });
-
 };

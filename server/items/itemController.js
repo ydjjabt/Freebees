@@ -1,11 +1,11 @@
-//itemController.js uses someFunc().then(success).catch(err) (method #1) to handle errors,
-//whereas controller.js uses someFunc().then(onSuccess, onFailure) to handle errors (method #2).
-//These two ways are similar, although method #2 is considered an anti-pattern
-//since onFailure only gets called if someFunc() fails, whereas .catch() gets called
-//if either someFunc() or .then() fails. Method #2 also closely resembles traditional callback hell
-//whereas method #1 more closely resembles promise methodology. Method #2 can sometimes be helpful
-//for some edge cases. We use both methods for practice implementing both and remain consistent within each
-//individual file.
+/*itemController.js uses someFunc().then(success).catch(err) (method #1) to handle errors,
+whereas controller.js uses someFunc().then(onSuccess, onFailure) to handle errors (method #2).
+These two ways are similar, although method #2 is considered an anti-pattern
+since onFailure only gets called if someFunc() fails, whereas .catch() gets called
+if either someFunc() or .then() fails. Method #2 also closely resembles traditional callback hell
+whereas method #1 more closely resembles promise methodology. Method #2 can sometimes be helpful
+for some edge cases. We use both methods for practice implementing both and remain consistent within each
+individual file.*/
 
 var mongoose = require('mongoose');
 
@@ -20,9 +20,6 @@ module.exports = {
     //extract itemName and itemLocation from the post request's body
     var itemName = req.body.item;
     var itemLocation = req.body.LatLng;
-    console.log(itemLocation)
-    console.log(itemLocation.lng)
-    console.log(itemLocation.lat)
     var date = req.body.createdAt;
     var create;
 
@@ -39,10 +36,8 @@ module.exports = {
         if (item){
           console.log('That item is already being offered from that location \n Try offering something new');
           res.status(400).send('invalid request');
+        //Otherwise we're going to create and save the user's submitted item
         } else {
-          console.log('trying to save', itemName);
-          //Otherwise we're going to create and save the user's submitted item
-
           //Q.nbind() promisifies its first argument, so now you could chain a .then() after create
           //the .then() below could be helpful for future features
           create = Q.nbind(Item.create, Item);
@@ -88,8 +83,6 @@ module.exports = {
       });
   },
   removeItem: function(req, res){
-    console.log("we are trying to remove: ");
-
     var itemName = req.body.item;
     var itemLocation = req.body.LatLng;
 
@@ -99,8 +92,7 @@ module.exports = {
 
         //If the item already exists, throws an error
         if (!item){
-          console.log('That item does not exist.');
-          res.status(400).send('invalid request');
+          res.status(400).send('invalid request, item does not exist');
         } else {
           res.send('item deleted');
         }
@@ -108,7 +100,6 @@ module.exports = {
       .catch(function(err){
         console.log('Error when removeItem invoked - deleting row from db failed. Error: ', err);
       });
-
   }
 };
 
