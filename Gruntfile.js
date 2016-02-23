@@ -8,9 +8,9 @@ grunt.loadNpmTasks('grunt-contrib-uglify');
 grunt.loadNpmTasks('grunt-contrib-jshint');
 grunt.loadNpmTasks('grunt-contrib-watch');
 grunt.loadNpmTasks('grunt-express-server');
-// grunt.loadNpmTasks('grunt-karma');
+grunt.loadNpmTasks('grunt-karma');
 // grunt.loadNpmTasks('grunt-casperjs');
-// grunt.loadNpmTasks('grunt-mocha');
+grunt.loadNpmTasks('grunt-mocha');
 // grunt.loadNpmTasks("grunt-mocha-chai-sinon");
 
   var clientIncludeOrder = require('./include.conf.js');
@@ -36,7 +36,7 @@ grunt.loadNpmTasks('grunt-express-server');
     uglify: {
       client: {
         files:{
-          'dist/client/scripts/uglify.min.js': 'dist/client/scripts/concat.js'
+          'dist/client/scripts/uglify.min.js': clientIncludeOrder
         }  
       }
     },
@@ -74,6 +74,31 @@ grunt.loadNpmTasks('grunt-express-server');
       }
     },
 
+    // configure karma
+    karma: {
+      options: {
+        configFile: 'karma.conf.js',
+        reporters: ['progress', 'coverage']
+      },
+      // Watch configuration
+      watch: {
+        background: true,
+        reporters: ['progress']
+      },
+      // Single-run configuration for development
+      single: {
+        singleRun: true,
+      },
+      // Single-run configuration for CI
+      ci: {
+        singleRun: true,
+        coverageReporter: {
+          type: 'lcov',
+          dir: 'results/coverage/'
+        }
+      }
+    },
+
     watch: {
       gruntfile: {
         files: 'Gruntfile.js',
@@ -90,12 +115,18 @@ grunt.loadNpmTasks('grunt-express-server');
           spawn: false // Restart server
         }
       },
+      unitTests: {
+        files: [ 'specs/**/*.js' ],
+        tasks: [ 'karma:watch:run' ]
+      },
     }  
 
   });
 
   // Perform a build
-  grunt.registerTask('build', [ 'jshint', 'clean', 'copy', 'concat', 'uglify']);
+  grunt.registerTask('build', [ 'jshint', 'clean', 'copy', 'uglify', 'concat']);
 
-  grunt.registerTask('default', [ 'build', 'express:dev', 'watch']);
+  grunt.registerTask('default', [ 'build', 'express:dev', 'karma:watch:start', 'watch']);
+
+  grunt.registerTask('testClient', [ 'karma:single' ]);
 };
