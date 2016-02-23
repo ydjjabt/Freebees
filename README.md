@@ -41,19 +41,20 @@ We used Google Maps JavaScript API for our locations.[Google Maps JavaScript API
 - Users can add one item at a time with its physical address as location.
 - Users can remove an item from the map  when it becomes unavailable.
 - Users can use their location based on IP address.
-- Users can search the item by its name.
+- Users can search the database by item name.
 
 ## In progress
 
 - Filter based on when item was submitted.
+- Users can upload pictures along with their posting.
 
 ## Git Workflow
 
-Please refer to the `_CONTRIBUTING.md `file to see our git workflow.
+Please refer to the [CONTRIBUTING.md](_CONTRIBUTING.md) file to see our git workflow.
 
 ## Style Guide
 
-Please refer to the `_STYLE-GUIDE.md `file to see our style guide.
+Please refer to the [STYLE-GUIDE.md](_STYLE-GUIDE.md) file to see our style guide.
 
 ## Contributors
 - Collin Adams ([Collin Adams](https://github.com/collinadams))
