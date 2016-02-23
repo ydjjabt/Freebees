@@ -71,7 +71,7 @@ var initMap = function(data){
   geocoder = new google.maps.Geocoder();
   //loop through data returned from db to place on map
   for (var i = 0; i < data.length; i++){
-    addMarker(map, data[i], infoWindow, i*50);
+    addMarker(map, data[i], infoWindow, i*30);
   }
   //add autocomplete functionality to address input field using google maps api
   var input = document.getElementById('inputAddress');
