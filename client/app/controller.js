@@ -77,6 +77,16 @@ var app = angular.module('myApp', ['map.services'])
 .factory('DBActions', function($http, Map){
   //the 'toSave' parameter is an object that will be entered into database,
   //'toSave' has item prop and LatLng properties
+  var addUser = function (user){
+    return $http.post('/user', user)
+    .then (function (data){
+      console.log(data);
+
+    }, function(err){
+      console.log("error when adduser invoked - post to users failed.Error", err);
+    });
+  }
+
   var saveToDB = function(toSave){
   return $http.post('/submit', toSave)
 
