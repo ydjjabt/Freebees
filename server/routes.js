@@ -4,6 +4,7 @@ var UserFuncs = require('./Users/userController.js');
 var User = require('./Users/userModel.js');
 var auth = require('./auth/auth.js');
 var config = require('./config/config.js');
+var jwt = require('jsonwebtoken');
 
 module.exports = function(app){
   //when navigate to /api/items, retrieve all data rows from db
@@ -21,7 +22,7 @@ module.exports = function(app){
 
   app.post('/login', function(req, res, next) {
     User.findOne({
-      local.username: req.body.username
+      username: req.body.username
     }, function(err, user) {
       if (err) throw err;
       if(!user) {
@@ -45,17 +46,18 @@ module.exports = function(app){
 
   app.post('/signup', function(req, res, next) {
     User.findOne({
-      local.username: req.body.username
+      username: req.body.username
     }, function(err, user) {
       if (err) throw err;
       if(user) {
         res.json({ success: false, message: 'Signup failed. Username already exists.'});
       } else {
         var newUser = new User();
-        newUser.local.username = req.body.username;
-        newUser.local.password = User.generateHash(req.body.password);
+        newUser.username = req.body.username;
+        newUser.password = newUser.generateHash(req.body.password);
+        console.log("newuser", newUser);
         newUser.save(function(err) {
-          if(err) throw err;
+          if(err) throw require('util').inspect(err);
           var token = jwt.sign(newUser, config.secret, {
             expiresInMinutes: 1440
           });

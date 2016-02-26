@@ -27,6 +27,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 // Attach/initiate sessions
 app.use(session({ secret: config.secret }));
 
+app.use("*", function(req, res, next) {
+  console.log("req.body", req.body);
+  next();
+});
+
 //use routes.js
 app.use(express.static(__dirname + '/client'));
 require('./server/routes')(app);
