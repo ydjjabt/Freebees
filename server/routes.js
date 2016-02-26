@@ -16,6 +16,7 @@ module.exports = function(app){
 
   app.get('/profile', auth.isLoggedIn, function(req, res) {
     // some logic here
+    res.send(req.decoded);
   });
 
   app.post('/login', function(req, res, next) {
@@ -25,7 +26,7 @@ module.exports = function(app){
       if (err) throw err;
       if(!user) {
         res.json({ success: false, message: 'Auth failed. User not found.'})
-      } else if (user) {
+      } else {
         if(User.comparePassword(req.body.password)) {
           var token = jwt.sign(user, config.secret, {
             expiresInMinutes: 1440
@@ -42,11 +43,31 @@ module.exports = function(app){
     })
   })
 
-  app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/profile',
-    failureRedirect: '/signup',
-    failureFlash: true
-  }));
+  app.post('/signup', function(req, res, next) {
+    User.findOne({
+      local.username: req.body.username
+    }, function(err, user) {
+      if (err) throw err;
+      if(user) {
+        res.json({ success: false, message: 'Signup failed. Username already exists.'});
+      } else {
+        var newUser = new User();
+        newUser.local.username = req.body.username;
+        newUser.local.password = User.generateHash(req.body.password);
+        newUser.save(function(err) {
+          if(err) throw err;
+          var token = jwt.sign(newUser, config.secret, {
+            expiresInMinutes: 1440
+          });
+          res.json({
+            success: true,
+            message: "Signup successful.",
+            token: token
+          });
+        });
+      }
+    })
+  });
 
   //any other route will load root
   app.get('*', function(req, res){

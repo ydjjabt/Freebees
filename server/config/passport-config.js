@@ -1,3 +1,5 @@
+// DEPRECATED
+
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('./server/Users/userModel.js');
 
