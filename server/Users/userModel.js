@@ -16,6 +16,7 @@ var UserSchema = new mongoose.Schema ({
   }
 });
 
+// Methods for hash generation and comparing passwords
 UserSchema.methods.generateHash = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
