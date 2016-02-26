@@ -3,5 +3,7 @@ bower_components/
 *.log
 .DS_Store
 
+config.js
+
 build/
 dist/
