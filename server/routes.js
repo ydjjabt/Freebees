@@ -8,7 +8,7 @@ var config = require('./config/config.js');
 module.exports = function(app){
   //when navigate to /api/items, retrieve all data rows from db
   app.get('/api/items', ItemFuncs.getAllItems);
-
+  app.post('/api/users', UserFuncs.getUser);
   //when submit an item to be given away, save it to db
   app.post('/user', UserFuncs.saveUser);
   app.post('/submit', auth.isLoggedIn, ItemFuncs.saveItem);

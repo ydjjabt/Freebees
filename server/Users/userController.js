@@ -9,33 +9,61 @@ module.exports = {
     var sentUsername = req.body.username;
     var sentPassword = req.body.password;
     var sentAddress  = req.body.address;
-           
-    var findUser = Q.nbind(User.findOne,User);
-    findUser({username: username, password: password, address: address})
+    var create; 
+    //console.log(User);
+    var findUser = Q.nbind(User.model.findOne, User.model);
+
+    findUser({username: sentUsername, password: sentPassword, address: sentAddress})
         .then(function(user){
-            if(user){
+            if (user){
                 console.log("Trying to add user that alreay exists")
                 res.status(400).send("try another")
             } else {
-               createUser =  Q.nbind(User.create, User);
-               var newUser = {
+              console.log("made it here")
+               createUser =  Q.nbind(User.model.create, User.model);
+               var newUser = {//
+                local : {
                 username : sentUsername,
-                password : sentPassword,
+                password : sentPassword,//User.encryptPassword(sentPassword),
                 address : sentAddress
-               };
+               }};
 
-               create(newUser)
+               createUser(newUser)
                 .then(function(data){
                     console.log("save")
                     res.send(data);
                 })
                 .catch(function(err){
                     console.log("Error when create user invoked - creating newuser and save to db. Err ", err);
-                })
+                    res.send(400)
+                });
             }
         })
         .catch(function(err){
             console.log("errror looking for user", err);
-        })
+        });
+    },
+    getUser: function(req, res) {
+      //console.log('hello');
+      //res.send("hello");
+      var sentUsername = req.body.username;
+      var sentPassword = req.body.password;
+      var sentAddress  = req.body.address;
+      var findUser = Q.nbind(User.model.findOne, User.model);
+
+    findUser({username: sentUsername, password: sentPassword, address: sentAddress})
+      .then(function(user){
+        if (user){
+
+          console.log("Trying to add user that alreay exists");
+          res.status(200).send(user);
+        } else {
+          console.log('sent from no user')
+          res.set(200).send("user not found");
+        }
+      })
+      .catch(function(err){
+        console.log("error getuser err", err)
+      })
     }
 }
