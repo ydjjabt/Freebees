@@ -51,6 +51,7 @@
     "express-session": "1.13.0",
     "grunt": "0.4.5",
     "jsonwebtoken": "5.7.0",
+    "karma-coverage": "0.5.3",
     "mongodb": "2.1.7",
     "mongoose": "4.4.3",
     "morgan": "1.6.1",
