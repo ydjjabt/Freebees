@@ -128,7 +128,7 @@ var app = angular.module('myApp', ['map.services'])
     //gets everything from the db in an obj referenced as data
     return $http.get('/api/items')
       .then(function(data){
-        console.log(data);
+        //console.log(data)
         //filter our returned db by the desired itemName
         var filtered = data.data.filter(function(item){
           return item.itemName.indexOf(toFilterBy) > -1;
