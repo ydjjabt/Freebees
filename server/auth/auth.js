@@ -1,5 +1,6 @@
 // Auth module
 var config = require('../config/config.js');
+var jwt = require('jsonwebtoken');
 
 function isLoggedIn(req, res, next) {
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
@@ -9,7 +10,7 @@ function isLoggedIn(req, res, next) {
       if (err) {
         return res.json({ success: false, message: "Failed to authenticate token." });
       } else {
-        req.decoded = decoded;
+        req.user = decoded;
         next();
       }
     });

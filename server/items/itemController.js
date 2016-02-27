@@ -21,6 +21,8 @@ module.exports = {
     var itemName = req.body.item;
     var itemLocation = req.body.LatLng;
     var date = req.body.createdAt;
+    var uuid = req.body.uuid;
+    var author = req.user.username;
     var create;
     var pictureData = req.body.picture;
 
@@ -53,7 +55,9 @@ module.exports = {
             itemLng: itemLocation.lng,
             itemLat: itemLocation.lat,
             createdAt: date,
-            picture : pictureData
+            picture : pictureData,
+            uuid: uuid,
+            createdBy: author
           };
 
           // In mongoose, .create() automaticaly creates AND saves simultaneously
@@ -90,11 +94,18 @@ module.exports = {
       });
   },
   removeItem: function(req, res){
-    var itemName = req.body.item;
-    var itemLocation = req.body.LatLng;
+    var uuid = req.body.uuid;
+    var user = req.user.username;
 
     var removeItem = Q.nbind(Item.remove, Item);
-    removeItem({itemName: itemName, itemLng: itemLocation.lng, itemLat: itemLocation.lat})
+    var findOne = Q.nbind(Item.findOne, Item);
+    findOne({'uuid': uuid})
+      .then(function(item) {
+        if(item.createdBy !== user) {
+          res.status(403).send('You have to have the author to remove this item!');
+        }
+      });
+    removeItem({'uuid': uuid})
       .then(function(item){
 
         //If the item already exists, throws an error

@@ -1,7 +1,7 @@
-var app = angular.module('myApp', ['map.services'])
+var app = angular.module('myApp', ['map.services', 'auth'])
 
 //dependencies injected include DBActions factory and Map factory
-.controller('FormController', function($scope, $http, DBActions, Map){
+.controller('FormController', function($scope, $http, $window, DBActions, Map){
   $scope.user = {};
 
   $scope.clearForm = function(){
@@ -16,13 +16,22 @@ var app = angular.module('myApp', ['map.services'])
     return itemString.toLowerCase();
   };
 
+  function guid() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+      s4() + '-' + s4() + s4() + s4();
+  }
+
   $scope.sendPost = function(){
     //convert inputted item name to lowerCase
     console.log('rand sendPost')
     var lowerCaseItem = convertToLowerCase($scope.user.item);
     //convert inputted address, need to get value with JS bc angular can't detect autocomplete
     var inputtedAddress = document.getElementById('inputAddress').value;
-
     var fileInput = document.getElementById('fileInput');
     var file = fileInput.files[0];
     var img = document.createElement("img");
@@ -52,18 +61,17 @@ var app = angular.module('myApp', ['map.services'])
       canvas.width = width;
       canvas.height = height;
       var ctx = canvas.getContext("2d");
-      
+
       ctx.drawImage(img, 0, 0, width, height);
       pictureData = canvas.toDataURL();
       console.log(pictureData)
-      Map.geocodeAddress(geocoder, Map.map, inputtedAddress, function(converted){
+      var uuid = guid();
+      Map.geocodeAddress($window.geocoder, $window.map, inputtedAddress, function(converted){
       //after address converted, save user input item and location to db
-      DBActions.saveToDB({item: lowerCaseItem, LatLng: converted, createdAt: new Date(), picture: pictureData });
+        DBActions.saveToDB({item: lowerCaseItem, LatLng: converted, uuid: uuid, createdAt: new Date(), picture: pictureData });
     });
     }
     reader.readAsDataURL(file);
-
-    
     $scope.clearForm();
   };
 
@@ -82,14 +90,9 @@ var app = angular.module('myApp', ['map.services'])
     Map.loadAllItems();
   };
   //removes a posting from the db and from the map
-  $scope.removePost = function(){
-    //convert inputted item name to lowerCase to match what's already in db
-    var lowerCaseDeleteItem = convertToLowerCase($scope.user.item);
-    //convert inputted address
-    var inputtedAddress = document.getElementById('inputAddress').value;
-    Map.geocodeAddress(geocoder, Map.map, inputtedAddress, function(converted){
-      DBActions.removeFromDB({item: lowerCaseDeleteItem, LatLng: converted});
-    });
+  $scope.removePost = function(uuid){
+    console.log("called removePost");
+    DBActions.removeFromDB({uuid: uuid});
     $scope.clearForm();
   };
 
@@ -112,72 +115,3 @@ var app = angular.module('myApp', ['map.services'])
   };
   $scope.clearForm();
 })
-
-.factory('DBActions', function($http, Map){
-  //the 'toSave' parameter is an object that will be entered into database,
-  //'toSave' has item prop and LatLng properties
-  var addUser = function (user){
-    return $http.post('/user', user)
-    .then (function (data){
-      console.log(data);
-
-    }, function(err){
-      console.log("error when adduser invoked - post to users failed.Error", err);
-    });
-  }
-
-  var saveToDB = function(toSave){
-  return $http.post('/submit', toSave)
-
-    //after item has been saved to db, returned data has a data property
-    //so we need to access data.data, see below
-    .then(function(data){
-      stopSpinner();
-      //data.data has itemName prop, itemLocation prop, and _id prop, which are all expected since this is how
-      //our mongoDB is formatted. Anything returned from db should have these props
-      Map.addMarker(map, data.data, infoWindow);
-      //the 'map' argument here is referencing the global map declared in app.js
-      //this could be manipulated in chrome console by user. Future refactor could be to store
-      //map within Map factory instead of global space.
-    }, function(err){
-      console.log('Error when saveToDB invoked - post to "/" failed. Error: ', err);
-    });
-  };
-
-  //this function creates a new map based on filtering by whatever user enters in filter field
-  //it is invoked within $scope.filterMap, see the above controller
-  var filterDB = function(toFilterBy){
-
-    //gets everything from the db in an obj referenced as data
-    return $http.get('/api/items')
-      .then(function(data){
-        //console.log(data)
-        //filter our returned db by the desired itemName
-        var filtered = data.data.filter(function(item){
-          return item.itemName.indexOf(toFilterBy) > -1;
-        });
-
-        //re-initialize map with only these markers
-        Map.initMap(filtered);
-      }, function(err){
-        console.log('Error when filterDB invoked - get from "/api/items" failed. Error: ', err);
-      });
-  };
-
-  var removeFromDB = function(toRemove){
-    return $http.post('/pickup', toRemove)
-      .then(function(data){
-        loadAllItems();
-      }, function(err){
-        console.log('Error when removeFromDB invoked - post to "/pickup" failed. Error: ', err);
-      });
-  };
-
-  //the DBActions factory returns the below object with methods of the functions
-  //defined above
-  return {
-    saveToDB: saveToDB,
-    filterDB: filterDB,
-    removeFromDB: removeFromDB
-  };
-});

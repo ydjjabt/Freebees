@@ -12,12 +12,12 @@ module.exports = function(app){
   app.post('/api/users', UserFuncs.getUser);
   //when submit an item to be given away, save it to db
   app.post('/user', UserFuncs.saveUser);
-  app.post('/submit', ItemFuncs.saveItem);//auth.isLoggedIn, ItemFuncs.saveItem);
+  app.post('/submit', auth.isLoggedIn, ItemFuncs.saveItem);//auth.isLoggedIn, ItemFuncs.saveItem);
   app.post('/remove', auth.isLoggedIn, ItemFuncs.removeItem);
 
   app.get('/profile', auth.isLoggedIn, function(req, res) {
     // some logic here
-    res.send(req.decoded);
+    res.send(req.user);
   });
 
   app.post('/login', function(req, res, next) {
@@ -28,7 +28,7 @@ module.exports = function(app){
       if(!user) {
         res.json({ success: false, message: 'Auth failed. User not found.'})
       } else {
-        if(User.comparePassword(req.body.password)) {
+        if(user.comparePassword(req.body.password)) {
           var token = jwt.sign(user, config.secret, {
             expiresInMinutes: 1440
           });
