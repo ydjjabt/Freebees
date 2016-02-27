@@ -25,6 +25,11 @@ var ItemSchema = new mongoose.Schema ({
     required: true
   },
 
+  uuid: {
+    type: String,
+    required: true
+  },
+
   createdAt: {
     type: Date,
     required: true
