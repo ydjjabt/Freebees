@@ -3,6 +3,7 @@ angular.module('auth', [])
 .controller('AuthController', function($scope, $window, AuthFactory) {
   $scope.user = {};
   $scope.login = function() {
+    console.log("Login called")
     AuthFactory.login({
       username: $scope.user.username,
       password: $scope.user.password
@@ -17,6 +18,7 @@ angular.module('auth', [])
   }
 
   $scope.signup = function() {
+    console.log("Signup called")
     AuthFactory.signup({
       username: $scope.user.username,
       password: $scope.user.password
@@ -31,6 +33,7 @@ angular.module('auth', [])
   }
 
   $scope.logout = function() {
+    console.log("Logout called")
     AuthFactory.logout();
   }
 })
