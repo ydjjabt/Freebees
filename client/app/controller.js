@@ -32,7 +32,6 @@ var app = angular.module('myApp', ['map.services', 'auth'])
     var lowerCaseItem = convertToLowerCase($scope.user.item);
     //convert inputted address, need to get value with JS bc angular can't detect autocomplete
     var inputtedAddress = document.getElementById('inputAddress').value;
-
     var fileInput = document.getElementById('fileInput');
     var file = fileInput.files[0];
     var img = document.createElement("img");
@@ -73,8 +72,6 @@ var app = angular.module('myApp', ['map.services', 'auth'])
     });
     }
     reader.readAsDataURL(file);
-
-
     $scope.clearForm();
   };
 
@@ -98,6 +95,8 @@ var app = angular.module('myApp', ['map.services', 'auth'])
     DBActions.removeFromDB({uuid: uuid});
     $scope.clearForm();
   };
+
+  $scope.log
 
   //fills in the address field with current lat/lng
   $scope.ip = function(){

@@ -254,4 +254,4 @@ angular.module('map.services', [])
     filterDB: filterDB,
     removeFromDB: removeFromDB
   };
-})
+});
