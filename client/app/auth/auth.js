@@ -3,51 +3,63 @@ angular.module('auth', [])
 .controller('AuthController', function($scope, $window, AuthFactory) {
   $scope.user = {};
   $scope.login = function() {
+    console.log("Login called")
     AuthFactory.login({
-      username: $scope.username,
-      password: $scope.password
-    }, function(success) {
-      if(success) {
-        alert("You logged in!");
+      username: $scope.user.username,
+      password: $scope.user.password
+    }, function(data) {
+      if(data.success) {
+        $window.localStorage.token = data.token;
+        alert(data.message);
       } else {
-        alert("Login failed");
+        alert(data.message);
       }
     });
   }
 
   $scope.signup = function() {
+    console.log("Signup called")
     AuthFactory.signup({
-      username: $scope.username,
-      password: $scope.password
+      username: $scope.user.username,
+      password: $scope.user.password
+    }, function(data) {
+      if(data.success) {
+        $window.localStorage.token = data.token;
+        alert(data.message);
+      } else {
+        alert(data.message);
+      }
     })
   }
 
   $scope.logout = function() {
+    console.log("Logout called")
     AuthFactory.logout();
   }
 })
 
-.factory('AuthFactory', function($http, $q) {
+.factory('AuthFactory', function($http, $q, $window) {
   var login = function(data, cb) {
     if((data.username || data.password) === (null || undefined))
-      return $q(cb, false);
+      return alert("No username or password provided");
     return $http.post('/login', data)
-      .then(function(data) {
-        cb(data.success);
+      .then(function(res) {
+        cb(res.data);
       })
   };
 
-  var signup = function() {
+  var signup = function(data, cb) {
     if((data.username || data.password) === (null || undefined))
-      return $q(cb, false);
+      return alert("No username or password provided")
     return $http.post('/signup', data)
-      .then(function(data) {
-        cb(data.success);
+      .then(function(res) {
+        cb(res.data);
       })
   };
 
   var logout = function() {
-    $window.localStorage.token = null;
+    delete $window.localStorage.token;
+    alert("Logged out.");
   };
 
   return {

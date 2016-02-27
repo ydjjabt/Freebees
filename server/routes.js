@@ -17,7 +17,7 @@ module.exports = function(app){
 
   app.get('/profile', auth.isLoggedIn, function(req, res) {
     // some logic here
-    res.send(req.decoded);
+    res.send(req.user);
   });
 
   app.post('/login', function(req, res, next) {
@@ -28,7 +28,7 @@ module.exports = function(app){
       if(!user) {
         res.json({ success: false, message: 'Auth failed. User not found.'})
       } else {
-        if(User.comparePassword(req.body.password)) {
+        if(user.comparePassword(req.body.password)) {
           var token = jwt.sign(user, config.secret, {
             expiresInMinutes: 1440
           });
