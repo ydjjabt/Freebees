@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Freebees</title>
+    <title>Yeezy Freebees</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="/styles/styles.css" />
@@ -12,15 +12,16 @@
     <script src="/app/auth/auth.js"></script>
     <script src="/app/app.js"></script>
     <script src="/app/controller.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQxc_N-KPvOKJu0VH-GfsLBS40yDWCZgg&libraries=places&callback=loadAllItems"></script>
+    <script ng-controller="MapController" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQxc_N-KPvOKJu0VH-GfsLBS40yDWCZgg&libraries=places&callback=loadAllItems"></script>
   </head>
   <body id="#" ng-app="myApp" ng-controller="FormController">
+    <remove-marker delpost="removePost(uuid)" uuid='SOME-UUID-HERE'></remove-marker>
     <nav class="navbar-fixed">
      <div id="headerSection" class="container-fluid">
       <ul>
         <li><img id="beeIcon" src="bee1resize.png"></li>
-        <li><a href="#" id="logoTitle">Freebees</a></li>
-        <li><p>Find free stuff around you!<p></li>
+        <li><a href="#" id="logoTitle">Yeezy Freebees</a></li>
+        <li><p>Find free YEEZYS around you!<p></li>
         <li class="rightFloat"><a href="#inputSection" class="anchor">Giver</a></li>
         <li class="rightFloat"><a href="#" class="anchor">Forager</a></li>
       </ul>
