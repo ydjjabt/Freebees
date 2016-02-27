@@ -12,7 +12,7 @@ module.exports = function(app){
   app.post('/api/users', UserFuncs.getUser);
   //when submit an item to be given away, save it to db
   app.post('/user', UserFuncs.saveUser);
-  app.post('/submit', auth.isLoggedIn, ItemFuncs.saveItem);
+  app.post('/submit', ItemFuncs.saveItem);//auth.isLoggedIn, ItemFuncs.saveItem);
   app.post('/remove', auth.isLoggedIn, ItemFuncs.removeItem);
 
   app.get('/profile', auth.isLoggedIn, function(req, res) {
