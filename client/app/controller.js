@@ -1,7 +1,7 @@
 var app = angular.module('myApp', ['map.services', 'auth'])
 
 //dependencies injected include DBActions factory and Map factory
-.controller('FormController', function($scope, $http, DBActions, Map){
+.controller('FormController', function($scope, $http, $window, DBActions, Map){
   $scope.user = {};
 
   $scope.clearForm = function(){
@@ -66,7 +66,7 @@ var app = angular.module('myApp', ['map.services', 'auth'])
       pictureData = canvas.toDataURL();
       console.log(pictureData)
       var uuid = guid();
-      Map.geocodeAddress(geocoder, Map.map, inputtedAddress, function(converted){
+      Map.geocodeAddress($window.geocoder, $window.map, inputtedAddress, function(converted){
       //after address converted, save user input item and location to db
         DBActions.saveToDB({item: lowerCaseItem, LatLng: converted, uuid: uuid, createdAt: new Date(), picture: pictureData });
     });
