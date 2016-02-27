@@ -7,7 +7,7 @@ angular.module('map.services', [])
     map: map,
     geocoder: geocoder,
     addMarker: addMarker,
-    infoWindow: infoWindow
+    infoWindow: infoWindow,
   };
 });
 
@@ -71,6 +71,7 @@ var initMap = function(data){
   geocoder = new google.maps.Geocoder();
   //loop through data returned from db to place on map
   for (var i = 0; i < data.length; i++){
+    console.log("DATA " + i + ":", data[i]);
     addMarker(map, data[i], infoWindow, i*30);
   }
   //add autocomplete functionality to address input field using google maps api
@@ -79,7 +80,7 @@ var initMap = function(data){
   var autocomplete = new google.maps.places.Autocomplete(input, options);
 };
 
-/*add a marker to map. Instance needs to be an obj with itemLocation and itemName properties. The last parameter, timeout 
+/*add a marker to map. Instance needs to be an obj with itemLocation and itemName properties. The last parameter, timeout
 is passed in as a parameter to sequentially add each item so the markers drop down sequentially */
 var addMarker = function(map, instance, infoWindow, timeout){
   window.setTimeout(function(){
@@ -101,7 +102,7 @@ var addMarker = function(map, instance, infoWindow, timeout){
       animation: google.maps.Animation.DROP,
       map: map,
       icon: image,
-      title: 'Hello World!'
+      title: instance.uuid
     });
 
     //creates a listener that will attach this instance's data to the global info window and open it
@@ -117,8 +118,9 @@ var addMarker = function(map, instance, infoWindow, timeout){
 //grab the address the client has typed in to send to turn into longitude/latitude
 var geocodeAddress = function(geocoder, resultsMap, address, cb){
   //calls the geocode method on Google Map's geocode obj
+  console.log("ARGUMENTS", arguments);
   geocoder.geocode({'address': address}, function(results, status){
-    //if successful conversion, return the result in a cb
+    //if successful conversion, return the result in a cb ,
     if (status === google.maps.GeocoderStatus.OK){
       cb(results[0].geometry.location);
     } else {

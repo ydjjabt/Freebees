@@ -16,6 +16,16 @@ var app = angular.module('myApp', ['map.services', 'auth'])
     return itemString.toLowerCase();
   };
 
+  function guid() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+      s4() + '-' + s4() + s4() + s4();
+  }
+
   $scope.sendPost = function(){
     //convert inputted item name to lowerCase
     console.log('rand sendPost')
@@ -52,18 +62,19 @@ var app = angular.module('myApp', ['map.services', 'auth'])
       canvas.width = width;
       canvas.height = height;
       var ctx = canvas.getContext("2d");
-      
+
       ctx.drawImage(img, 0, 0, width, height);
       pictureData = canvas.toDataURL();
       console.log(pictureData)
+      var uuid = guid();
       Map.geocodeAddress(geocoder, Map.map, inputtedAddress, function(converted){
       //after address converted, save user input item and location to db
-      DBActions.saveToDB({item: lowerCaseItem, LatLng: converted, createdAt: new Date(), picture: pictureData });
+        DBActions.saveToDB({item: lowerCaseItem, LatLng: converted, uuid: uuid, createdAt: new Date(), picture: pictureData });
     });
     }
     reader.readAsDataURL(file);
 
-    
+
     $scope.clearForm();
   };
 
@@ -82,16 +93,13 @@ var app = angular.module('myApp', ['map.services', 'auth'])
     Map.loadAllItems();
   };
   //removes a posting from the db and from the map
-  $scope.removePost = function(){
-    //convert inputted item name to lowerCase to match what's already in db
-    var lowerCaseDeleteItem = convertToLowerCase($scope.user.item);
-    //convert inputted address
-    var inputtedAddress = document.getElementById('inputAddress').value;
-    Map.geocodeAddress(geocoder, Map.map, inputtedAddress, function(converted){
-      DBActions.removeFromDB({item: lowerCaseDeleteItem, LatLng: converted});
-    });
+  $scope.removePost = function(uuid){
+    console.log("called removePost");
+    DBActions.removeFromDB({uuid: uuid});
     $scope.clearForm();
   };
+
+  $scope.log
 
   //fills in the address field with current lat/lng
   $scope.ip = function(){
@@ -113,7 +121,7 @@ var app = angular.module('myApp', ['map.services', 'auth'])
   $scope.clearForm();
 })
 
-.factory('DBActions', function($http, Map){
+.factory('DBActions', function($http, $window, Map){
   //the 'toSave' parameter is an object that will be entered into database,
   //'toSave' has item prop and LatLng properties
   var addUser = function (user){
@@ -127,8 +135,14 @@ var app = angular.module('myApp', ['map.services', 'auth'])
   }
 
   var saveToDB = function(toSave){
-  return $http.post('/submit', toSave)
-
+  return $http({
+    method: 'POST',
+    url: '/submit',
+    headers: {
+      'x-access-token': $window.localStorage.token
+    },
+    data: toSave
+  })
     //after item has been saved to db, returned data has a data property
     //so we need to access data.data, see below
     .then(function(data){
@@ -149,7 +163,13 @@ var app = angular.module('myApp', ['map.services', 'auth'])
   var filterDB = function(toFilterBy){
 
     //gets everything from the db in an obj referenced as data
-    return $http.get('/api/items')
+    return $http({
+      method: 'GET',
+      url: '/api/items',
+      headers: {
+        'x-access-token': $window.localStorage.token
+      },
+    })
       .then(function(data){
         //console.log(data)
         //filter our returned db by the desired itemName
@@ -165,7 +185,15 @@ var app = angular.module('myApp', ['map.services', 'auth'])
   };
 
   var removeFromDB = function(toRemove){
-    return $http.post('/pickup', toRemove)
+    console.log("Called removeFromDB");
+    return $http({
+      method: 'POST',
+      url: '/api/items',
+      headers: {
+        'x-access-token': $window.localStorage.token
+      },
+      data: toRemove
+    })
       .then(function(data){
         loadAllItems();
       }, function(err){
@@ -180,4 +208,4 @@ var app = angular.module('myApp', ['map.services', 'auth'])
     filterDB: filterDB,
     removeFromDB: removeFromDB
   };
-});
+})

@@ -40,6 +40,7 @@
      </div>
     </nav>
     <div id="map"></div>
+    <button ng-click="logCurrentMarker()">Log selected</button>
     <div id="inputSection">
       <div id="inputForm">
         <form novalidate >
@@ -51,9 +52,6 @@
           <div class="spinner"><img src="loading.gif"></div><br><br>
             <button class="yellowButton submitForm" type="submit" ng-click="sendPost()" >
               <a href="#">Submit </a>
-            </button>
-            <button class="yellowButton submitForm" type="submit" ng-click="removePost()">
-              <a href="#"> Delete</a>
             </button>
         </form>
       </div>

@@ -3,7 +3,6 @@ angular.module('auth', [])
 .controller('AuthController', function($scope, $window, AuthFactory) {
   $scope.user = {};
   $scope.login = function() {
-    console.log("Login called")
     AuthFactory.login({
       username: $scope.user.username,
       password: $scope.user.password
@@ -18,7 +17,6 @@ angular.module('auth', [])
   }
 
   $scope.signup = function() {
-    console.log("Signup called")
     AuthFactory.signup({
       username: $scope.user.username,
       password: $scope.user.password
@@ -33,7 +31,6 @@ angular.module('auth', [])
   }
 
   $scope.logout = function() {
-    console.log("Logout called")
     AuthFactory.logout();
   }
 })
@@ -58,8 +55,12 @@ angular.module('auth', [])
   };
 
   var logout = function() {
-    delete $window.localStorage.token;
-    alert("Logged out.");
+    if($window.localStorage.token !== undefined) {
+      delete $window.localStorage.token;
+      alert("Logged out.");
+    } else {
+      alert("Not logged in.");
+    }
   };
 
   return {
