@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['map.services'])
+var app = angular.module('myApp', ['map.services', 'auth'])
 
 //dependencies injected include DBActions factory and Map factory
 .controller('FormController', function($scope, $http, DBActions, Map){
