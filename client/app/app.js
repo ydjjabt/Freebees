@@ -5,7 +5,6 @@ angular.module('map.services', [])
   var geocoder;
   var entireDB;
   var infoWindow;
-
   /*errObj is the object created upon failure. It has a .status prop
   exceptionType is a string, could be 'timeout', 'abort', 'error', or others
   these two paramaters are automatically accessible within ajax erorr callback*/
@@ -181,27 +180,27 @@ angular.module('map.services', [])
   };
 
   var saveToDB = function(toSave){
-  return $http({
-    method: 'POST',
-    url: '/submit',
-    headers: {
-      'x-access-token': $window.localStorage.token
-    },
-    data: toSave
-  })
-    //after item has been saved to db, returned data has a data property
-    //so we need to access data.data, see below
-    .then(function(data){
-      $window.stopSpinner();
-      //data.data has itemName prop, itemLocation prop, and _id prop, which are all expected since this is how
-      //our mongoDB is formatted. Anything returned from db should have these props
-      Map.addMarker(map, data.data, infoWindow);
-      //the 'map' argument here is referencing the global map declared in app.js
-      //this could be manipulated in chrome console by user. Future refactor could be to store
-      //map within Map factory instead of global space.
-    }, function(err){
-      console.log('Error when saveToDB invoked - post to "/" failed. Error: ', err);
-    });
+    return $http({
+      method: 'POST',
+      url: '/submit',
+      headers: {
+        'x-access-token': $window.localStorage.token
+      },
+      data: toSave
+    })
+      //after item has been saved to db, returned data has a data property
+      //so we need to access data.data, see below
+      .then(function(data){
+        $window.stopSpinner();
+        //data.data has itemName prop, itemLocation prop, and _id prop, which are all expected since this is how
+        //our mongoDB is formatted. Anything returned from db should have these props
+        Map.addMarker(map, data.data, infoWindow, removeFunc);
+        //the 'map' argument here is referencing the global map declared in app.js
+        //this could be manipulated in chrome console by user. Future refactor could be to store
+        //map within Map factory instead of global space.
+      }, function(err){
+        console.log('Error when saveToDB invoked - post to "/" failed. Error: ', err);
+      });
   };
 
   //this function creates a new map based on filtering by whatever user enters in filter field

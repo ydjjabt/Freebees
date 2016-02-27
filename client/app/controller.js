@@ -96,8 +96,6 @@ var app = angular.module('myApp', ['map.services', 'auth'])
     $scope.clearForm();
   };
 
-  $scope.log
-
   //fills in the address field with current lat/lng
   $scope.ip = function(){
     startSpinner();
