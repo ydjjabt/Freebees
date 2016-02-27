@@ -18,13 +18,29 @@ var app = angular.module('myApp', ['map.services'])
 
   $scope.sendPost = function(){
     //convert inputted item name to lowerCase
+    console.log('rand sendPost')
     var lowerCaseItem = convertToLowerCase($scope.user.item);
     //convert inputted address, need to get value with JS bc angular can't detect autocomplete
     var inputtedAddress = document.getElementById('inputAddress').value;
-    Map.geocodeAddress(geocoder, Map.map, inputtedAddress, function(converted){
+
+    var fileInput = document.getElementById('fileInput');
+    var file = fileInput.files[0];
+    var reader = new FileReader();
+
+    reader.onload = function (e){
+      console.log(typeof reader.result);
+      var pictureData = reader.result;
+      // var img = new Image();
+      // img.src = reader.result;
+      // document.body.appendChild(img);
+      Map.geocodeAddress(geocoder, Map.map, inputtedAddress, function(converted){
       //after address converted, save user input item and location to db
-      DBActions.saveToDB({item: lowerCaseItem, LatLng: converted, createdAt: new Date()});
+      DBActions.saveToDB({item: lowerCaseItem, LatLng: converted, createdAt: new Date(), picture: pictureData });
     });
+    }
+    reader.readAsDataURL(file);
+
+    
     $scope.clearForm();
   };
 
@@ -112,7 +128,7 @@ var app = angular.module('myApp', ['map.services'])
     //gets everything from the db in an obj referenced as data
     return $http.get('/api/items')
       .then(function(data){
-
+        //console.log(data)
         //filter our returned db by the desired itemName
         var filtered = data.data.filter(function(item){
           return item.itemName.indexOf(toFilterBy) > -1;

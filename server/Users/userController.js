@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
-
+//var fs  = require('fs')
 var User = require('./userModel.js');
-
+//var fs = require('fs');
 var Q = require('q');
 
 module.exports = {
@@ -11,6 +11,8 @@ module.exports = {
     var sentAddress  = req.body.address;
     var create; 
     //console.log(User);
+
+
     var findUser = Q.nbind(User.model.findOne, User.model);
 
     findUser({username: sentUsername, password: sentPassword, address: sentAddress})

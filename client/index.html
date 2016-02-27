@@ -41,7 +41,8 @@
         <form novalidate >
           <h2>Want to give away a Freebee?</h2><br>
           <input placeholder="Your item" type="text" ng-model="user.item">
-          <input placeholder="Your address" id="inputAddress" type="text" ng-model="user.location"><br>
+          <input placeholder="Your address" id="inputAddress" type="text" ng-model="user.location">
+          <input type = "file" id = "fileInput"></input><br>
           <button id="fillIp" type="submit" ng-click="ip()">Or use current location</button>
           <div class="spinner"><img src="loading.gif"></div><br><br>
             <button class="yellowButton submitForm" type="submit" ng-click="sendPost()" >

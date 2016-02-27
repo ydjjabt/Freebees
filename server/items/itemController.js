@@ -22,7 +22,13 @@ module.exports = {
     var itemLocation = req.body.LatLng;
     var date = req.body.createdAt;
     var create;
+    var pictureData = req.body.picture;
 
+    // fs.writefile("./test.text",pictureData, function (err,data,string){
+    //     console.log(err);
+    //     console.log(data);
+    // })
+    //console.log(typeof pictureData)
     //The below line returns promisified version of Item.findOne bound to context Item
     //This is necessary because we will only create a new model after we search the db to see if it already exists
     var findOne = Q.nbind(Item.findOne, Item);
@@ -46,7 +52,8 @@ module.exports = {
             itemLocation: itemLocation,
             itemLng: itemLocation.lng,
             itemLat: itemLocation.lat,
-            createdAt: date
+            createdAt: date,
+            picture : pictureData
           };
 
           // In mongoose, .create() automaticaly creates AND saves simultaneously
