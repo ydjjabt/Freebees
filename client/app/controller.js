@@ -25,14 +25,37 @@ var app = angular.module('myApp', ['map.services'])
 
     var fileInput = document.getElementById('fileInput');
     var file = fileInput.files[0];
+    var img = document.createElement("img");
     var reader = new FileReader();
 
     reader.onload = function (e){
       console.log(typeof reader.result);
-      var pictureData = reader.result;
-      // var img = new Image();
-      // img.src = reader.result;
-      // document.body.appendChild(img);
+      var pictureData ;//= reader.result;
+      img.src = reader.result;
+      var MAX_WIDTH = 300;
+      var MAX_HEIGHT = 300;
+      var width = img.width;
+      var height = img.height;
+
+      if (width > height) {
+        if (width > MAX_WIDTH) {
+          height *= MAX_WIDTH / width;
+          width = MAX_WIDTH;
+        }
+      } else {
+        if (height > MAX_HEIGHT) {
+          width *= MAX_HEIGHT / height;
+          height = MAX_HEIGHT;
+        }
+      }
+      var canvas =  document.createElement("canvas")
+      canvas.width = width;
+      canvas.height = height;
+      var ctx = canvas.getContext("2d");
+      
+      ctx.drawImage(img, 0, 0, width, height);
+      pictureData = canvas.toDataURL();
+      console.log(pictureData)
       Map.geocodeAddress(geocoder, Map.map, inputtedAddress, function(converted){
       //after address converted, save user input item and location to db
       DBActions.saveToDB({item: lowerCaseItem, LatLng: converted, createdAt: new Date(), picture: pictureData });
