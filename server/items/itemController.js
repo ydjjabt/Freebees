@@ -99,13 +99,13 @@ module.exports = {
 
     var removeItem = Q.nbind(Item.remove, Item);
     var findOne = Q.nbind(Item.findOne, Item);
-    findOne({uuid: uuid})
+    findOne({'uuid': uuid})
       .then(function(item) {
         if(item.createdBy !== user) {
           res.status(403).send('You have to have the author to remove this item!');
         }
       });
-    removeItem({uuid: uuid})
+    removeItem({'uuid': uuid})
       .then(function(item){
 
         //If the item already exists, throws an error
