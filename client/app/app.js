@@ -1,10 +1,7 @@
 angular.module('map.services', [])
 
 .factory('Map', function($http, $window){
-  var map;
-  var geocoder;
   var entireDB;
-  var infoWindow;
   /*errObj is the object created upon failure. It has a .status prop
   exceptionType is a string, could be 'timeout', 'abort', 'error', or others
   these two paramaters are automatically accessible within ajax erorr callback*/
@@ -49,7 +46,7 @@ angular.module('map.services', [])
 
   //create an instance of a map where the data passed in is an array of objs
   var initMap = function(data){
-    map = new google.maps.Map(document.getElementById('map'), {
+    $window.map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 37.764115, lng: -122.435280},
       zoom: 12
     });
@@ -61,7 +58,7 @@ angular.module('map.services', [])
     //loop through data returned from db to place on map
     for (var i = 0; i < data.length; i++){
       console.log("DATA " + i + ":", data[i]);
-      addMarker(map, data[i], infoWindow, i*30);
+      addMarker($window.map, data[i], infoWindow, i*30);
     }
     //add autocomplete functionality to address input field using google maps api
     var input = document.getElementById('inputAddress');
@@ -117,6 +114,7 @@ angular.module('map.services', [])
       google.maps.event.addListener(marker, 'click', function(){
         //turn our mongo-stored stringified date into a JS date obj that is then formatted
         $window.infoWindow.setContent('<div>' + instance.itemName + '<br><span class="createdAt">' + formatDate(new Date(instance.createdAt)) + '</span>'
+          + '<img src="' + instance.picture + '">'
           + '<button class="removeMarker" id=' + instance.uuid + '>Delete</button>');
         $window.infoWindow.open(map, this);
         console.log("Button element", document.getElementById(instance.uuid));
@@ -159,10 +157,7 @@ angular.module('map.services', [])
   return {
     initMap: initMap,
     geocodeAddress: geocodeAddress,
-    map: map,
-    geocoder: geocoder,
     addMarker: addMarker,
-    infoWindow: infoWindow,
   };
 })
 
@@ -194,12 +189,12 @@ angular.module('map.services', [])
         $window.stopSpinner();
         //data.data has itemName prop, itemLocation prop, and _id prop, which are all expected since this is how
         //our mongoDB is formatted. Anything returned from db should have these props
-        Map.addMarker(map, data.data, infoWindow, removeFunc);
+        Map.addMarker($window.map, data.data, infoWindow);
         //the 'map' argument here is referencing the global map declared in app.js
         //this could be manipulated in chrome console by user. Future refactor could be to store
         //map within Map factory instead of global space.
       }, function(err){
-        console.log('Error when saveToDB invoked - post to "/" failed. Error: ', err);
+        console.log('Error when saveToDB invoked - post to "/submit" failed. Error: ', err);
       });
   };
 

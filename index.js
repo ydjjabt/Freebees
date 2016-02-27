@@ -9,10 +9,10 @@ var config = require('./server/config/config.js');
 
 var app = express();
 
-//mongoose.connect(config.mongoURI);
+mongoose.connect(config.mongoURI);
 
 // to directly post to the remote online database, use this connection:
-mongoose.connect(" mongodb://heroku_7k1tmhpk:321321go@ds045684.mlab.com:45684/heroku_7k1tmhpk");
+// mongoose.connect("mongodb://master:master@ds061405.mongolab.com:61405/heroku_477ltgkh");
 
 mongoose.connection.once('open', function(){
   console.log('Connected to mongodb');
