@@ -1,12 +1,10 @@
 angular.module('map.services', [])
 
-.factory('Map', function($http, $window, DBActions){
+.factory('Map', function($http, $window){
   var map;
   var geocoder;
   var entireDB;
   var infoWindow;
-
-  console.log("DBActions", DBActions);
 
   /*errObj is the object created upon failure. It has a .status prop
   exceptionType is a string, could be 'timeout', 'abort', 'error', or others
@@ -74,6 +72,25 @@ angular.module('map.services', [])
 
   /*add a marker to map. Instance needs to be an obj with itemLocation and itemName properties. The last parameter, timeout
   is passed in as a parameter to sequentially add each item so the markers drop down sequentially */
+  var removeFromDB = function(toRemove){
+    console.log("Called removeFromDB");
+    console.log("toRemove", toRemove);
+    return $http({
+      method: 'POST',
+      url: '/remove',
+      headers: {
+        'x-access-token': $window.localStorage.token,
+        'Content-Type': 'application/json'
+      },
+      data: toRemove
+    })
+      .then(function(data){
+        $window.loadAllItems();
+      }, function(err){
+        console.log('Error when removeFromDB invoked - post to "/remove" failed. Error: ', err);
+      });
+  };
+
   var addMarker = function(map, instance, infoWindow, timeout){
     window.setTimeout(function(){
       var image = {
@@ -105,8 +122,7 @@ angular.module('map.services', [])
         $window.infoWindow.open(map, this);
         console.log("Button element", document.getElementById(instance.uuid));
         google.maps.event.addDomListener(document.getElementById(instance.uuid), 'click', function() {
-          console.log("some test");
-          // removePost(instance.uuid);
+          removeFromDB({uuid: instance.uuid});
         });
       });
     }, timeout);
@@ -176,7 +192,7 @@ angular.module('map.services', [])
     //after item has been saved to db, returned data has a data property
     //so we need to access data.data, see below
     .then(function(data){
-      stopSpinner();
+      $window.stopSpinner();
       //data.data has itemName prop, itemLocation prop, and _id prop, which are all expected since this is how
       //our mongoDB is formatted. Anything returned from db should have these props
       Map.addMarker(map, data.data, infoWindow);
@@ -225,7 +241,7 @@ angular.module('map.services', [])
       data: toRemove
     })
       .then(function(data){
-        loadAllItems();
+        $window.loadAllItems();
       }, function(err){
         console.log('Error when removeFromDB invoked - post to "/pickup" failed. Error: ', err);
       });
