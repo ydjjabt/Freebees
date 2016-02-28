@@ -38,7 +38,6 @@ var app = angular.module('myApp', ['map.services', 'auth'])
     var reader = new FileReader();
 
     reader.onload = function (e){
-      console.log(typeof reader.result);
       var pictureData ;//= reader.result;
       img.src = reader.result;
       var MAX_WIDTH = 300;

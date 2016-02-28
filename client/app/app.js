@@ -114,8 +114,8 @@ angular.module('map.services', [])
       google.maps.event.addListener(marker, 'click', function(){
         //turn our mongo-stored stringified date into a JS date obj that is then formatted
         $window.infoWindow.setContent('<div>' + instance.itemName + '<br><span class="createdAt">' + formatDate(new Date(instance.createdAt)) + '</span>'
-          + '<img src="' + instance.picture + '">'
-          + '<button class="removeMarker" id=' + instance.uuid + '>Delete</button>');
+          + '<br><img src="' + instance.picture + '">'
+          + '<br><button class="removeMarker" id=' + instance.uuid + '>Delete</button>');
         $window.infoWindow.open(map, this);
         console.log("Button element", document.getElementById(instance.uuid));
         google.maps.event.addDomListener(document.getElementById(instance.uuid), 'click', function() {
