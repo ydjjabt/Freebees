@@ -1,9 +1,9 @@
 //require server-side itemController functions to interact with db
+var app = require('./../index.js');
 var ItemFuncs = require('./items/itemController.js');
 var UserFuncs = require('./Users/userController.js');
 var User = require('./Users/userModel.js');
 var auth = require('./auth/auth.js');
-var config = require('./config/config.js');
 var jwt = require('jsonwebtoken');
 
 module.exports = function(app){
@@ -29,7 +29,7 @@ module.exports = function(app){
         res.json({ success: false, message: 'Auth failed. User not found.'})
       } else {
         if(user.comparePassword(req.body.password)) {
-          var token = jwt.sign(user, config.secret, {
+          var token = jwt.sign(user, app.get('SECRET'), {
             expiresInMinutes: 1440
           });
           res.json({
@@ -58,7 +58,7 @@ module.exports = function(app){
         console.log("newuser", newUser);
         newUser.save(function(err) {
           if(err) throw require('util').inspect(err);
-          var token = jwt.sign(newUser, config.secret, {
+          var token = jwt.sign(newUser, app.get('SECRET'), {
             expiresInMinutes: 1440
           });
           res.json({
