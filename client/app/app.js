@@ -57,7 +57,6 @@ angular.module('map.services', [])
     $window.geocoder = new google.maps.Geocoder();
     //loop through data returned from db to place on map
     for (var i = 0; i < data.length; i++){
-      console.log("DATA " + i + ":", data[i]);
       addMarker($window.map, data[i], infoWindow, i*30);
     }
     //add autocomplete functionality to address input field using google maps api
@@ -117,7 +116,6 @@ angular.module('map.services', [])
           + '<br><img src="' + instance.picture + '">'
           + '<br><button class="removeMarker" id=' + instance.uuid + '>Delete</button>');
         $window.infoWindow.open(map, this);
-        console.log("Button element", document.getElementById(instance.uuid));
         google.maps.event.addDomListener(document.getElementById(instance.uuid), 'click', function() {
           removeFromDB({uuid: instance.uuid});
         });
@@ -128,7 +126,6 @@ angular.module('map.services', [])
   //grab the address the client has typed in to send to turn into longitude/latitude
   var geocodeAddress = function(geocoder, resultsMap, address, cb){
     //calls the geocode method on Google Map's geocode obj
-    console.log("ARGUMENTS", arguments);
     geocoder.geocode({'address': address}, function(results, status){
       //if successful conversion, return the result in a cb ,
       if (status === google.maps.GeocoderStatus.OK){
@@ -168,7 +165,6 @@ angular.module('map.services', [])
     return $http.post('/user', user)
     .then (function (data){
       console.log(data);
-
     }, function(err){
       console.log("error when adduser invoked - post to users failed.Error", err);
     });
@@ -225,7 +221,6 @@ angular.module('map.services', [])
   };
 
   var removeFromDB = function(toRemove){
-    console.log("Called removeFromDB");
     return $http({
       method: 'POST',
       url: '/api/items',

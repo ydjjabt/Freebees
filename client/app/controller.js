@@ -28,7 +28,6 @@ var app = angular.module('myApp', ['map.services', 'auth'])
 
   $scope.sendPost = function(){
     //convert inputted item name to lowerCase
-    console.log('rand sendPost')
     var lowerCaseItem = convertToLowerCase($scope.user.item);
     //convert inputted address, need to get value with JS bc angular can't detect autocomplete
     var inputtedAddress = document.getElementById('inputAddress').value;
@@ -63,7 +62,6 @@ var app = angular.module('myApp', ['map.services', 'auth'])
 
       ctx.drawImage(img, 0, 0, width, height);
       pictureData = canvas.toDataURL();
-      console.log(pictureData)
       var uuid = guid();
       Map.geocodeAddress($window.geocoder, $window.map, inputtedAddress, function(converted){
       //after address converted, save user input item and location to db
@@ -77,6 +75,9 @@ var app = angular.module('myApp', ['map.services', 'auth'])
   //this function filters map based on what user enters into filter field
   $scope.filterMap = function(){
     //convert inputted filter item to lowerCase so that matches with lowerCase values stored in db
+    if($scope.search.input === undefined) {
+      return $window.loadAllItems();
+    }
     var lowerCaseFilterItem = convertToLowerCase($scope.search.input);
     var searchInput = lowerCaseFilterItem;
     DBActions.filterDB(searchInput);
@@ -90,7 +91,6 @@ var app = angular.module('myApp', ['map.services', 'auth'])
   };
   //removes a posting from the db and from the map
   $scope.removePost = function(uuid){
-    console.log("called removePost");
     DBActions.removeFromDB({uuid: uuid});
     $scope.clearForm();
   };
