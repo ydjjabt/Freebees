@@ -25,8 +25,21 @@ var ItemSchema = new mongoose.Schema ({
     required: true
   },
 
+  uuid: {
+    type: String,
+    required: true
+  },
+
   createdAt: {
     type: Date,
+    required: true
+  },
+
+  // sentBy: {
+  //   type: String
+  // },
+  picture : {
+    type: String,
     required: true
   }
 });

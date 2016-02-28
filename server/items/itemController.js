@@ -21,8 +21,16 @@ module.exports = {
     var itemName = req.body.item;
     var itemLocation = req.body.LatLng;
     var date = req.body.createdAt;
+    var uuid = req.body.uuid;
+    var author = req.user.username;
     var create;
+    var pictureData = req.body.picture;
 
+    // fs.writefile("./test.text",pictureData, function (err,data,string){
+    //     console.log(err);
+    //     console.log(data);
+    // })
+    //console.log(typeof pictureData)
     //The below line returns promisified version of Item.findOne bound to context Item
     //This is necessary because we will only create a new model after we search the db to see if it already exists
     var findOne = Q.nbind(Item.findOne, Item);
@@ -46,7 +54,10 @@ module.exports = {
             itemLocation: itemLocation,
             itemLng: itemLocation.lng,
             itemLat: itemLocation.lat,
-            createdAt: date
+            createdAt: date,
+            picture : pictureData,
+            uuid: uuid,
+            createdBy: author
           };
 
           // In mongoose, .create() automaticaly creates AND saves simultaneously
@@ -83,11 +94,18 @@ module.exports = {
       });
   },
   removeItem: function(req, res){
-    var itemName = req.body.item;
-    var itemLocation = req.body.LatLng;
+    var uuid = req.body.uuid;
+    var user = req.user.username;
 
     var removeItem = Q.nbind(Item.remove, Item);
-    removeItem({itemName: itemName, itemLng: itemLocation.lng, itemLat: itemLocation.lat})
+    var findOne = Q.nbind(Item.findOne, Item);
+    findOne({'uuid': uuid})
+      .then(function(item) {
+        if(item.createdBy !== user) {
+          res.status(403).send('You have to have the author to remove this item!');
+        }
+      });
+    removeItem({'uuid': uuid})
       .then(function(item){
 
         //If the item already exists, throws an error
