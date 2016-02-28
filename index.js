@@ -21,8 +21,8 @@ mongoose.connection.once('open', function(){
 var port = process.env.PORT || 3000;
 
 app.use(morgan('dev'));
-app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json({limit: '15mb'}));
+app.use(bodyParser.urlencoded({limit: '15mb', extended: true}));
 
 // Attach/initiate sessions
 app.use(session({ secret: config.secret }));
