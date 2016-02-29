@@ -57,7 +57,7 @@ Please refer to the [CONTRIBUTING.md](_CONTRIBUTING.md) file to see our git work
 Please refer to the [STYLE-GUIDE.md](_STYLE-GUIDE.md) file to see our style guide.
 
 ## Contributors
-- Kanye West (Supported by Yankee, Red Coat and the GI Joe A Real American Hero)
+- Kanye West (Supported by Yankee, Red Coat and GI Joe A Real American Hero)
 
 
 MKS Greenfield Project
