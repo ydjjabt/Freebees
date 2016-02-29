@@ -57,10 +57,7 @@ Please refer to the [CONTRIBUTING.md](_CONTRIBUTING.md) file to see our git work
 Please refer to the [STYLE-GUIDE.md](_STYLE-GUIDE.md) file to see our style guide.
 
 ## Contributors
-- Collin Adams ([Collin Adams](https://github.com/collinadams))
-- Alice Kao ([Alice Kao](https://github.com/alicekao))
-- Jessica Park ([Jessica Park](https://github.com/tinkleJess))
-- Michael Serna ([Michael Serna](https://github.com/michaelserna))
+- Kanye West (Supported by Yankee, Red Coat and the GI Joe A Real American Hero)
 
 
 MKS Greenfield Project
