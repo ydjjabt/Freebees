@@ -81,23 +81,36 @@ angular.module('map.services', [])
     })
       .then(function(data){
         $window.loadAllItems();
+        console.log("Got data", data);
       }, function(err){
         console.log('Error when removeFromDB invoked - post to "/remove" failed. Error: ', err);
+        if(err.data.success === false) {
+          alert(err.data.message);
+        }
       });
   };
 
   var addMarker = function(map, instance, infoWindow, timeout){
     window.setTimeout(function(){
+      var links = [
+        "https://27.media.tumblr.com/tumblr_m31scizkkw1rue873o1_250.png",
+        "https://27.media.tumblr.com/tumblr_m32246Cc441rue873o1_250.png",
+        "https://26.media.tumblr.com/tumblr_m31xlvS1cO1rue873o1_250.png",
+        "https://41.media.tumblr.com/81f20b3f073d38c550b0938686909785/tumblr_mtrty9S2y31rue873o1_500.png",
+        "https://40.media.tumblr.com/tumblr_m9473r4uzP1rue873o1_400.png",
+        "https://29.media.tumblr.com/tumblr_m33zy6VrLb1rue873o1_r1_400.png",
+        "https://27.media.tumblr.com/tumblr_m31sikdoyE1rue873o1_250.png"
+      ]
       var image = {
         //horizontal bee
         //url: 'https://openclipart.org/image/90px/svg_to_png/221154/Cartoon-Bee.png',
-        url: 'https://www.ezphotoshare.com/images/2016/02/18/YFq6s.gif',
+        url: links[Math.floor(Math.random() * links.length)],
         // This marker is 41 pixels wide by 61 pixels high.
-        size: new google.maps.Size(41, 61),
+        scaledSize: new google.maps.Size(31, 51),
         // The origin for this image is (0, 0).
         origin: new google.maps.Point(0, 0),
         // The anchor for this image is the base of the flagpole at (0, 61).
-        anchor: new google.maps.Point(0, 61)
+        anchor: new google.maps.Point(0, 61),
       };
 
       //create a new instance of a google maps marker, will be created for each item in our db
@@ -191,6 +204,9 @@ angular.module('map.services', [])
         //map within Map factory instead of global space.
       }, function(err){
         console.log('Error when saveToDB invoked - post to "/submit" failed. Error: ', err);
+        if(err.data.success === false) {
+          alert(err.data.message);
+        }
       });
   };
 
@@ -233,6 +249,9 @@ angular.module('map.services', [])
         $window.loadAllItems();
       }, function(err){
         console.log('Error when removeFromDB invoked - post to "/pickup" failed. Error: ', err);
+        if(err.data.success === false) {
+          alert(err.data.message);
+        }
       });
   };
 
@@ -243,4 +262,4 @@ angular.module('map.services', [])
     filterDB: filterDB,
     removeFromDB: removeFromDB
   };
-});
+})
