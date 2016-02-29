@@ -1,4 +1,4 @@
-angular.module('map.services', [])
+angular.module('map.services', ['angularModaService'])
 
 .factory('Map', function($http, $window){
   var entireDB;
@@ -192,6 +192,24 @@ angular.module('map.services', [])
     initMap: initMap,
     geocodeAddress: geocodeAddress,
     addMarker: addMarker,
+  };
+})
+.controller("Controller", function ($scope, ModalService){
+  $scope.show = function (){
+    ModalService.showModal({
+      templateUrl: 'modal.html',
+      controller : "modalController"
+    }).then(function(modal){
+      modal.element.modal();
+      modal.close.then(function(result){
+        $scope.message = "You said" + result;
+      });
+    });
+  };
+})
+.controller('modalController', function($scope, close){
+  $scope.close = function (result){
+    close(result,500)
   };
 })
 // .service('modal', function ($scope, $q){
