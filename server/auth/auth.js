@@ -7,7 +7,7 @@ function isLoggedIn(req, res, next) {
   if(token) {
     jwt.verify(token, require('./../../index.js').get('SECRET'), function(err, decoded) {
       if (err) {
-        return res.json({ success: false, message: "Failed to authenticate token." });
+        return res.json({ success: false, message: "You're not authorized to do this!" });
       } else {
         req.user = decoded;
         next();
@@ -16,7 +16,7 @@ function isLoggedIn(req, res, next) {
   } else {
     return res.status(403).send({
       success: false,
-      message: "No token provided"
+      message: "You're not logged in!"
     });
   }
 }

@@ -11,7 +11,7 @@ module.exports = function(app){
   app.get('/api/items', ItemFuncs.getAllItems);
   app.post('/api/users', UserFuncs.getUser);
   //when submit an item to be given away, save it to db
-  app.post('/user', UserFuncs.saveUser);
+  // app.get('/user', UserFuncs.getUser);
   app.post('/submit', auth.isLoggedIn, ItemFuncs.saveItem);//auth.isLoggedIn, ItemFuncs.saveItem);
   app.post('/remove', auth.isLoggedIn, ItemFuncs.removeItem);
 
@@ -29,9 +29,7 @@ module.exports = function(app){
         res.json({ success: false, message: 'Auth failed. User not found.'})
       } else {
         if(user.comparePassword(req.body.password)) {
-          var token = jwt.sign(user, app.get('SECRET'), {
-            expiresInMinutes: 1440
-          });
+          var token = jwt.sign(user, app.get('SECRET'));
           res.json({
             success: true,
             message: "Authentication successful.",
@@ -58,9 +56,7 @@ module.exports = function(app){
         console.log("newuser", newUser);
         newUser.save(function(err) {
           if(err) throw require('util').inspect(err);
-          var token = jwt.sign(newUser, app.get('SECRET'), {
-            expiresInMinutes: 1440
-          });
+          var token = jwt.sign(newUser, app.get('SECRET'));
           res.json({
             success: true,
             message: "Signup successful.",

@@ -2,11 +2,22 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #fcd04b;
-  font-family: 'Cabin', 'Arial';
+  background-color: #292929;
+  font-family: 'YeezyRegular', 'Arial';
 }
 
 body { padding-top: 70px; }
+
+@font-face {
+  font-family: 'YeezyRegular';
+  src: url('https://www.adidas.com/com/apps/yeezy3so/assets/fonts/yeezy_tstar-regular-webfont.ttf?env=production&v=5.01');
+}
+
+@font-face {
+  font-family: 'YeezyBold';
+  src: url('https://www.adidas.com/com/apps/yeezy3so/assets/fonts/yeezy_tstar-bold-webfont.ttf?env=production&v=5.01');
+}
+
 /*
 =========================
 Header
@@ -25,7 +36,7 @@ Header
     border-radius: 0;
     top: 0;
     border-width: 0 0 1px;
-    background-color: #000;
+    background-color: #292929;
   }
   .navbar-right{
     float: right !important;
@@ -45,22 +56,22 @@ Header
 }
 
 #headerSection {
-  color: #fff;
+  color: #797570;
   height: 100%;
 }
 
 #beeIcon {
   padding-right: 1%;
-  max-height: 32px;
+  max-height: 42px;
 }
 
 #logoTitle {
-  font-family: 'Lobster', cursive;
-  color: #FFF;
+  font-family: 'YeezyBold', Arial;
+  color: #797570;
   font-size: 36px;
 }
 nav p {
-  font-family: 'Cabin', Arial;
+  font-family: 'YeezyRegular', Arial;
   letter-spacing: 1px;
   margin-left: 40px;
 }
@@ -84,14 +95,14 @@ nav li{
 nav a {
   font-weight: 800;
   padding: 15px 10px;
-  font-family:  'Montserrat', sans-serif;
+  font-family:  'YeezyRegular', sans-serif;
   font-weight: 800;
   text-decoration: none;
-  color: #FFF;
+  color: #797570;
 }
 
 a.anchor {
-  color: #fff;
+  color: #797570;
   float: right;
   padding: 15px 2px;
   margin-right: 15px;
@@ -104,7 +115,7 @@ a.anchor {
 }
 
 a.anchor:hover {
-  border-bottom-color: grey;
+  border-bottom-color: #797570;
 }
 
 li.rightFloat {
@@ -116,10 +127,10 @@ li.rightFloat {
   float: right;
   padding: 10px 0;
 }
-#searchBtn {
+/*#searchBtn {
   box-shadow: 1px 1px white;
   margin-left: 1%;
-}
+}*/
 #searchBox {
   width: 50%;
   font-size: 16px;
@@ -148,6 +159,7 @@ Form inputs
 #inputSection {
   padding-top: 10%;
   padding-bottom: 8%;
+  color: #797570;
 }
 
 h4 {
@@ -157,6 +169,7 @@ h4 {
 #inputForm {
   display: block;
   text-align: center;
+  color: #797570;
   width: 80%;
   margin-left: auto;
   margin-right: auto;
@@ -208,17 +221,14 @@ input[type="text"] {
 }
 
 .yellowButton {
-  border-radius: 50px;
-  border: 2px solid #fff;
-  color: #fff;
+  border-radius: 20px;
   overflow: hidden;
   text-transform: uppercase;
-  background: #fcc626;
+  background: #525252;
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 1px;
   cursor: pointer;
-  box-shadow: 1px 1px 1px black;
   padding: 1% 1%;
   position: relative;
   -webkit-transition-property: background;
@@ -235,9 +245,9 @@ input[type="text"] {
               transition-timing-function: linear;
 }
 
-#searchInput > .yellowButton {
+/*#searchInput > .yellowButton {
   padding: 1% 4%;
-}
+}*/
 
 .submitForm {
   margin-left: 5%;
@@ -245,10 +255,10 @@ input[type="text"] {
   font-size: 20px;
 }
 
-.yellowButton > a {
+/*.yellowButton > a {
   padding: 7% 27% 7% 27%;
 
-}
+}*/
 #fillIp {
   border: none;
   color: #606060;
@@ -269,7 +279,7 @@ input[type="text"] {
 }
 
 button:hover {
-  background: #fcad26;
+  background: #525252;
 }
 
 button a:visited, button a{
@@ -289,7 +299,7 @@ Footer
   margin-bottom: 20px;
   display: block;
   background-color: black;
-  height: 200px;
+  height: 130px;
   width: 100%;
   color: white;
   text-align: center;
@@ -314,7 +324,6 @@ Footer
   height: 80px;
   width: 80px;
   border-radius: 50%;
-  border: 5px solid #fcad26;
 }
 
 span a {
@@ -322,7 +331,7 @@ span a {
 }
 
 #footerSection a {
-  color: #fcad26;
+  color: #797570;
   text-decoration: none;
   transition-duration: 0.2s;
   transition-timing-function: linear;
@@ -334,5 +343,5 @@ span a {
 
 #footerSection a:hover {
   font-weight: bold;
-  color: #fcad26;
+  color: #797570;
 }

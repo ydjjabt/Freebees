@@ -9,7 +9,7 @@ module.exports = {
     var sentUsername = req.body.username;
     var sentPassword = req.body.password;
     var sentAddress  = req.body.address;
-    var create; 
+    var create;
     //console.log(User);
 
 
