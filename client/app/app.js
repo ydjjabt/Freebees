@@ -1,4 +1,4 @@
-angular.module('map.services', [])
+angular.module('map.services', []) //
 
 .factory('Map', function($http, $window){
   var entireDB;
@@ -194,7 +194,6 @@ angular.module('map.services', [])
     addMarker: addMarker,
   };
 })
-
 .factory('DBActions', function($http, $window, Map){
   //the 'toSave' parameter is an object that will be entered into database,
   //'toSave' has item prop and LatLng properties
