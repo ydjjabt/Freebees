@@ -1,6 +1,6 @@
 # Freebees
-Have something to give away? Come to Yeezy Freebees.
-
+Youu want some Yeezy??? Come to Yeezy Freebees.
+You have some Yeezy to give away?? Do it here at http://the.yeezy.kim/
 [Yeezy Freebees](http://the.yeezy.kim/)
 
 ## Introduction 
