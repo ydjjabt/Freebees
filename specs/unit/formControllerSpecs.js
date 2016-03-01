@@ -27,9 +27,10 @@ describe('FormController', function(){
       });
     }
   }));
+
   describe('$scope.user', function(){
     it('should be an object', function(){
       createController();
-      expect(typeof $scope.user).toBe('object');    
+      expect(typeof $scope.user).toBe('object');
     });
 });

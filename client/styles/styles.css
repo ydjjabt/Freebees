@@ -221,7 +221,7 @@ input[type="text"] {
 }
 
 .yellowButton {
-  border-radius: 0px;
+  border-radius: 5px;
   overflow: hidden;
   text-transform: uppercase;
   background: #525252;
@@ -344,4 +344,24 @@ span a {
 #footerSection a:hover {
   font-weight: bold;
   color: #797570;
+}
+
+.shoe {
+  text-align: center;
+  margin: auto;
+  padding-left: 42%;
+}
+
+#fileInput {
+  margin-top: 20px;
+}
+
+.musicContainer {
+  background-color: #797570;
+  width: 20%;
+  display: block;
+  position: fixed;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 0;
 }

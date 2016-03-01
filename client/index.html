@@ -7,15 +7,26 @@
     <link rel="stylesheet" type="text/css" href="/styles/styles.css" />
     <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+<!--     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="/assets/uiboot.min.js"></script>
+    <script src="http://d2v52k3cl9vedd.cloudfront.net/plangular/3.1.0/plangular.min.js"></script>
     <script src="/app/auth/auth.js"></script>
     <script src="/app/app.js"></script>
     <script src="/app/controller.js"></script>
     <script ng-controller="MapController" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQxc_N-KPvOKJu0VH-GfsLBS40yDWCZgg&libraries=places&callback=loadAllItems"></script>
   </head>
   <body id="#" ng-app="myApp" ng-controller="FormController">
-    <remove-marker delpost="removePost(uuid)" uuid='SOME-UUID-HERE'></remove-marker>
+    <div class='musicContainer' plangular="https://soundcloud.com/kanyewest/nomorepartiesinlamix1-clean">
+      <small>{{ currentTime | hhmmss }} | {{ duration | hhmmss }}</small>
+      <progress
+        ng-click="seek($event)"
+        ng-value="currentTime / duration">
+        {{ currentTime / duration }}
+      </progress>
+      <button ng-click="playPause()">Play/Pause</button>
+    </div>
     <nav class="navbar-fixed">
      <div id="headerSection" class="container-fluid">
       <ul>
@@ -50,7 +61,7 @@
           <input placeholder="Your yeezys" type="text" ng-model="user.item">
           <input placeholder="Your crib" id="inputAddress" type="text" ng-model="user.location">
           <br>
-          <input type="file" id="fileInput"></input><br>
+          <input type="file" id="fileInput" class="yellowButton"></input><br>
           <div class="spinner"><img src="loading.gif"></div><br><br>
             <button class="yellowButton submitForm" type="submit" ng-click="sendPost()" >
               <a href="#">Submit </a>
@@ -67,5 +78,6 @@
           &copy;Yo, Taylor, I'm really happy for you, I'ma let you finish, but Beyoncé had one of the best videos of all time! One of the best videos of all time!
         </div>
     </div>
+    <img class="shoe" src="./assets/kanye/boost.png">
   </body>
 </html>

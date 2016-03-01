@@ -1,4 +1,7 @@
-var app = angular.module('myApp', ['map.services', 'auth'])
+var app = angular.module('myApp', ['map.services', 'auth', 'plangular'])
+.config(function(plangularConfigProvider){
+  plangularConfigProvider.clientId = '519fb1126e390271a532264823ca5b87';
+})
 
 //dependencies injected include DBActions factory and Map factory
 .controller('FormController', function($scope, $http, $window, DBActions, Map){

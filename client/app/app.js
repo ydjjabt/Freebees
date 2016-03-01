@@ -46,10 +46,13 @@ angular.module('map.services', [])
 
   //create an instance of a map where the data passed in is an array of objs
   var initMap = function(data){
+    $window.directionsDisplay = new google.maps.DirectionsRenderer();
+    $window.directionsService = new google.maps.DirectionsService();
     $window.map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 37.764115, lng: -122.435280},
       zoom: 12
     });
+    $window.directionsDisplay.setMap($window.map);
     //creates a global infowindow that will show only one window at a time
     $window.infoWindow = new google.maps.InfoWindow();
 
@@ -127,10 +130,31 @@ angular.module('map.services', [])
         //turn our mongo-stored stringified date into a JS date obj that is then formatted
         $window.infoWindow.setContent('<div>' + instance.itemName + '<br><span class="createdAt">' + formatDate(new Date(instance.createdAt)) + '</span>'
           + '<br><img src="' + instance.picture + '">'
+          + '<br>Directions:<select id=' + 'SELECTOR_' + instance.uuid + '>'
+          + '<option value="DRIVING">Driving</option>'
+          + '<option value="WALKING">Walking</option>'
+          + '<option value="BICYCLING">Bicycling</option>'
+          + '<option value="TRANSIT">Transit</option>'
+          + '</select>'
           + '<br><button class="removeMarker" id=' + instance.uuid + '>Delete</button>');
         $window.infoWindow.open(map, this);
         google.maps.event.addDomListener(document.getElementById(instance.uuid), 'click', function() {
           removeFromDB({uuid: instance.uuid});
+        });
+        google.maps.event.addDomListener(document.getElementById('SELECTOR_' + instance.uuid), 'change', function() {
+          var selectedMode = document.getElementById("SELECTOR_" + instance.uuid).value;
+          navigator.geolocation.getCurrentPosition(function(pos) {
+            var request = {
+              origin: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+              destination: instance.itemLocation,
+              travelMode: google.maps.TravelMode[selectedMode]
+            };
+            $window.directionsService.route(request, function(response, status) {
+              if (status == google.maps.DirectionsStatus.OK) {
+                $window.directionsDisplay.setDirections(response);
+              }
+            });
+          })
         });
       });
     }, timeout);
