@@ -55,6 +55,7 @@
     "jsonwebtoken": "5.7.0",
     "karma-browserify": "5.0.2",
     "karma-coverage": "0.5.3",
+    "karma-jasmine": "0.3.7",
     "mongodb": "2.1.7",
     "mongoose": "4.4.3",
     "morgan": "1.6.1",
