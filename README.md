@@ -1,11 +1,11 @@
 # Freebees
-Have something to give away? Here's Freebees.
+Have something to give away? Come to Yeezy Freebees.
 
-[Freebees](https://freebees.herokuapp.com/)
+[Yeezy Freebees](http://the.yeezy.kim/)
 
 ## Introduction 
 
-This web application allows a user to post items that she/he wants to give away. Other users can see the posted items and their locations.
+This web application allows a user to post Yeezy items that she/he wants to give away. Other users can see the posted Yeezy and their locations.
 
 ## Getting Started
 
@@ -39,14 +39,12 @@ We used Google Maps JavaScript API for our locations.[Google Maps JavaScript API
 ## Features
 
 - Users can add one item at a time with its physical address as location.
+- Users can upload pictures along with their posting.
 - Users can remove an item from the map  when it becomes unavailable.
 - Users can use their location based on IP address.
 - Users can search the database by item name.
 
-## In progress
 
-- Filter based on when item was submitted.
-- Users can upload pictures along with their posting.
 
 ## Git Workflow
 
@@ -57,10 +55,7 @@ Please refer to the [CONTRIBUTING.md](_CONTRIBUTING.md) file to see our git work
 Please refer to the [STYLE-GUIDE.md](_STYLE-GUIDE.md) file to see our style guide.
 
 ## Contributors
-- Collin Adams ([Collin Adams](https://github.com/collinadams))
-- Alice Kao ([Alice Kao](https://github.com/alicekao))
-- Jessica Park ([Jessica Park](https://github.com/tinkleJess))
-- Michael Serna ([Michael Serna](https://github.com/michaelserna))
+- Kanye West (Supported by Yankee, Red Coat and GI Joe A Real American Hero)
 
 
-MKS Greenfield Project
+MKS Legacy Project

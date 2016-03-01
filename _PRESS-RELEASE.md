@@ -18,7 +18,7 @@ Once the project moves into development, the press release can be used as a touc
  ## Heading ##
    > Name the product in a way the reader (i.e. your target customers) will understand.
 
-   Find free stuff around you!
+   Find free Yeezy stuff around you!
 
  ## Sub-Heading ##
    > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
@@ -28,7 +28,7 @@ Once the project moves into development, the press release can be used as a touc
  ## Summary ##
    > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
 
-   If you have anything you want off your hands or have anything you'd like to give away, post it on Freebies Near Me. Alternatively, if you are looking for free stuff near you, look at the map to find the closest free things that users have listed.
+   If you have anything you want off your hands or have anything you'd like to give away, post it on Yeezy Freebees. Alternatively, if you are looking for free stuff near you, look at the map to find the closest free things that users have listed.
 
  ## Problem ##
    > Describe the problem your product solves.
@@ -48,12 +48,12 @@ Once the project moves into development, the press release can be used as a touc
  ## How to Get Started ##
    > Describe how easy it is to get started.
 
-   Go to our landing page to instantly see a map of all of the free things around you.
+   Go to our landing page to instantly see a map of all of the free Yeezy around you.
 
  ## Customer Quote ##
    > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
 
-   "I'll continuously check Freebies Near Me to see if anything I'm interested in pops up near me"
+   "I'll continuously check Yeezy Freebies Near Me to see if anything I'm interested in pops up near me"
 
  ## Closing and Call to Action ##
    > Wrap it up and give pointers where the reader should go next.
