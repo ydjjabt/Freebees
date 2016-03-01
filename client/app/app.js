@@ -50,6 +50,7 @@ angular.module('map.services', []) //
     $window.directionsService = new google.maps.DirectionsService();
     $window.map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 37.764115, lng: -122.435280},
+      scrollwheel: false,
       zoom: 12
     });
     $window.directionsDisplay.setMap($window.map);
