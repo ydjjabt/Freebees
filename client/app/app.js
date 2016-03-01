@@ -1,4 +1,4 @@
-angular.module('map.services', ['angularModaService'])
+angular.module('map.services', []) //
 
 .factory('Map', function($http, $window){
   var entireDB;
@@ -194,84 +194,6 @@ angular.module('map.services', ['angularModaService'])
     addMarker: addMarker,
   };
 })
-.controller("Controller", function ($scope, ModalService){
-  $scope.show = function (){
-    ModalService.showModal({
-      templateUrl: 'modal.html',
-      controller : "modalController"
-    }).then(function(modal){
-      modal.element.modal();
-      modal.close.then(function(result){
-        $scope.message = "You said" + result;
-      });
-    });
-  };
-})
-.controller('modalController', function($scope, close){
-  $scope.close = function (result){
-    close(result,500)
-  };
-})
-// .service('modal', function ($scope, $q){
-//   var modal = {
-//       deferred : null, 
-//       params: null
-//   }
-//   var open = function(type , params, pipeResponse){
-//     var previousDeferred  = modal.deferred;
-//     modal.deferred = $q.defer();
-//     modal.params = params;
-
-//     if(previousDeferred  && pipeResponse )  {
-//       modal.deferred.promise 
-//         .then ( previousDeferred.resolve, previousDeferred.reject);
-//     } else if (previousDeferred ){
-      
-//       previousDeferred.reject();
-
-//     }
-//     $scope.$emit("modal.open",type);
-
-//     return (modal.deferred.promise);
-//   };
-
-//   var params = function() {
-//     return (modal.params || {});
-//   };
-
-//   var proceedTo = function (type, params){
-//     return (open(type, params, true));
-//   };
-//   var reject = function (reason) {
-//     if (! modal.deferred){
-//       return;
-//     }
-
-//     modal.deferred.reject(reason);
-//     modal.deferred = modal.params = null;
-
-//     $scope.$emit("modals.close");
-//   };
-
-//   var resolve = function (response){
-//     if(! modal.deferred){
-//       return;
-//     }
-//     modal.deferred.resolve(response);
-
-//     modal.deferred = modal.params = null;
-//     $scope.$emit( "modal.close");
-//   }
-
-//   return{
-//     open: open,
-//     params: params,
-//     proceedTo: proceedTo,
-//     reject: reject,
-//     resolve: resolve
-//   });
-// })
-
 .factory('DBActions', function($http, $window, Map){
   //the 'toSave' parameter is an object that will be entered into database,
   //'toSave' has item prop and LatLng properties

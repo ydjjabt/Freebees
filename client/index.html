@@ -42,21 +42,32 @@
           <input id="searchBox" placeholder="Search for an item" type="text" ng-model="search.input">
           <button class="yellowButton" id="searchBtn" ng-click="filterMap()" type="submit"><a href="#">Search</a></button>
         </form>
+
       </div>
-<!--       <ul ng-controller="AuthController">
-        <li class=""><input type="text" placeholder="username" ng-model="user.username"></li>
-        <li class=""><input type="text" placeholder="password" ng-model="user.password"></li>
-        <li class=""><a class="anchor" ng-click="login()">Login</a></li>
-        <li class=""><a class="anchor" ng-click="signup()">Signup</a></li>
-        <li class=""><a class="anchor" ng-click="logout()">Logout</a></li>
-      </ul> -->
      </div>
+
     </nav>
     <div id="map"></div>
     <div id="inputSection">
       <div id="inputForm">
         <form novalidate >
           <h2>Want to give away some YEEZYS?</h2><br>
+          <a class="rightFloat" href ="#openModal"> Login/Signup </a><li>
+          <div id = "openModal" class = "modalDialog">
+            <div>
+          <a href = "#close" tittle = "close" class="close">x</a>
+          <ul ng-controller="AuthController">
+        <li class=""><input type="text" placeholder="username" ng-model="user.username"></li>
+        <li class=""><input type="text" placeholder="password" ng-model="user.password"></li>
+        <li class=""><a class="anchor" ng-click="login()">Login</a></li>
+        <li class=""><a class="anchor" ng-click="signup()">Signup</a></li>
+        <li class=""><a class="anchor" ng-click="logout()">Logout</a></li>
+        </ul>
+            </div>
+          </div> 
+          <input placeholder="Your item" type="text" ng-model="user.item">
+          <input placeholder="Your address" id="inputAddress" type="text" ng-model="user.location">
+          <input type = "file" id = "fileInput"></input><br>
           <button id="fillIp" type="submit" ng-click="ip()">Or use current location</button>
           <br>
           <input placeholder="Your yeezys" type="text" ng-model="user.item">

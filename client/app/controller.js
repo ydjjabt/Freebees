@@ -2,7 +2,6 @@ var app = angular.module('myApp', ['map.services', 'auth', 'plangular'])
 .config(function(plangularConfigProvider){
   plangularConfigProvider.clientId = '519fb1126e390271a532264823ca5b87';
 })
-
 //dependencies injected include DBActions factory and Map factory
 .controller('FormController', function($scope, $http, $window, DBActions, Map){
   $scope.user = {};
@@ -116,4 +115,23 @@ var app = angular.module('myApp', ['map.services', 'auth', 'plangular'])
     }
   };
   $scope.clearForm();
+})
+.controller("Controller", function ($scope, ModalService){
+  $scope.show = function (){
+    console.log('show was called')
+    ModalService.showModal({
+      templateUrl: 'modal.html',
+      controller : function(){
+        console.log('it works')
+      }
+    }).then(function(modal){
+      modal.element.modal();
+       modal.close.then(function(result){
+         $scope.customResult = "You said";
+       });
+    });
+  };
+})
+.controller('modalController', function($scope, close){
+  $scope.close = close;
 })
